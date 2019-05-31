@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Linked views</title>
+
+    <!-- Import D3 V5 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+      d3v5 = d3;
+      window.d3 = null;
+    </script>
+    <h1>Bodemgebruik per km2 in Nederland</h1>
+    <p>Gemaakt door Rinus van Grunsven - 10755373</p>
+    <p>Zie de link voor de gebruikte gegevens: <a href="70262ned_TypedDataSet_22052019_134459.csv" target="_blank">70262ned_TypedDataSet_22052019_134459.csv</a></p>
+    <p>De data is middels "convertCSV2JSON.py" omgezet naar een json bestand zodat dit het werken in javascript ten goede komt</p>
+
+    <!-- Import D3 V3 and TopoJSON -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <!-- <script src="/datamaps.world.hires.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/nl/nl-all.js"></script>
+    <!-- <script type="text/javascript" src="d3-tip.js"></script> -->
+    <link rel="stylesheet" href="index.css"></link>
+    <!-- <script type="text/javascript" src="script.js"></script> -->
+    <!-- <div id="container"></div> -->
+
+
+  </head>
+  <body>
+    <div id="map_netherlands"></div>
+    <div id="container"></div>
+
+    <!-- <div id="container" style="position: relative; width: 900px; height: 10px;"></div>
+    <div id="clicked-country"></div>
+    <p>Hieronder ziet u een line graph</p>
+    <p>De x- en yschaal slagen er om de een of andere reden niet in het domein aan te passen aan de specifieke data van landen waardoor deze een ietwat raar beeld kunnen geven</p>
+    <p>Daarnaast lukte het niet om de functie 'getTotalLength()' werkende te krijgen waardoor de mouseover-hover-functie bij de lijngrafiek geen data weergeeft, excuses hiervoor</p>
+    <p>Zie de link voor de gebruikte gegevens: <a href="DP_LIVE_GDP.csv" target="_blank">DP_LIVE_GDP.csv</a></p> -->
+
+  </body>
+</html>
