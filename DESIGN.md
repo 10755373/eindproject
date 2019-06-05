@@ -1,36 +1,20 @@
-## Rinus van Grunsven - 10755373
-
-## Project proposal: Weergave van veranderingen in het Nederlandse landschap
-
-## Problem Statement
-
-Volgens een artikel van het CBS uit 2015 is het bodemgebruik in Nederland constant in beweging (zie: https://www.cbs.nl/nl-nl/nieuws/2017/10/minder-landschap-meer-bebouwing-1950-2015). Hierover ontstaat meer en meer tegenstrijdige informatie in mijn ogen. Zo is bijvoorbeeld de landbouw met 4% gestegen (zie: https://www.cbs.nl/nl-nl/nieuws/2017/03/export-landbouw-stijgt-met-ruim-4-procent) terwijl er juist minder aan landbouw gedaan wordt (zie: https://www.cbs.nl/nl-nl/nieuws/2016/08/minder-landbouw-meer-natuur) en landbouw in verscheidene provincies minder beoefend wordt (zie: https://www.1limburg.nl/landbouw-verliest-terrein-limburg && https://www.boerderij.nl/Home/Achtergrond/2019/3/Ruim-9-krimp-landbouwareaal-Flevoland-tot-2040-402181E/).
+## Data
+De data is afkomstig van www.opendata.cbs.nl en is in de vorm van een csv-formaat gedownloaded. Dit dien ik echter voor gebruik met javascript om te zetten in een json-bestand.
+De data is onderverdeeld in de volgende componenten:
+- De rijen zijn de provincies in Nederland en de jaartallen lopen vanaf 1996 tot en met 2015
+- De kolommen zijn onderverdeeld in zeven soorten bodemgebruik, namelijk: Verkeersterrein, Bebouwd terrein, Semi-Bebouwd, Recreatie, Bos, Natuurlijk terrein, Water Nederland
 
 
-## Solution
+## Visualizations
 
-Kortom, het Nederlandse landschap is aan veranderingen onderhevig en de meningen lopen uiteen wat betreft de omvang van de verschillende vormen van bodemgebruik. Om een helder, duidelijk en overzichteljk beeld te creëeren over de veranderingen over verloop van tijd is dit project vereist.
+Hieronder zie je de geschetste versie van mijn idee:
+Zoals gezegd verschijnt de map van Nederland met een hoover eronder. Hiermee kun je door de tijdspanne gaan om zo te zien hoe het bodemgebruik (van bebouwing + semi-bebouwing) was voor dat specifieke jaartal. Wanneer je stop op een jaartal en klikt op een provincie, danm verschijnt linksonder een lijngrafiek met daarin de data van wederom bebouwing + semi-bebouwing weergeven door de jaren. Middels een dropdown-optie kun je ervoor kiezen om andere vorem van bodemgebruik te weergeven in de linegraph.
+![map_en_linegraph](doc/IMG_3046.png)
+
+Door het stoppen op het jaartal en het klikken op een province, verschijnt er rechtsonder een radar-chart met de waarden van alle vormen van bodemgebruik in desbetreffend jaar voor desbetreffende provincie.
+![radar_chart](doc/IMG_3047.png)
 
 
-## Data Sources
+## Code
 
-De data is afkomstig van www.opendata.cbs.nl en gedownloaded als csv bestand wat erna voor verder gebruik omgezet dient te worden in een json-bestand.
-
-
-## Similar Visualizations
-
-Zie hieronder voor een screenshot welke van de website van de Wageningen University is genomen:
-![screenshot](doc/Screenshot 2019-06-05 at 21.16.19.png)
-
-## External components
-
-d3 (misschien met extensies)
-Topojson
-Bootstrap
-jQuery
-
-Similar example:
-
-## Hardest parts
-
-De interactie tussen de verschillende grafieken wordt mijns inziens lastig om op elkaar af te stemmen, dit merkte ik tijdens het 'Linked views'-opdracht van dataprocessing namelijk al. Daarnaast lukte het visualiseren van de worldmap toentertijd niet optimaal dus ik vrees daar wederom een hoop tijd aan kwijt te zijn. Als laatste zal de opmaak en lay-out van de site meer moeite gaan kosten dan dat ik nu denk ben ik bang.
+Alle visualisaties zullen in een apart bestand gemaakt worden en enkel in de index.js zal hiernaar verwezen worden. Dit om de overzichtelijkheid te bewaren. Daarnaast worden verscheidene functies binnen de site middels mappen van elkaar gescheiden. Zo is er een genaamd 'docs' voor de screenshots en foto's die wergeven worden op de site, een genaamd 'data' waarin data ingelezen, geanalyseerd en verwerkt wordt tot bruikbare bestanden. De laatste map heet 'code' en hieronder vallen de submappen 'css' (wat de opmaak van de site verzorgt) en 'js' (waarin de visualisaties worden gemaakt). 
