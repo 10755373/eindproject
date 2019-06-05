@@ -26,51 +26,51 @@ def read_csv_write_json(file):
         # reader = pd.read_csv(csvfile, delimiter=';')
         for i in range(len(fieldnames)):
             print(fieldnames[i][0])
-        # print(fieldnames)
-        # for row in reader:
-        #     rows_csv = {}
-        #     for i in range(len(fieldnames)):
-        #         rows_csv[fieldnames[i]] = row[reader[i]]
-        #     # for i in range(len(fieldnames)):
-        #     #     if len(values) < len(fieldnames):
-        #     #         kjsgjn
-        #     #     else:
-        #     #         if row[i][2] == "1996JJ00":
-        #     #
-        #     #             row_dict = row.to_dict()
-        #     #             first.append(row_dict)
-        #     #         elif row["Perioden"] == "2000JJ00":
-        #     #             row_dict = row.to_dict()
-        #     #             second.append(row_dict)
-        #     #         elif row["Perioden"] == "2003JJ00":
-        #     #             row_dict = row.to_dict()
-        #     #             third.append(row_dict)
-        #     #         elif row["Perioden"] == "2006JJ00":
-        #     #             row_dict = row.to_dict()
-        #     #             fourth.append(row_dict)
-        #     #         elif row["Perioden"] == "2008JJ00":
-        #     #             row_dict = row.to_dict()
-        #     #             fifth.append(row_dict)
-        #     #         elif row["Perioden"] == "2010JJ00":
-        #     #             row_dict = row.to_dict()
-        #     #             sixth.append(row_dict)
-        #     #         elif row["Perioden"] == "2012JJ00":
-        #     #             row_dict = row.to_dict()
-        #     #             seventh.append(row_dict)
-        #     #         else:
-        #     #             row_dict = row.to_dict()
-        #     #             eight.append(row_dict)
-        #     # make jsonfile
-        #     # number = row[i][2].slice(0, 4)
-        #     # with open(f"dataindustriesNL{number}", "w") as jsonfile:
-        #     #     json.dumps(data, sort_keys=False, indent=4, separators=(',', ': '))
-        #     #     json.dump(csv_values_in_dict, sort_keys=False, indent=4, jsonfile)
-        #
-        # # lists = [first, second, third, fourth, fifth, sixth, seventh, eight]
-        # # lists.append(first)
-        # # lists.append(second)
-        # # lists.append(third)
-        # print(csv_values_in_dict)
+        print(fieldnames)
+        for row in reader:
+            rows_csv = {}
+            for i in range(len(fieldnames)):
+                rows_csv[fieldnames[i]] = row[reader[i]]
+            # for i in range(len(fieldnames)):
+            #     if len(values) < len(fieldnames):
+            #         kjsgjn
+            #     else:
+            #         if row[i][2] == "1996JJ00":
+            #
+            #             row_dict = row.to_dict()
+            #             first.append(row_dict)
+            #         elif row["Perioden"] == "2000JJ00":
+            #             row_dict = row.to_dict()
+            #             second.append(row_dict)
+            #         elif row["Perioden"] == "2003JJ00":
+            #             row_dict = row.to_dict()
+            #             third.append(row_dict)
+            #         elif row["Perioden"] == "2006JJ00":
+            #             row_dict = row.to_dict()
+            #             fourth.append(row_dict)
+            #         elif row["Perioden"] == "2008JJ00":
+            #             row_dict = row.to_dict()
+            #             fifth.append(row_dict)
+            #         elif row["Perioden"] == "2010JJ00":
+            #             row_dict = row.to_dict()
+            #             sixth.append(row_dict)
+            #         elif row["Perioden"] == "2012JJ00":
+            #             row_dict = row.to_dict()
+            #             seventh.append(row_dict)
+            #         else:
+            #             row_dict = row.to_dict()
+            #             eight.append(row_dict)
+            # make jsonfile
+            # number = row[i][2].slice(0, 4)
+            # with open(f"dataindustriesNL{number}", "w") as jsonfile:
+            #     json.dumps(data, sort_keys=False, indent=4, separators=(',', ': '))
+            #     json.dump(csv_values_in_dict, sort_keys=False, indent=4, jsonfile)
+
+        # lists = [first, second, third, fourth, fifth, sixth, seventh, eight]
+        # lists.append(first)
+        # lists.append(second)
+        # lists.append(third)
+        print(csv_values_in_dict)
         # print("-----------------")
         # print(lists[0][0])
         # print(type(lists[0][0]))
@@ -152,3 +152,37 @@ if __name__ == "__main__":
 #
 #
 # read_CSV(file,json_file)
+
+input = "KNMI_20190101.csv"
+output = "KNMI_20190101.json"
+data_list = []
+
+def read_csv(filename):
+    """
+    Read CSV and append a dict to a list
+    """
+    csv_values_in_dict = []
+    with open(input, "r") as csvfile:
+        reader = csv.Dictreader(csvfile)
+        for row in reader:
+            dict_values = {}
+            
+            if row[0] is "ID":
+                for i in range(len(reader)):
+                    fieldnames.append(reader[i])
+            else:
+                wind = row[2].strip()
+                wind_cleaned = wind.strip(';')
+                data_list.append({"Datum" : int(row[1]), "Windstoot" : int(wind_cleaned)})
+    return(data_list)
+
+def make_json(filename):
+    """
+    Make a JSON file
+    """
+    with open(output, "w") as jsonfile:
+        json.dump(data_list, jsonfile)
+
+if __name__ == "__main__":
+    read_csv(input)
+    make_json(data_list)
