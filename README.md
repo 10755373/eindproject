@@ -26,10 +26,10 @@ Zie hieronder voor een screenshot welke van de website van de Wageningen Univers
 
 ## External components
 
-d3 (misschien met extensies)
-Topojson
-Bootstrap
-jQuery
+- d3 (misschien met extensies)
+- Topojson
+- Bootstrap
+- jQuery
 
 Similar example:
 
