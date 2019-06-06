@@ -1,4 +1,4 @@
-![picture1](assets/DESIGN-a6bffe84.jpg)## Data
+## Data
 De data is afkomstig van www.opendata.cbs.nl en is in de vorm van een csv-formaat gedownloaded. Dit dien ik echter voor gebruik met javascript om te zetten in een json-bestand.
 De data is onderverdeeld in de volgende componenten:
 - De rijen zijn de provincies in Nederland en de jaartallen lopen vanaf 1996 tot en met 2015
@@ -9,10 +9,10 @@ De data is onderverdeeld in de volgende componenten:
 
 Hieronder zie je de geschetste versie van mijn idee:
 Zoals gezegd verschijnt de map van Nederland met een hoover eronder. Hiermee kun je door de tijdspanne gaan om zo te zien hoe het bodemgebruik (van bebouwing + semi-bebouwing) was voor dat specifieke jaartal. Wanneer je stop op een jaartal en klikt op een provincie, danm verschijnt linksonder een lijngrafiek met daarin de data van wederom bebouwing + semi-bebouwing weergeven door de jaren. Middels een dropdown-optie kun je ervoor kiezen om andere vorem van bodemgebruik te weergeven in de linegraph.
-![map_en_linegraph](doc/IMG_3046.png)
+![map_and_line](assets/DESIGN-fa6b9969.jpg)
 
 Door het stoppen op het jaartal en het klikken op een province, verschijnt er rechtsonder een radar-chart met de waarden van alle vormen van bodemgebruik in desbetreffend jaar voor desbetreffende provincie.
-![radar_chart](doc/IMG_3047.png)
+![picture1](assets/DESIGN-a6bffe84.jpg)
 
 
 ## Code
