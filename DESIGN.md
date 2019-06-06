@@ -1,4 +1,4 @@
-## Data
+![picture1](assets/DESIGN-a6bffe84.jpg)## Data
 De data is afkomstig van www.opendata.cbs.nl en is in de vorm van een csv-formaat gedownloaded. Dit dien ik echter voor gebruik met javascript om te zetten in een json-bestand.
 De data is onderverdeeld in de volgende componenten:
 - De rijen zijn de provincies in Nederland en de jaartallen lopen vanaf 1996 tot en met 2015
@@ -17,4 +17,4 @@ Door het stoppen op het jaartal en het klikken op een province, verschijnt er re
 
 ## Code
 
-Alle visualisaties zullen in een apart bestand gemaakt worden en enkel in de index.js zal hiernaar verwezen worden. Dit om de overzichtelijkheid te bewaren. Daarnaast worden verscheidene functies binnen de site middels mappen van elkaar gescheiden. Zo is er een genaamd 'docs' voor de screenshots en foto's die wergeven worden op de site, een genaamd 'data' waarin data ingelezen, geanalyseerd en verwerkt wordt tot bruikbare bestanden. De laatste map heet 'code' en hieronder vallen de submappen 'css' (wat de opmaak van de site verzorgt) en 'js' (waarin de visualisaties worden gemaakt). 
+Alle visualisaties zullen in een apart bestand gemaakt worden en enkel in de index.js zal hiernaar verwezen worden. Dit om de overzichtelijkheid te bewaren. Daarnaast worden verscheidene functies binnen de site middels mappen van elkaar gescheiden. Zo is er een genaamd 'docs' voor de screenshots en foto's die wergeven worden op de site, een genaamd 'data' waarin data ingelezen, geanalyseerd en verwerkt wordt tot bruikbare bestanden. De laatste map heet 'code' en hieronder vallen de submappen 'css' (wat de opmaak van de site verzorgt) en 'js' (waarin de visualisaties worden gemaakt).
