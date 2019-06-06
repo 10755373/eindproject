@@ -1,4 +1,15 @@
-.map_netherlands {
+.container1 {
+  	position: relative;
+  	width: 500px;
+  	height: 450px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-top: 2.5%;
+  	margin-bottom: 2.5%;
+  	background-color: transparent;
+}
+
+/* .map_netherlands {
     height: 500px;
     min-width: 310px;
     max-width: 800px;
@@ -8,7 +19,7 @@
     margin-top: 10em;
     text-align: center;
     color: gray;
-}
+} */
 .provinces {
   position: relative;
   display: inline-block;
