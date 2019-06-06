@@ -22,7 +22,7 @@ De data is afkomstig van www.opendata.cbs.nl en gedownloaded als csv bestand wat
 ## Similar Visualizations
 
 Zie hieronder voor een screenshot welke van de website van de Wageningen University is genomen:
-![screenshot](doc/Screenshot 2019-06-05 at 21.16.19.png)
+![screenshot](doc/Screenshot 2019-06-05 at 21.16.19.jpg)
 
 ## External components
 

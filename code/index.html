@@ -28,10 +28,23 @@ https://github.com/markmarkoh/datamaps/blob/master/README.md#getting-started
     <!-- Import D3 V3 and TopoJSON -->
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"></script>
-    <script src="https://datamaps.github.io/scripts/0.4.4/datamaps.world.min.js"></script>
+    <script src="https://datamaps.github.io/scripts/0.4.4/datamaps.nld.min.js"></script>
     <script>
       d3v3 = d3;
       window.d3 = null;
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="/datamaps.world.hires.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <!-- <script type="text/javascript" src="d3-tip.js"></script> -->
+    <!-- <link rel="stylesheet" href="index.css"></link>
+    <script type="text/javascript" src="map.js"></script> -->
+    <script>
+    var map = new Datamap({
+        element: document.getElementById('container'),
+        scope: 'usa'
+    });
     </script>
 
     <!-- <script type="text/javascript" src="map.js"></script>
@@ -47,8 +60,5 @@ https://github.com/markmarkoh/datamaps/blob/master/README.md#getting-started
     <p style="font-family:Times;">introduction <br>
     </p>
         <div id="container" style="position: relative; width: 700px; height: 400px; top: 20px;"></div>
-        <div id="linegraph" style="position: relative; width: 500px; height: 450px; top: -395px; left: 800px;"></div>
-        <div id="radar-chart" style="position: relative; width: 500px; height: 450px; top: -695px; left: 200px;"></div>
-
   </body>
 </html>
