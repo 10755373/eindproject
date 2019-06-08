@@ -13,10 +13,6 @@ window.onload = function() {
   makemap();
 };
 
-var req = d3v5.json("data.json")
-
-console.log(req)
-
 
 // draw datamap with fillkeys from json, if existing
 function makemap(){
@@ -24,8 +20,29 @@ function makemap(){
   // create promise for json of gdp-data
   d3v5.json("data.json").then(function(data) {
 
-    var div2 = d3v5.select('body').append('div')
-      .attr('id', 'container')
+    console.log(data)
+    var req = data
+    console.log(req)
+
+
+    data_dict1 = getdataobjects_male(data)
+    data_dict2 = getdataobjects_female(data)
+    // colors1 = getcolors1(data)
+    // colors2 = getcolors2(data)
+
+    //
+    // // Determine colorscale
+    // var colorScale = d3v5.scaleOrdinal()
+    //             .domain([Math.min(... values_2016), Math.max(... values_2016)])
+    //             .range(['Laag','Medium','Hoog','Uitzonderlijk']);
+    //
+    // // Adjust previously made dict
+    // for (var key in dict_2016) {
+    //   let country_color = {}
+    //   country_color["Value"] = parseInt(dict_2016[key])
+    //   country_color["fillKey"] = colorScale(dict_2016[key])
+    //   dict_2016[key] = country_color;
+    // }
 
     // Set margins
       var margin = {top: 70, right: 100, bottom: 20, left: 50},
@@ -42,7 +59,7 @@ function makemap(){
       	.style('fill', 'darkOrange')
         .text("Worldmap: GDP per capita");
 
-    
+
 
     // // Get values from 2016
     // var values_2016 = []
@@ -84,12 +101,17 @@ function makemap(){
       // create datamap
       var map = new Datamap({element: document.getElementById('container'),
       fills: {
-      defaultFill: 'grey'
+          defaultFill: '#f0a0fa',
+          Ontbrekend: '#f0a0fa',
+          Laag: '#ccffcc',
+          Semi: '#96c985',
+          Hoog: '#61943d',
+          Uitzonderlijk: '#336600'
       },
-      data: data,
+      data: data_dict1,
       geographyConfig: {
         popupTemplate: function(geography, data) {
-       return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'GDP per capita: ' +  data.GDP
+       return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'No. of suicides: ' +  data.GDP
      }},
      //  done: function(datamap) {
      //     datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
@@ -126,3 +148,32 @@ function makemap(){
       });
   });
 }
+
+function getdataobjects_male(data){
+  console.log(data)
+  list_values = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == "2000" && data[i].sex == "male" && data[i].age == "15-24 years"){
+      list_values[data[i].country] = data[i].suicides_100k
+    }
+  }
+  console.log(list_values)
+};
+
+function getdataobjects_female(data){
+  console.log(data)
+  list_values = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == "2000" && data[i].sex == "female" && data[i].age == "15-24 years"){
+      list_values[data[i].country] = data[i].suicides_100k
+    }
+  }
+  console.log(list_values)
+};
+
+function getcolors1(data){
+  list = []
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == "2000" && data[i].sex == "male" && data[i].age == "15-24 years"){
+      list.append(data[i].suicides_100k)
+}}};
