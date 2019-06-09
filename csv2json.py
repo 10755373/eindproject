@@ -9,45 +9,39 @@ def csv_to_json(file):
     '''
     Converts data from a csv file to a json file
     '''
-    # iso2_codes = coco.convert(names=iso3_codes, to='ISO2')
-    #
-    # countries = {}
-    # for country in pycountry.countries:
-    #     countries[country.name] = country.alpha_3
-    # print(len(pycountry.countries))
-    # listed = []
-    # for country in pycountry.countries:
-    #     listed.append(country)
-    # print(listed)
-    # print(pycountry.countries.get(alpha_2='DE'))
-    # print(pycountry.countries.get(alpha_3='DEU'))
-    # print(pycountry.countries.get(name='Germany').alpha_3)
-    # for Country in listed:
-    #     print(Country.alpha_3)
 
     reader = pandas.read_csv(file, delimiter=';')
     df = pandas.DataFrame(data=reader)
 
-    # for index, row in df.iterrows():
-    #     print(row.country)
-    # for Country in listed:
-    #     print(Country.alpha_3)
-    # for Country in listed:
-    #     for index, row in df.iterrows():
-    #         if Country.name == row.country:
-    #             row.alpha_code = Country.alpha_3
+    # df[(df.year == 2000) & (df.sex == "female") & (df.age == "15-24 years")]
+    #
+    right_df = []
 
+    for index, row in df.iterrows():
+        # print(row["country"])
+        code = pycountry.countries.get(name=row["country"]).alpha_3
+        # print(code)
+        print(index)
+        df.iloc[index,0] = code
+        # right_df.append(code)
+        # print(type(code))
+        # print(row)
+    df.set_index("alpha_code")
+    print(df.head())
 
-    # for index, row in df.iterrows():
-    #     if row["alpha_code"] == "iso":
-    #         row["alpha_code"] = pycountry.countries.get(name=row["country"]).alpha_3
-
-            # code = pycountry.countries.get(name='row.country').alpha_3
-                # row["alpha_code"] = code
-        # if row["alpha_code"] == "ISO":
-        #     row["alpha_code"] = coco.convert(names=row["country"], to='ISO3')
+        #
+        #     print(row)
+        # print(code)
+        # right_df.append(code)
+    #         # row["alpha_code"] = code
+    # print(row)
+    # print(right_df)
+    # print(right_df[0])
+    # print(right_df[0].age)
     # Output as json
-    df.to_json('data.json', orient='records', force_ascii=True)
+    df.to_json('correctdata.json', orient='index', force_ascii=True)
+# df.to_json(orient='index')
+# '{"row 1":{"col 1":"a","col 2":"b"},"row 2":{"col 1":"c","col 2":"d"}}'
 
 if __name__ == '__main__':
     csv_to_json('data.csv')

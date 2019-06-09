@@ -9,8 +9,6 @@ function makepie(){
   // // create promise for json of gdp-data
   // d3v5.json("data.json").then(function(data) {
 
-
-
   var data = [2, 4, 8, 10];
 
   var svg = d3v5.select("svg"),

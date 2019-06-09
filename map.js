@@ -18,7 +18,7 @@ window.onload = function() {
 function makemap(){
 
   // create promise for json of gdp-data
-  d3v5.json("data.json").then(function(data) {
+  d3v5.json("correctdata.json").then(function(data) {
 
     console.log(data)
     var req = data
@@ -109,30 +109,26 @@ function makemap(){
           Uitzonderlijk: '#336600'
       },
       data: data_dict1,
-      geographyConfig: {
-        popupTemplate: function(geography, data) {
-       return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'No. of suicides: ' +  data.GDP
-     }},
-     //  done: function(datamap) {
-     //     datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-     //         country = geography.properties.name;
-     //
-     //         // create promise for suicide data
-     //         d3v5.json("data.json").then(function(data) {
-     //           objects_interest_order = getObjectsInterest(data, country)
-     //           // suicide data available
-     //           if (objects_interest_order != 1){
-     //             d3v5.select("#graph").remove()
-     //             drawbar(objects_interest_order);
-     //           }
-     //           // no suicide data avaibale
-     //           else{
-     //             d3v5.select('#graph').remove()
-     //             noDataAvailable();
-     //           }
-     //         });
-     //     });
-     // }
+     //  geographyConfig: {
+     //    popupTemplate: function(geography, data) {
+     //   return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'No. of suicides: ' +  data.GDP
+     // }},
+      done: function(datamap) {
+         datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+             land = geography.properties.name;
+             d3v5.json("data.json").then(function(data) {
+               data_land = verkrijgdataland(data, land)
+               if (data_land != 1){
+                 d3v5.select("#graph").remove()
+                 drawbar(objects_interest_order);
+               }
+               else{
+                 d3v5.select('#graph').remove()
+                 geendataland();
+               }
+             });
+         });
+     }
       });
       // draw legend for datamap
       map.legend({
@@ -177,3 +173,34 @@ function getcolors1(data){
     if (data[i].year == "2000" && data[i].sex == "male" && data[i].age == "15-24 years"){
       list.append(data[i].suicides_100k)
 }}};
+
+
+function verkrijgdataland(data, land){
+  list = []
+  for (let i = 0; i < data.length; i++){
+    if (data[i].country == land && data[i].sex == "male" && data[i].age == "15-24 years"){
+      list.append(data[i].suicides_100k)
+}}
+console.log(list)};
+
+function geendataland(){
+  var margin = {top: 100, right: 80, bottom: 90, left: 120};
+  var w = 350;
+  var h = 200;
+  var barPadding = 0.5;
+
+  var svg = d3v5.select("#container")
+              .append("svg")
+              .attr("id","graph")
+              .attr("width", w + margin.left + margin.right)
+              .attr("height", h + margin.top + margin.bottom)
+              .append("g")
+              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  svg.append("text")
+      .attr("x", (w / 2))
+      .attr("y", 40 - (margin.top / 2))
+      .attr("text-anchor", "middle")
+      .style("font-size", "16px")
+      .text("no suicide data avaibale  " + country);
+};
