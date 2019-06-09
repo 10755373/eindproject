@@ -9,3 +9,6 @@ Vandaag ging het niet goed en daarom heb ik zojuist besloten een ander vraagstuk
 
 # Day 6
 Ik heb vandaag besloten onderzoek te doen naar de 'no of suicides'. Specifieker gezegd naar het verschil tussen mannen en vrouwen wereldwijd en of, zoals in de literatuur wordt beweerd, dit aantal onder mannen hoger ligt dan onder vrouwen. Dit ga ik met een worldmap, linegraph en piechart visualiseren. Vandaag ben ik tot mijn grote frustratie voornamelijk bezig geweest met de worldmap en het matchen van de 'Alpha_3'-codes aan de landen, maar vooralsnog zonder succes. De piechart maak ik morgen alsmede een vernieuwde readme en design.
+
+# Day 7
+De hele dag in de bieb gezeten en m'n data georganiseerd alsmede uitgevogeld hoe een piechart gemaakt dient te worden. Morgen zijn hopelijk zowel de map als de piechart operationeel.

@@ -15,7 +15,6 @@ def csv_to_json(file):
 
     # df[(df.year == 2000) & (df.sex == "female") & (df.age == "15-24 years")]
     #
-    right_df = []
 
     for index, row in df.iterrows():
         # print(row["country"])
@@ -26,8 +25,10 @@ def csv_to_json(file):
         # right_df.append(code)
         # print(type(code))
         # print(row)
-    df.set_index("alpha_code")
-    print(df.head())
+    # df.set_index(row["alpha_code"])
+    # print(df.head())
+    df.to_csv("ouput.csv")
+
 
         #
         #     print(row)
@@ -39,7 +40,7 @@ def csv_to_json(file):
     # print(right_df[0])
     # print(right_df[0].age)
     # Output as json
-    df.to_json('correctdata.json', orient='index', force_ascii=True)
+    # df.to_json('correcteddata.json', orient='index', force_ascii=True)
 # df.to_json(orient='index')
 # '{"row 1":{"col 1":"a","col 2":"b"},"row 2":{"col 1":"c","col 2":"d"}}'
 

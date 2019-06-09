@@ -18,7 +18,7 @@ window.onload = function() {
 function makemap(){
 
   // create promise for json of gdp-data
-  d3v5.json("correctdata.json").then(function(data) {
+  d3v5.json("correcteddata.json").then(function(data) {
 
     console.log(data)
     var req = data
