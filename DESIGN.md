@@ -1,20 +1,11 @@
 ## Data
-De data is afkomstig van www.opendata.cbs.nl en is in de vorm van een csv-formaat gedownloaded. Dit dien ik echter voor gebruik met javascript om te zetten in een json-bestand.
-De data is onderverdeeld in de volgende componenten:
-- De rijen zijn de provincies in Nederland en de jaartallen lopen vanaf 1996 tot en met 2015
-- De kolommen zijn onderverdeeld in zeven soorten bodemgebruik, namelijk: Verkeersterrein, Bebouwd terrein, Semi-Bebouwd, Recreatie, Bos, Natuurlijk terrein, Water Nederland
+The data s retrieved from www.kaggle.com in a csv-format. This means that transforming to a json-format is needed in order to use it within javascript. It took me a hell of a job to link the data to every country's 'Alpha3-code' which is required to be able to have the data shown when hovering over the world map.
 
 
 ## Visualizations
-
-Hieronder zie je de geschetste versie van mijn idee:
-Zoals gezegd verschijnt de map van Nederland met een hoover eronder. Hiermee kun je door de tijdspanne gaan om zo te zien hoe het bodemgebruik (van bebouwing + semi-bebouwing) was voor dat specifieke jaartal. Wanneer je stop op een jaartal en klikt op een provincie, danm verschijnt linksonder een lijngrafiek met daarin de data van wederom bebouwing + semi-bebouwing weergeven door de jaren. Middels een dropdown-optie kun je ervoor kiezen om andere vorem van bodemgebruik te weergeven in de linegraph.
-![map_and_line](assets/DESIGN-fa6b9969.jpg)
-
-Door het stoppen op het jaartal en het klikken op een province, verschijnt er rechtsonder een radar-chart met de waarden van alle vormen van bodemgebruik in desbetreffend jaar voor desbetreffende provincie.
-![picture1](assets/DESIGN-a6bffe84.jpg)
-
+Below is my idea of visualising this project:
+The users is shown a map of the world with countries in different colors. This is determined according to a colorscale and shown in a legend to clarify. By using the hover-function (based upon years), data adjusts to the right data per country for the correct year. After the users clicks on a country, a linegraph will appear which will show the overall data for a country for both men and woman for a specific age. Furthermore, a pie chart and donut chart appear for that specific country. With a dropdown-function the user is able to change the numbers for other ages.
+![foto](assets/DESIGN-3a05aa71.jpg)
 
 ## Code
-
-Alle visualisaties zullen in een apart bestand gemaakt worden en enkel in de index.js zal hiernaar verwezen worden. Dit om de overzichtelijkheid te bewaren. Daarnaast worden verscheidene functies binnen de site middels mappen van elkaar gescheiden. Zo is er een genaamd 'docs' voor de screenshots en foto's die wergeven worden op de site, een genaamd 'data' waarin data ingelezen, geanalyseerd en verwerkt wordt tot bruikbare bestanden. De laatste map heet 'code' en hieronder vallen de submappen 'css' (wat de opmaak van de site verzorgt) en 'js' (waarin de visualisaties worden gemaakt).
+I made several folders to have a clear distinction between python, javascript, html and css. Furthermore, seperate folders are made to divide data-specific files from function-specific files.

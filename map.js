@@ -1,22 +1,22 @@
 function makemap(json, data_map, colors){
 
-    // Set margins
-      var margin = {top: 70, right: 100, bottom: 20, left: 50},
-            height = 400 - margin.bottom - margin.top,
-            width = 700 - margin.left - margin.right;
-
-      // Append title
-      var svg = d3v5.select("div")
-        .append("text")
-        .attr("x", (width / 2))
-        .attr("y", 20)
-        .attr("text-anchor", "middle")
-        .style("font-size", "18px")
-      	.style('fill', 'darkOrange')
-        .text("Worldmap: GDP per capita");
+    // // Set margins
+    //   var margin = {top: 70, right: 100, bottom: 20, left: 50},
+    //         height = 400 - margin.bottom - margin.top,
+    //         width = 700 - margin.left - margin.right;
+    //
+    //   // Append title
+    //   var svg = d3v5.select("div")
+    //     .append("text")
+    //     .attr("x", (width / 2))
+    //     .attr("y", 20)
+    //     .attr("text-anchor", "middle")
+    //     .style("font-size", "18px")
+    //   	.style('fill', 'darkOrange')
+    //     .text("Worldmap: GDP per capita");
 
       // create datamap
-      var map = new Datamap({element: document.getElementById('container'),
+      var map = new Datamap({element: document.getElementById('container1'),
       fills: {
           defaultFill: '#FF0000',
       },
@@ -54,13 +54,7 @@ function makemap(json, data_map, colors){
       map.legend({
         legendTitle : "Suicides per country",
         defaultFillName: "No data: ",
-        // labels: {
-        //   q0: "one",
-        //   q1: "two",
-        //   q2: "three",
-        //   q3: "four",
-        //   q4: "five",
-        // },
+  
       });
 
 };

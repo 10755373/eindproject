@@ -42,3 +42,20 @@ https://bl.ocks.org/duspviz-mit/9b6dce37101c30ab80d0bf378fe5e583
 svg{
   padding-left: 50px;
 }
+
+/*
+https://www.tutorialsteacher.com/d3js/create-pie-chart-using-d3js
+*/
+.arc text {
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+
+.arc path {
+    stroke: #fff;
+}
+
+.title {
+    fill: teal;
+    font-weight: bold;
+}

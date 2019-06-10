@@ -1,4 +1,4 @@
-# eindproject
+# Final project minor programming UvA (low speed, 2018 - 2019)
 
 ## Rinus van Grunsven - 10755373
 
@@ -6,28 +6,28 @@
 
 ## Problem Statement
 
-Volgens een artikel van het CBS uit 2015 is het bodemgebruik in Nederland constant in beweging (zie: https://www.cbs.nl/nl-nl/nieuws/2017/10/minder-landschap-meer-bebouwing-1950-2015). Hierover ontstaat meer en meer tegenstrijdige informatie in mijn ogen. Zo is bijvoorbeeld de landbouw met 4% gestegen (zie: https://www.cbs.nl/nl-nl/nieuws/2017/03/export-landbouw-stijgt-met-ruim-4-procent) terwijl er juist minder aan landbouw gedaan wordt (zie: https://www.cbs.nl/nl-nl/nieuws/2016/08/minder-landbouw-meer-natuur) en landbouw in verscheidene provincies minder beoefend wordt (zie: https://www.1limburg.nl/landbouw-verliest-terrein-limburg && https://www.boerderij.nl/Home/Achtergrond/2019/3/Ruim-9-krimp-landbouwareaal-Flevoland-tot-2040-402181E/).
-
+Many scientists throughout the world have had a look a the suicide reasons, numbers, and rates amongst men and woman in countries worldwide since there are many gender differences with regard to suicides. Several studies concluded that men are likely to die from suicide three times more often than woman whilst other studies found out that the number was vastly increasing for woman and rather decreasing for men. Those studies weren't limited in the sense that they only compared numbers of men and woman for a short period of time (mostly not even a decade) as well as not making a clear distinction in the men/woman-population ratio in a country.
 
 ## Solution
 
-Kortom, het Nederlandse landschap is aan veranderingen onderhevig en de meningen lopen uiteen wat betreft de omvang van de verschillende vormen van bodemgebruik. Om een helder, duidelijk en overzichteljk beeld te creëeren over de veranderingen over verloop van tijd is dit project vereist.
+In order to say something about development throughout time for every specific country, visualization are very much needed. Therefore, at the end of this project, three interactive visualizations are shown to the user to provide them with a clear overview. In this way, I strive to be able to provide the user with something which enhances his/her perception of the numbers (per country, age, and sex) and to make conclusions.
 
 
 ## Data Sources
 
-De data is afkomstig van www.opendata.cbs.nl en gedownloaded als csv bestand wat erna voor verder gebruik omgezet dient te worden in een json-bestand.
+The data is retrieved from www.kaggle.com as a csv-file.
 
 
 ## Similar Visualizations
 
-Zie hieronder voor een screenshot welke van de website van de Wageningen University is genomen:
-![screenshot](assets/README-8d993624.jpg)
+See below for other visualizations:
+![screemshot](assets/README-02579942.png)
+![screenshot](assets/README-9f9ae507.png)
 
 
 ## External components
 
-- d3 (misschien met extensies)
+- d3 (probably with several extensions)
 - Topojson
 - Bootstrap
 - jQuery
@@ -36,4 +36,4 @@ Similar example:
 
 ## Hardest parts
 
-De interactie tussen de verschillende grafieken wordt mijns inziens lastig om op elkaar af te stemmen, dit merkte ik tijdens het 'Linked views'-opdracht van dataprocessing namelijk al. Daarnaast lukte het visualiseren van de worldmap toentertijd niet optimaal dus ik vrees daar wederom een hoop tijd aan kwijt te zijn. Als laatste zal de opmaak en lay-out van de site meer moeite gaan kosten dan dat ik nu denk ben ik bang.
+The interactions between different visuals as well as the world map (I've had a lot of struggles with that during the 'linked-views'-project of data processing) and the pie chart and donut chart in once I think.

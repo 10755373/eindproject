@@ -1,22 +1,21 @@
-window.onload = jscode();
+window.onload = visualizations();
 
-function jscode() {
-
+function visualizations() {
   fetch("outputted.json")
     .then(response => response.json())
     .then(json => {
-        console.log(json)
-        console.log(Object.values(json)[0])
-        console.log(Object.values(json)[0].country)
-        console.log(Object.keys(json))
+        // console.log(json)
+        // console.log(Object.values(json)[0])
+        // console.log(Object.values(json)[0].country)
+        // console.log(Object.keys(json))
         var data_map = retrievedata_map(json)
-        console.log(data_map)
+        // console.log(data_map)
         var colors = colorscale(data_map)
-        console.log(colors)
-        makemap(json, data_map, colors)
-        var data = datapie(data)
-        console.log(data)
-        drawpie(data)
+        // console.log(colors)
+        makemap(json, data_map, colors);
+        var data_pie = datapie(data)
+        console.log(data_pie)
+        makepie();
 
         // var dataset = transformdata(json)[0]
         // var palette_scale = transformdata(json)[1]

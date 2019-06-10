@@ -12,3 +12,6 @@ Ik heb vandaag besloten onderzoek te doen naar de 'no of suicides'. Specifieker 
 
 # Day 7
 De hele dag in de bieb gezeten en m'n data georganiseerd alsmede uitgevogeld hoe een piechart gemaakt dient te worden. Morgen zijn hopelijk zowel de map als de piechart operationeel.
+
+# Day 8
+Vandaag was een productieve dag! De map werkt naar behoren en wat betreft de pie chart ben ik op weg. Ik heb besloten een donut chart eromheen te weergeven om zodoende extra dimensie te geven aan de beantwoording van het vraagstuk van het project. 
