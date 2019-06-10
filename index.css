@@ -25,3 +25,20 @@
   display: inline-block;
   text-align: center;
 }
+
+
+/*
+https://bl.ocks.org/duspviz-mit/9b6dce37101c30ab80d0bf378fe5e583
+*/
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis line, .axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+svg{
+  padding-left: 50px;
+}

@@ -2,8 +2,8 @@ import json
 import csv
 import pandas as pd
 
-input = "70262ned_TypedDataSet_22052019_134459.csv"
-output = "bodemgebruikNL.json"
+input = "output.csv"
+output = "1.json"
 
 def read_csv(filename):
     """
