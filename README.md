@@ -6,11 +6,10 @@
 
 ## Problem Statement
 
-Many scientists throughout the world have had a look a the suicide reasons, numbers, and rates amongst men and woman in countries worldwide since there are many gender differences with regard to suicides. Several studies concluded that men are likely to die from suicide three times more often than woman whilst other studies found out that the number was vastly increasing for woman and rather decreasing for men. Those studies weren't limited in the sense that they only compared numbers of men and woman for a short period of time (mostly not even a decade) as well as not making a clear distinction in the men/woman-population ratio in a country.
+Many scientists throughout the world have had a look a the suicide reasons, numbers, and rates amongst men and woman in countries worldwide since there are many gender differences with regard to suicides. Several studies concluded that men are likely to die from suicide three times more often than woman whilst other studies found out that the number was vastly increasing for woman and rather decreasing for men. Those studies were limited in the sense that they only compared numbers of men and woman for a short period of time (mostly not even a decade) as well as not making a clear distinction in the men/woman-population ratio who're living a country. Therefore, to be able to say something about developments throughout a long period of time and developments between men and woman from different stages in life, new investigation is required.
 
 ## Solution
-
-In order to say something about development throughout time for every specific country, visualization are very much needed. Therefore, at the end of this project, three interactive visualizations are shown to the user to provide them with a clear overview. In this way, I strive to be able to provide the user with something which enhances his/her perception of the numbers (per country, age, and sex) and to make conclusions.
+My idea for this investigation is a follows: in order to say something about developments throughout time, visualizations are very much needed. Therefore, at the end of this project, three interactive visualizations are shown to the user to provide them with a clear overview so he/she can come to a comprehensive answer. Furthermore, in this way I strive to be able to provide the user with something which enhances his/her perception of the numbers per country, age, and sex.
 
 
 ## Data Sources
