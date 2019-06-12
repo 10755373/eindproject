@@ -15,6 +15,12 @@ function retrievedata_map(json){
   console.log(list_values)
 };
 
+function datapiechart2(){
+  // Create dummy data
+  var data = {a: 9, b: 20, c:30, d:8, e:12}
+  return data
+};
+
 
 // https://github.com/markmarkoh/datamaps/blob/master/src/examples/highmaps_world.html
 function colorscale(data_map){
@@ -112,8 +118,74 @@ function color_gradient_legend(){
       .text("axis title");
 };
 
-function datapie(data){
+
+function data_pie(dummyvarable){
   // Create dummy data
   var data = {a: 9, b: 20, c:30, d:8, e:12}
   return data
 };
+
+// function datapie(data){
+//   fetch("outputted.json")
+//     .then(response => response.json())
+//     .then(json => {
+//         data = Object.values(json);
+//         list_values = []
+//         list_male = {}
+//         list_female = {}
+//         for (let i = 0; i < data.length; i++){
+//           if (data[i].year == "2000" && data[i].sex == "male" && data[i].age == "15-24 years"){
+//             list_male[data[i].alpha_code] = data[i].suicides_no
+//             // list.push(data[i].alpha_code, data[i].suicides_no)
+//             // list_values[data[i].alpha_code] = data[i].suicides_no
+//           }
+//           else if (data[i].year == "2000" && data[i].sex == "male" && data[i].age == "15-24 years"){
+//             list_female[data[i].alpha_code] = data[i].suicides_no
+//           }
+//           else {
+//             break
+//           }
+//         }
+//         list_values.push(list_male)
+//         list_values.push(list_female)
+//         var data_pie = list_values
+//         return data_pie
+//       })};
+
+
+function obtaincountrydatamale(data, country){
+  data = Object.values(data)
+  list_linegraph_male = []
+  for (let i = 0; i < data.length; i++){
+    if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
+      list_linegraph_male.push(data[i].suicides_no)
+}}
+  console.log(list_linegraph_male)
+  return list_linegraph_male
+  };
+
+
+function obtaincountrydatafemale(data, country){
+  data = Object.values(data)
+  console.log(data)
+  console.log(country)
+  list_linegraph_female = []
+  for (i = 0; i < data.length; i++){
+    if (data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
+      console.log(data[i].suicides_no)
+      list_linegraph_female.push(data[i].suicides_no)
+}}
+  console.log(list_linegraph_female)
+  return list_linegraph_female
+  };
+
+
+
+// function parseData(data, country) {
+//   var arr = [];
+//   for (let i  = 0; i < data.length; i++){
+//     if
+//     arr.push(         {            date: new Date(i), //date            value: +data.bpi[i] //convert string to number         });   }   return arr;}
+// };
+//
+// function parseData(data) {   var arr = [];   for (var i in data.bpi) {      arr.push(         {            date: new Date(i), //date            value: +data.bpi[i] //convert string to number         });   }   return arr;}
