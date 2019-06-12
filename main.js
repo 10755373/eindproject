@@ -17,14 +17,15 @@ function visualizations() {
         // console.log(datapie)
         // makepiechart();
         // var data_pie = data_pie(dummyvariable);
-        var data = datapiechart2();
-        makepiechart2(data);
-        // var data_linegraph_male = verkrijgdataland_male(json, country)
+        // var data = datapiechart2();
+        // var data_linegraph_male = obtaincountrydatamale(json, country)
         // var data_linegraph_female = verkrijgdataland_female(json, country)
         // console.log(data_linegraph_male)
         // console.log(data_linegraph_female)
+        var data_pie = datapie(json)
+        makepiechart2(data_pie);
 
-        makelinegraph();
+        // makelinegraph(data_male);
         // var dataset = transformdata(json)[0]
         // var palette_scale = transformdata(json)[1]
         // console.log(json['NLD'])

@@ -24,9 +24,13 @@ function makemap(json, colors){
              country = geography.properties.name;
              data_country_male = obtaincountrydatamale(data, country)
              data_country_female = obtaincountrydatafemale(data, country)
-               if (data_country_male != 1 || data_country_female != 1){
-                makelinegraph(data_country_male, data_country_female);
-               }
+              if (data_country_female != 1){
+                makelinegraph(data_country_female)
+              }
+               // if (data_country_male != 1 || data_country_female != 1){
+               //   makepiechart2(datapie(json, country))
+               //   makelinegraph(data_country_male)
+               // }
                // no suicide data avaibale
                else{
                  geendataland();
@@ -34,9 +38,9 @@ function makemap(json, colors){
          });
      }
       });
-      // draw legend for datamap
-      map.legend({
-        legendTitle : "No. of suicides per capita",
-        defaultFillName: "No data: ",
-      });
+      // // draw legend for datamap
+      // map.legend({
+      //   legendTitle : "No. of suicides per capita",
+      //   defaultFillName: "No data: ",
+      // });
 };

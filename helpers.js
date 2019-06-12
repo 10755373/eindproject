@@ -21,6 +21,22 @@ function datapiechart2(){
   return data
 };
 
+function datapie(json, country){
+  data_pie = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == "2000" && data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
+      data_pie[data[i].sex] = data[i].suicides_no
+    }
+  }
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == "2000" && data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
+      data_pie[data[i].sex] = data[i].suicides_no
+    }
+  }
+  console.log(data_pie)
+  return data_pie
+};
+
 
 // https://github.com/markmarkoh/datamaps/blob/master/src/examples/highmaps_world.html
 function colorscale(data_map){
@@ -47,76 +63,117 @@ function colorscale(data_map){
   return data_set
 
 };
+
+function obtaincountrydatamale(data, country){
+  data = Object.values(data)
+  list_linegraph_male = []
+  dict = {}
+  list = []
+  for (let i = 0; i < data.length; i++){
+    if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
+      list_linegraph_male.push(data[i].suicides_no)
+      dict = {}
+      dict[data[i].year] = data[i].suicides_no
+      dict["x"] = data[i].year
+      dict["y"] = data[i].suicides_no
+      list.push(dict)
+}}
+  console.log(dict)
+  console.log(list_linegraph_male)
+  console.log(list)
+  return list
+  };
+
+
+function obtaincountrydatafemale(data, country){
+  data = Object.values(data)
+  // console.log(data)
+  // console.log(country)
+  list_linegraph_female = []
+  for (i = 0; i < data.length; i++){
+    if (data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
+      // console.log(data[i].suicides_no)
+      dict = {}
+      dict["x"] = data[i].year
+      dict["y"] = data[i].suicides_no
+      list_linegraph_female.push(dict)
+      // list_linegraph_female.push(data[i].suicides_no)
+}}
+  console.log(list_linegraph_female)
+  return list_linegraph_female
+  };
+
+
 // var test = [{"name":"aName","lastName":"aLastname"},{"name":"bName","lastName":"bLastname"}];
 //
 // for (var i = 0; i < test.length; ++i) {
 //     alert(test[i].name + ", " + test[i].lastName);
 // }
 
-function color_gradient_legend(){
-
-  // https://bl.ocks.org/duspviz-mit/9b6dce37101c30ab80d0bf378fe5e583
-  var w = 300, h = 50;
-
-    var key = d3.select("#legend1")
-      .append("svg")
-      .attr("width", w)
-      .attr("height", h);
-
-    var legend = key.append("defs")
-      .append("svg:linearGradient")
-      .attr("id", "gradient")
-      .attr("x1", "0%")
-      .attr("y1", "100%")
-      .attr("x2", "100%")
-      .attr("y2", "100%")
-      .attr("spreadMethod", "pad");
-
-    legend.append("stop")
-      .attr("offset", "0%")
-      .attr("stop-color", "#f7fcf0")
-      .attr("stop-opacity", 1);
-
-    legend.append("stop")
-      .attr("offset", "33%")
-      .attr("stop-color", "#bae4bc")
-      .attr("stop-opacity", 1);
-
-    legend.append("stop")
-      .attr("offset", "66%")
-      .attr("stop-color", "#7bccc4")
-      .attr("stop-opacity", 1);
-
-    legend.append("stop")
-      .attr("offset", "100%")
-      .attr("stop-color", "#084081")
-      .attr("stop-opacity", 1);
-
-    key.append("rect")
-      .attr("width", w)
-      .attr("height", h - 30)
-      .style("fill", "url(#gradient)")
-      .attr("transform", "translate(0,10)");
-
-    var y = d3.scaleLinear()
-      .range([300, 0])
-      .domain([68, 12]);
-
-    var yAxis = d3.axisBottom()
-      .scale(y)
-      .ticks(5);
-
-    key.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(0,30)")
-      .call(yAxis)
-      .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 0)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("axis title");
-};
+// function color_gradient_legend(){
+//
+//   // https://bl.ocks.org/duspviz-mit/9b6dce37101c30ab80d0bf378fe5e583
+//   var w = 300, h = 50;
+//
+//     var key = d3.select("#legend1")
+//       .append("svg")
+//       .attr("width", w)
+//       .attr("height", h);
+//
+//     var legend = key.append("defs")
+//       .append("svg:linearGradient")
+//       .attr("id", "gradient")
+//       .attr("x1", "0%")
+//       .attr("y1", "100%")
+//       .attr("x2", "100%")
+//       .attr("y2", "100%")
+//       .attr("spreadMethod", "pad");
+//
+//     legend.append("stop")
+//       .attr("offset", "0%")
+//       .attr("stop-color", "#f7fcf0")
+//       .attr("stop-opacity", 1);
+//
+//     legend.append("stop")
+//       .attr("offset", "33%")
+//       .attr("stop-color", "#bae4bc")
+//       .attr("stop-opacity", 1);
+//
+//     legend.append("stop")
+//       .attr("offset", "66%")
+//       .attr("stop-color", "#7bccc4")
+//       .attr("stop-opacity", 1);
+//
+//     legend.append("stop")
+//       .attr("offset", "100%")
+//       .attr("stop-color", "#084081")
+//       .attr("stop-opacity", 1);
+//
+//     key.append("rect")
+//       .attr("width", w)
+//       .attr("height", h - 30)
+//       .style("fill", "url(#gradient)")
+//       .attr("transform", "translate(0,10)");
+//
+//     var y = d3.scaleLinear()
+//       .range([300, 0])
+//       .domain([68, 12]);
+//
+//     var yAxis = d3.axisBottom()
+//       .scale(y)
+//       .ticks(5);
+//
+//     key.append("g")
+//       .attr("class", "y axis")
+//       .attr("transform", "translate(0,30)")
+//       .call(yAxis)
+//       .append("text")
+//       .attr("transform", "rotate(-90)")
+//       .attr("y", 0)
+//       .attr("dy", ".71em")
+//       .style("text-anchor", "end")
+//       .text("axis title");
+// };
 
 
 function data_pie(dummyvarable){
@@ -151,34 +208,6 @@ function data_pie(dummyvarable){
 //         var data_pie = list_values
 //         return data_pie
 //       })};
-
-
-function obtaincountrydatamale(data, country){
-  data = Object.values(data)
-  list_linegraph_male = []
-  for (let i = 0; i < data.length; i++){
-    if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
-      list_linegraph_male.push(data[i].suicides_no)
-}}
-  console.log(list_linegraph_male)
-  return list_linegraph_male
-  };
-
-
-function obtaincountrydatafemale(data, country){
-  data = Object.values(data)
-  console.log(data)
-  console.log(country)
-  list_linegraph_female = []
-  for (i = 0; i < data.length; i++){
-    if (data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
-      console.log(data[i].suicides_no)
-      list_linegraph_female.push(data[i].suicides_no)
-}}
-  console.log(list_linegraph_female)
-  return list_linegraph_female
-  };
-
 
 
 // function parseData(data, country) {

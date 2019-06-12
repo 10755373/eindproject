@@ -1,13 +1,10 @@
-function makepiechart2(data){
-  // set the dimensions and margins of the graph
+function makepiechart2(data, country){
   var width = 450
       height = 450
       margin = 40
 
-  // The radius of the pieplot is half the width or half the height (smallest one). I substract a bit of margin.
   var radius = Math.min(width, height) / 2 - margin
 
-  // append the svg object to the div called 'my_dataviz'
   var svg = d3v5.select("#container4")
     .append("svg")
       .attr("width", width)
@@ -15,8 +12,6 @@ function makepiechart2(data){
     .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  // // Create dummy data
-  // var data = {a: 9, b: 20, c:30, d:8, e:12}
   var data = data
 
   // set the color scale
@@ -53,7 +48,7 @@ function makepiechart2(data){
     .data(data_ready)
     .enter()
     .append('text')
-    .text(function(d){ return "grp " + d.data.key})
+    .text(function(d){ return d.data.key + ": " + d.data.value })
     .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
     .style("text-anchor", "middle")
     .style("font-size", 17)

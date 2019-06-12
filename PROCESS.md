@@ -14,4 +14,10 @@ Ik heb vandaag besloten onderzoek te doen naar de 'no of suicides'. Specifieker 
 De hele dag in de bieb gezeten en m'n data georganiseerd alsmede uitgevogeld hoe een piechart gemaakt dient te worden. Morgen zijn hopelijk zowel de map als de piechart operationeel.
 
 # Day 8
-Vandaag was een productieve dag! De map werkt naar behoren en wat betreft de pie chart ben ik op weg. Ik heb besloten een donut chart eromheen te weergeven om zodoende extra dimensie te geven aan de beantwoording van het vraagstuk van het project. 
+Vandaag was een productieve dag! De map werkt naar behoren en wat betreft de pie chart ben ik op weg. Ik heb besloten een donut chart eromheen te weergeven om zodoende extra dimensie te geven aan de beantwoording van het vraagstuk van het project.
+
+# Day 9
+Helaas was ik ziek en zodoende kon ik niets doen.
+
+# Day 10
+Wat een topdag! De worldmap werkt (vooralsnog) naar behoren en de daarnaast heb ik het voor elkaar een linegraph te maken welke werkt met een klik op een land. Dit heb ik tevens ook voor elkaar gekregen bij de piechart! Echter, nu moet daar nog een donut omheen. Punt van aandacht is nu om ervoor te zorgen dat bij een nieuwe klik op de worldmap de linegraph alsmede de piechart zich vernieuwen, maar dit wil ik pas gaan verzorgen op het moment dat ik de dropdown opties ga implementeren.

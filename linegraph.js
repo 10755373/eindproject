@@ -1,25 +1,19 @@
-function makelinegraph(){
+function makelinegraph(data_female){
 
   var graph;
   var xPadding = 30;
   var yPadding = 30;
 
-  var data = { values:[
-        { X: "Jan", Y: 12 },
-        { X: "Feb", Y: 28 },
-        { X: "Mar", Y: 18 },
-        { X: "Apr", Y: 34 },
-        { X: "May", Y: 40 },
-      ]};
+  var data = data_female
 
   // source:
   // https://web.archive.org/web/20130407101311/http://www.worldwidewhat.net/2011/06/draw-a-line-graph-using-html5-canvas/
   function getMaxY() {
     var max = 0;
 
-    for(var i = 0; i < data.values.length; i ++) {
-        if(data.values[i].Y > max) {
-            max = data.values[i].Y;
+    for(var i = 0; i < data.length; i ++) {
+        if(data[i].y > max) {
+            max = data[i].y;
         }
     }
 
@@ -28,7 +22,7 @@ function makelinegraph(){
   }
 
   function getXPixel(val) {
-      return ((linegraph.width - xPadding) / data.values.length) * val + (xPadding * 1.5);
+      return ((linegraph.width - xPadding) / data.length) * val + (xPadding * 1.5);
   }
 
   function getYPixel(val) {
@@ -39,7 +33,7 @@ function makelinegraph(){
   const l = linegraph.getContext('2d');
 
   // determine styles
-  l.lineWidth = 2;
+  l.lineWidth = 3;
   l.strokeStyle = '#333';
   l.font = 'italic 8pt sans-serif';
   l.textAlign = "center";
@@ -51,33 +45,45 @@ function makelinegraph(){
   l.stroke();
 
   // draw x-axis values
-  for(var i = 0; i < data.values.length; i ++) {
-    l.fillText(data.values[i].X, getXPixel(i), linegraph.height - yPadding + 20);
+  for(var i = 0; i < data.length; i ++) {
+    l.fillText(data[i].x, getXPixel(i), linegraph.height - yPadding + 20);
+    // l.beginPath();
+    // l.moveTo(linegraph.height - yPadding + 20, getXPixel(i));
+    // l.lineTo(linegraph.height, getXPixel(i));
+    // l.stroke();
   }
 
   // draw y-axis values
   l.textAlign = "right"
+  l.font = 'italic 8pt sans-serif';
   l.textBaseline = "middle";
 
   for(var i = 0; i < getMaxY(); i += 10) {
       l.fillText(i, xPadding - 10, getYPixel(i));
+      l.beginPath();
+      l.moveTo(xPadding, getYPixel(i));
+      l.lineTo(linegraph.width, getYPixel(i));
+      l.stroke();
   }
 
-  l.strokeStyle = '#f00';
+  // draw actual lines within the graph
+  l.strokeStyle = '#f20';
+  l.lineWidth = 3;
   l.beginPath();
-  l.moveTo(getXPixel(0), getYPixel(data.values[0].Y));
+  l.moveTo(getXPixel(0), getYPixel(data[0].y));
 
-  for(var i = 1; i < data.values.length; i ++) {
-      l.lineTo(getXPixel(i), getYPixel(data.values[i].Y));
+  for(var i = 1; i < data.length; i ++) {
+      l.lineTo(getXPixel(i), getYPixel(data[i].y));
   }
   l.stroke();
 
   l.fillStyle = '#333';
 
-  for(var i = 0; i < data.values.length; i ++) {
+  for(var i = 0; i < data.length; i ++) {
       l.beginPath();
-      l.arc(getXPixel(i), getYPixel(data.values[i].Y), 4, 0, Math.PI * 2, true);
+      l.arc(getXPixel(i), getYPixel(data[i].y), 4, 0, Math.PI * 2, true);
       l.fill();
+      console.log(data[i].y)
   }
 
 };
