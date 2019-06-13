@@ -24,6 +24,7 @@ function visualizations() {
         // console.log(data_linegraph_female)
         var data_pie = datapie(json)
         makepiechart2(data_pie);
+        console.log(data_pie)
 
         // makelinegraph(data_male);
         // var dataset = transformdata(json)[0]

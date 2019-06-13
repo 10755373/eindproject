@@ -24,8 +24,11 @@ function makemap(json, colors){
              country = geography.properties.name;
              data_country_male = obtaincountrydatamale(data, country)
              data_country_female = obtaincountrydatafemale(data, country)
+             console.log(data_country_female)
               if (data_country_female != 1){
-                makelinegraph(data_country_female)
+                makelinegraph(data_country_female, data_country_male)
+                makepiechart2(datapie(json, country))
+                // makepiechart2(datapie1(json, country), datapie2(json, country))
               }
                // if (data_country_male != 1 || data_country_female != 1){
                //   makepiechart2(datapie(json, country))

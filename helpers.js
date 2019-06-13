@@ -37,6 +37,22 @@ function datapie(json, country){
   return data_pie
 };
 
+// function datapie2(json, country){
+//   data_pie2 = {}
+//   for (let i = 0; i < data.length; i++){
+//     if (data[i].year == "2000" && data[i].country == country && data[i].sex == "male" && data[i].age == "25-34 years"){
+//       data_pie2[data[i].sex] = data[i].suicides_no
+//     }
+//   }
+//   for (let i = 0; i < data.length; i++){
+//     if (data[i].year == "2000" && data[i].country == country && data[i].sex == "female" && data[i].age == "25-34 years"){
+//       data_pie2[data[i].sex] = data[i].suicides_no
+//     }
+//   }
+//   console.log(data_pie2)
+//   return data_pie2
+// };
+
 
 // https://github.com/markmarkoh/datamaps/blob/master/src/examples/highmaps_world.html
 function colorscale(data_map){

@@ -14,35 +14,30 @@ function makepiechart2(data, country){
 
   var data = data
 
-  // set the color scale
-  var color = d3v5.scaleOrdinal()
-    .domain(data)
-    .range(d3v5.schemeSet2);
+  var colors = d3v5.scaleOrdinal()
+    .domain(["male", "female"])
+    .range(["#80aaff", "#ffb3e6"]);
 
-  // Compute the position of each group on the pie:
   var pie = d3v5.pie()
     .value(function(d) {return d.value; })
   var data_ready = pie(d3v5.entries(data))
-  // Now I know that group A goes from 0 degrees to x degrees and so on.
 
-  // shape helper to build arcs:
   var arcGenerator = d3v5.arc()
     .innerRadius(0)
     .outerRadius(radius)
 
-  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+
   svg
     .selectAll('mySlices')
     .data(data_ready)
     .enter()
     .append('path')
       .attr('d', arcGenerator)
-      .attr('fill', function(d){ return(color(d.data.key)) })
+      .attr('fill', function(d){ return(colors(d.data.key)) })
       .attr("stroke", "black")
       .style("stroke-width", "2px")
       .style("opacity", 0.7)
 
-  // Now add the annotation. Use the centroid method to get the best coordinates
   svg
     .selectAll('mySlices')
     .data(data_ready)
