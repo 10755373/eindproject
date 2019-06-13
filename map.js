@@ -21,11 +21,13 @@ function makemap(json, colors){
      }},
       done: function(datamap) {
          datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+           console.log(geography.properties.name)
+           console.log(geography.properties)
              country = geography.properties.name;
              data_country_male = obtaincountrydatamale(data, country)
              data_country_female = obtaincountrydatafemale(data, country)
              console.log(data_country_female)
-              if (data_country_female != 1){
+              if (data_country_female.length > 0){
                 makelinegraph(data_country_female, data_country_male)
                 makepiechart2(datapie(json, country))
                 // makepiechart2(datapie1(json, country), datapie2(json, country))
@@ -36,7 +38,7 @@ function makemap(json, colors){
                // }
                // no suicide data avaibale
                else{
-                 geendataland();
+                 geendataland(country);
                }
          });
      }

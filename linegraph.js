@@ -85,7 +85,7 @@ function makelinegraph(data_female, data_male){
       l.beginPath();
       l.arc(getXPixel(i), getYPixel(data_female[i].y), 4, 0, Math.PI * 2, true);
       l.fill();
-      console.log(data_female[i].y)
+      // console.log(data_female[i].y)
   }
 
   // draw actual lines within the graph
@@ -105,7 +105,7 @@ function makelinegraph(data_female, data_male){
       l.beginPath();
       l.arc(getXPixel(i), getYPixel(data_male[i].y), 4, 0, Math.PI * 2, true);
       l.fill();
-      console.log(data_male[i].y)
+      // console.log(data_male[i].y)
   }
 
 };

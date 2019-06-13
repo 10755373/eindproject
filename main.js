@@ -1,7 +1,7 @@
 window.onload = visualizations();
 
 function visualizations() {
-  fetch("outputted.json")
+  fetch("dataproject.json")
     .then(response => response.json())
     .then(json => {
         // console.log(json)
@@ -22,9 +22,9 @@ function visualizations() {
         // var data_linegraph_female = verkrijgdataland_female(json, country)
         // console.log(data_linegraph_male)
         // console.log(data_linegraph_female)
-        var data_pie = datapie(json)
-        makepiechart2(data_pie);
-        console.log(data_pie)
+        // var data_pie = datapie(json)
+        // makepiechart2(data_pie);
+        // console.log(data_pie)
 
         // makelinegraph(data_male);
         // var dataset = transformdata(json)[0]
@@ -34,6 +34,7 @@ function visualizations() {
         // makemap(json, dataset, palette_scale);
         // drawpiechart();
         //drawbarchart();
+        // testpie();
 
     });
 }

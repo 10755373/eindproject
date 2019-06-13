@@ -87,6 +87,7 @@ function obtaincountrydatamale(data, country){
   list = []
   for (let i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
+      console.log(data[i].country)
       list_linegraph_male.push(data[i].suicides_no)
       dict = {}
       dict[data[i].year] = data[i].suicides_no
@@ -109,6 +110,7 @@ function obtaincountrydatafemale(data, country){
   for (i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
       // console.log(data[i].suicides_no)
+      console.log(data[i].country)
       dict = {}
       dict["x"] = data[i].year
       dict["y"] = data[i].suicides_no

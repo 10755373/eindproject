@@ -27,7 +27,7 @@ def csv_to_json(file):
         # print(row)
     # df.set_index(row["alpha_code"])
     # print(df.head())
-    df.to_csv("ouput.csv")
+    df.to_csv("output.csv")
 
 
         #

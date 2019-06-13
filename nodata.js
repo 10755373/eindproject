@@ -1,10 +1,10 @@
-function geendataland(){
+function geendataland(country){
   var margin = {top: 100, right: 80, bottom: 90, left: 120};
   var w = 350;
   var h = 200;
   var barPadding = 0.5;
 
-  var svg = d3v5.select("#container")
+  var svg = d3v5.select("#container2")
               .append("svg")
               .attr("id","graph")
               .attr("width", w + margin.left + margin.right)
