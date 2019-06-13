@@ -1,4 +1,4 @@
-function makepiechart2(data, country){
+function donutchart(data, country){
   var width = 450
       height = 450
       margin = 40
@@ -23,9 +23,8 @@ function makepiechart2(data, country){
   var data_ready = pie(d3v5.entries(data))
 
   var arcGenerator = d3v5.arc()
-    .innerRadius(0)
+    .innerRadius(125)
     .outerRadius(radius)
-
 
   svg
     .selectAll('mySlices')

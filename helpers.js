@@ -10,16 +10,9 @@ function retrievedata_map(json){
       list_values.push(list)
     }
   }
-  var data_map = list_values
-  return data_map
-  console.log(list_values)
+  return list_values
 };
 
-function datapiechart2(){
-  // Create dummy data
-  var data = {a: 9, b: 20, c:30, d:8, e:12}
-  return data
-};
 
 function datapie(json, country){
   data_pie = {}
@@ -33,26 +26,24 @@ function datapie(json, country){
       data_pie[data[i].sex] = data[i].suicides_no
     }
   }
-  console.log(data_pie)
   return data_pie
 };
 
-// function datapie2(json, country){
-//   data_pie2 = {}
-//   for (let i = 0; i < data.length; i++){
-//     if (data[i].year == "2000" && data[i].country == country && data[i].sex == "male" && data[i].age == "25-34 years"){
-//       data_pie2[data[i].sex] = data[i].suicides_no
-//     }
-//   }
-//   for (let i = 0; i < data.length; i++){
-//     if (data[i].year == "2000" && data[i].country == country && data[i].sex == "female" && data[i].age == "25-34 years"){
-//       data_pie2[data[i].sex] = data[i].suicides_no
-//     }
-//   }
-//   console.log(data_pie2)
-//   return data_pie2
-// };
+function datadonut(json, country){
+  data_donut = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == "2000" && data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
+      data_donut[data[i].sex] = data[i].population
+    }
+  }
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == "2000" && data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
+      data_donut[data[i].sex] = data[i].population
+    }
+  }
+  return data_donut
 
+};
 
 // https://github.com/markmarkoh/datamaps/blob/master/src/examples/highmaps_world.html
 function colorscale(data_map){
@@ -82,45 +73,59 @@ function colorscale(data_map){
 
 function obtaincountrydatamale(data, country){
   data = Object.values(data)
-  list_linegraph_male = []
-  dict = {}
   list = []
   for (let i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
-      console.log(data[i].country)
-      list_linegraph_male.push(data[i].suicides_no)
       dict = {}
-      dict[data[i].year] = data[i].suicides_no
       dict["x"] = data[i].year
       dict["y"] = data[i].suicides_no
       list.push(dict)
 }}
-  console.log(dict)
-  console.log(list_linegraph_male)
-  console.log(list)
   return list
   };
 
 
 function obtaincountrydatafemale(data, country){
   data = Object.values(data)
-  // console.log(data)
-  // console.log(country)
   list_linegraph_female = []
   for (i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
-      // console.log(data[i].suicides_no)
-      console.log(data[i].country)
       dict = {}
       dict["x"] = data[i].year
       dict["y"] = data[i].suicides_no
       list_linegraph_female.push(dict)
-      // list_linegraph_female.push(data[i].suicides_no)
 }}
-  console.log(list_linegraph_female)
   return list_linegraph_female
   };
 
+/*
+* Updates the visualizations with selected year
+*/
+function makeSlider() {
+
+    // make a slider to slide over the years
+    var slider = d3v5.sliderHorizontal()
+      .min(1987)
+      .max(2010)
+      .step(1)
+      .width(800)
+      .tickFormat(d3v5.format(""))
+      .on('onchange', val => {
+          currentyear = val;
+          // updateMap(currentyear);
+          // retrievedata_map(json, currentyear)
+          return currentyear
+      });
+
+    // put slider in svg
+    var g = d3v5.select("#sliderMap").append("svg")
+      .attr("width", 1000)
+      .attr("height", 75)
+      .append("g")
+      .attr("transform", "translate(50,20)");
+
+    g.call(slider);
+};
 
 // var test = [{"name":"aName","lastName":"aLastname"},{"name":"bName","lastName":"bLastname"}];
 //
