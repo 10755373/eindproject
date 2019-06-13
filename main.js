@@ -8,8 +8,12 @@ function visualizations() {
         // console.log(Object.values(json)[0])
         // console.log(Object.values(json)[0].country)
         // console.log(Object.keys(json))
-        // currentyear = makeSlider();
+        // var currentyear = makeSlider();
+        // console.log(typeof currentyear)
         // console.log(currentyear)
+        // var data_map = makeSlider();
+        // var data_map = retrievedata_map(json, makeSlider())
+        // makeSlider();
         var data_map = retrievedata_map(json)
         var colors = colorscale(data_map)
         makemap(json, colors);

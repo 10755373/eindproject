@@ -1,5 +1,7 @@
 // retrieve right data
 function retrievedata_map(json){
+  // currentyear = makeSlider();
+  // console.log(currentyear)
   data = Object.values(json);
   list_values = []
   for (let i = 0; i < data.length; i++){
@@ -51,6 +53,7 @@ function colorscale(data_map){
   // colors should be uniq for every value.
   // For this purpose we create palette(using min/max series-value)
   var data = data_map
+  // console.log(data)
   var data_set = {}
   var onlyValues = data.map(function(obj){ return obj[1]; });
   var minValue = Math.min.apply(null, onlyValues),
@@ -111,10 +114,10 @@ function makeSlider() {
       .width(800)
       .tickFormat(d3v5.format(""))
       .on('onchange', val => {
-          currentyear = val;
+          currentyear = val
           // updateMap(currentyear);
-          // retrievedata_map(json, currentyear)
-          return currentyear
+          retrievedata_map(json, currentyear)
+          // return currentyear;
       });
 
     // put slider in svg
