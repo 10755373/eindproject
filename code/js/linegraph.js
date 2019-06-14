@@ -1,6 +1,20 @@
 function makelinegraph(data_female, data_male){
 
-  // dtermine x and y paddings
+  // // set the dimensions and margins of the graph
+  // var margin = {top: 10, right: 30, bottom: 30, left: 60},
+  //     width = 700 - margin.left - margin.right,
+  //     height = 800 - margin.top - margin.bottom;
+  //
+  // // append the svg object to the body of the page
+  // var svg = d3.select("#container2")
+  //   .append("svg")
+  //     .attr("width", width + margin.left + margin.right)
+  //     .attr("height", height + margin.top + margin.bottom)
+  //   .append("g")
+  //     .attr("transform",
+  //           "translate(" + margin.left + "," + margin.top + ")");
+
+  // determine x and y paddings
   var padding_xaxis = 70;
   var padding_yaxis = 70;
 
@@ -56,6 +70,7 @@ function makelinegraph(data_female, data_male){
   const linegraph = document.getElementById('container2')
   const l = linegraph.getContext('2d');
 
+
   // determine properties for the linegraph
   l.lineWidth = 2;
   l.strokeStyle = '#000';
@@ -63,19 +78,22 @@ function makelinegraph(data_female, data_male){
   l.textAlign = "center";
 
   // append title
-  l.fillText("No. of suicides", (linegraph.width + padding_xaxis) / 2, padding_yaxis / 2)
+  l.fillText("No. of suicides", (linegraph.width + padding_xaxis) / 2, padding_yaxis)
 
   // draw x and y axis
   l.beginPath();
-  l.moveTo(padding_xaxis, 0);
+  l.moveTo(padding_xaxis, padding_yaxis);
   l.lineTo(padding_xaxis, linegraph.height - padding_yaxis);
-  l.lineTo(linegraph.width, linegraph.height - padding_yaxis);
+  l.lineTo(linegraph.width - padding_xaxis, linegraph.height - padding_yaxis);
   l.stroke();
 
   // // convert years for x-axis regarding male
   // years_male = []
   // for (var i = 0; i < data_male.length; i ++) {
   //   // sum_male += data_male[i].x
+  //   var s = d3v5.timeParse("%Y")
+  //   y = s(data_male[i].x)
+  //   console.log(y)
   //   year = data_male[i].x
   //   console.log(year)
   //   var s = new Date(year)
@@ -86,16 +104,16 @@ function makelinegraph(data_female, data_male){
   //   };
   // console.log(years_male)
 
+  // determine style for y-axis values
+  l.textAlign = "right";
+  l.font = 'italic 10pt sans-serif';
+  l.textBaseline = "middle";
+  l.strokeStyle = '#bbb';
 
   // draw x-axis values
   for(var i = 0; i < data_male.length; i ++) {
     l.fillText(data_male[i].x, getXPixel(i), linegraph.height - padding_yaxis + 20);
   }
-
-  // determine style for y-axis values
-  l.textAlign = "right"
-  l.font = 'italic 10pt sans-serif';
-  l.textBaseline = "middle";
 
   // determine values of ticks
   function tickvalue() {
