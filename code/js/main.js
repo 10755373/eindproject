@@ -53,7 +53,7 @@ function visualizations() {
         //   worldmap(json, value);
         // makeslider();
         timeslider(json);
-
-
+        piechart();
+        donutchart();
     });
 }

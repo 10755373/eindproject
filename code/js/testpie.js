@@ -50,3 +50,70 @@ function testpie(){
           .attr("class", "data")
           .text(function(d) { return '53GB / 123GB'; });
 };
+
+function piechart(){
+
+  var svg = d3v5.select("#container4")
+  	.append("svg")
+  	.append("g")
+
+  svg.append("g")
+  	.attr("class", "slices");
+  svg.append("g")
+  	.attr("class", "labels");
+  // svg.append("g")
+  // 	.attr("class", "lines");
+
+  var width = 400,
+      height = 400,
+    radius = Math.min(width, height) / 2;
+
+  svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  var data = {male: 450, female: 300}
+
+  var colors = d3v5.scaleOrdinal()
+    .domain(["male", "female"])
+    .range(["#80aaff", "#ffb3e6"]);
+
+  var pie = d3v5.pie()
+    .value(function(d) {return d.value; })
+
+  var data_ready = pie(d3v5.entries(data))
+
+  var arcGenerator = d3v5.arc()
+    .innerRadius(0)
+    .outerRadius(125)
+
+  var slice = svg.select(".slices").selectAll("path.slice")
+  		.data(data_ready);
+
+  	slice.enter()
+  		.insert("path")
+  		.style("fill", function(d) { return colors(d.data.value); })
+  		.attr("class", "slice")
+      .attr("stroke", "black")
+      .style("stroke-width", "2px")
+      .style("opacity", 0.7)
+  // svg
+  //   .selectAll('mySlices')
+  //   .data(data_ready)
+  //   .enter()
+  //   .append('path')
+  //     .attr('d', arcGenerator)
+  //     .attr('fill', function(d){ return(colors(d.data.key)) })
+  //     .attr("stroke", "black")
+  //     .style("stroke-width", "2px")
+  //     .style("opacity", 0.7)
+
+  // Add the polylines between chart and labels:
+  var text = svg.select(".labels").selectAll("text")
+    .data(data_ready);
+
+  text.enter()
+    .append("text")
+    .text(function(d){ return d.data.key + ": " + d.data.value })
+    .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+    .style("text-anchor", "middle")
+    .style("font-size", 17)
+};

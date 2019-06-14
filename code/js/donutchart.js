@@ -1,4 +1,4 @@
-function donutchart(data, country){
+function donutchart(){
   var width = 450
       height = 450
       margin = 40
@@ -7,12 +7,13 @@ function donutchart(data, country){
 
   var svg = d3v5.select("#container4")
     .append("svg")
-      .attr("width", width)
-      .attr("height", height)
+    .attr("id", "donut")
+    .attr("width", width)
+    .attr("height", height)
     .append("g")
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  var data = data
+  var data = {male: 340, female: 400}
 
   var colors = d3v5.scaleOrdinal()
     .domain(["male", "female"])
@@ -26,24 +27,40 @@ function donutchart(data, country){
     .innerRadius(125)
     .outerRadius(radius)
 
-  svg
-    .selectAll('mySlices')
-    .data(data_ready)
-    .enter()
-    .append('path')
-      .attr('d', arcGenerator)
-      .attr('fill', function(d){ return(colors(d.data.key)) })
+  // var donut = svg.selectAll("arc")
+  //   .data(data_ready)
+  //   .enter()
+  //   .append('path')
+  //     .attr('d', arcGenerator)
+  //     .attr('fill', function(d){ return(colors(d.data.key)) })
+  //     .attr("stroke", "black")
+  //     .style("stroke-width", "2px")
+  //     .style("opacity", 0.7)
+
+  var pie = svg.selectAll("arc")
+      .data(data_ready)
+      .enter().append("g")
+      .attr("class", "arc")
       .attr("stroke", "black")
       .style("stroke-width", "2px")
       .style("opacity", 0.7)
 
-  svg
-    .selectAll('mySlices')
-    .data(data_ready)
-    .enter()
-    .append('text')
-    .text(function(d){ return d.data.key + ": " + d.data.value })
-    .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-    .style("text-anchor", "middle")
-    .style("font-size", 17)
+  pie.append("path")
+      .attr("d", arcGenerator)
+      .style("fill", function(d) { return colors(d.data.key);})
+   pie.append("text")
+         .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+         .text(function(d){ return d.data.key + ": " + d.data.value })
+         .style("text-anchor", "middle")
+         .style("font-size", 17)
+
+  // donut
+  //   .selectAll('mySlices')
+  //   .data(data_ready)
+  //   .enter()
+  //   .append('text')
+  //   .text(function(d){ return d.data.key + ": " + d.data.value })
+  //   .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+  //   .style("text-anchor", "middle")
+  //   .style("font-size", 17)
 };
