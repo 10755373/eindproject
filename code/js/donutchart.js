@@ -5,7 +5,7 @@ function donutchart(){
 
   var radius = Math.min(width, height) / 2 - margin
 
-  var svg = d3v5.select("#container4")
+  var svg = d3v5.select("#container3")
     .append("svg")
     .attr("id", "donut")
     .attr("width", width)
@@ -37,7 +37,7 @@ function donutchart(){
   //     .style("stroke-width", "2px")
   //     .style("opacity", 0.7)
 
-  var pie = svg.selectAll("arc")
+  var donut = svg.selectAll("arc")
       .data(data_ready)
       .enter().append("g")
       .attr("class", "arc")
@@ -45,10 +45,10 @@ function donutchart(){
       .style("stroke-width", "1px")
       .style("opacity", 0.7)
 
-  pie.append("path")
+  donut.append("path")
       .attr("d", arcGenerator)
       .style("fill", function(d) { return colors(d.data.key);})
-   pie.append("text")
+   donut.append("text")
          .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
          .text(function(d){ return d.data.key + ": " + d.data.value })
          .style("text-anchor", "middle")

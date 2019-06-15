@@ -5,9 +5,9 @@ function makepiechart(){
 
   var radius = Math.min(width, height) / 2 - margin
 
-  var svg = d3v5.select("#container4")
+  var svg = d3v5.select("#container3")
     .append("svg")
-    .attr("id", "donut")
+    .attr("id", "pie")
     .attr("width", width)
     .attr("height", height)
     .append("g")
