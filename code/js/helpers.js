@@ -229,37 +229,68 @@ function datadonut(json){
 // };
 
 
-function obtaincountrydatamale(json){
+function obtaincountrydatamaletotal(json){
   data = Object.values(json)
-  list = []
+  list_linegraph_male_total = []
   dict_line_male = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].country == "Germany" && data[i].sex == "male" && data[i].age == "15-24 years"){
       dict = {}
       dict["x"] = data[i].year
       dict["y"] = data[i].suicides_no
-      list.push(dict)
+      list_linegraph_male_total.push(dict)
       // dict_line_male[data[i].year] = data[i].suicides_no
 }}
-  return list
+  return list_linegraph_male_total
   // return dict_line_male
   };
 
-
-function obtaincountrydatafemale(json){
+function obtaincountrydatamale100k(json){
   data = Object.values(json)
-  list_linegraph_female = []
+  list_linegraph_male_100k = []
+  dict_line_male = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].country == "Germany" && data[i].sex == "male" && data[i].age == "15-24 years"){
+      dict = {}
+      dict["x"] = data[i].year
+      dict["y"] = data[i].suicides_100k
+      list_linegraph_male_100k.push(dict)
+      // dict_line_male[data[i].year] = data[i].suicides_no
+}}
+  return list_linegraph_male_100k
+  // return dict_line_male
+  };
+
+function obtaincountrydatafemaletotal(json){
+  data = Object.values(json)
+  list_linegraph_female_total = []
   dict_line_female = {}
   for (i = 0; i < data.length; i++){
     if (data[i].country == "Germany" && data[i].sex == "female" && data[i].age == "15-24 years"){
       dict = {}
       dict["x"] = data[i].year
       dict["y"] = data[i].suicides_no
-      list_linegraph_female.push(dict)
+      list_linegraph_female_total.push(dict)
       // dict_line_female[data[i].year] = data[i].suicides_no
 }}
-  return list_linegraph_female
+  return list_linegraph_female_total
   // return dict_line_female
+  };
+
+function obtaincountrydatafemale100k(json){
+  data = Object.values(json)
+  list_linegraph_female_100k = []
+  dict_line_male = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].country == "Germany" && data[i].sex == "male" && data[i].age == "15-24 years"){
+      dict = {}
+      dict["x"] = data[i].year
+      dict["y"] = data[i].suicides_100k
+      list_linegraph_female_100k.push(dict)
+      // dict_line_male[data[i].year] = data[i].suicides_no
+}}
+  return list_linegraph_female_100k
+  // return dict_line_male
   };
 
 

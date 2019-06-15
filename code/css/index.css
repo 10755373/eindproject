@@ -43,6 +43,9 @@ http://bl.ocks.org/dbuezas/9306799 */
   cursor: pointer; /* Cursor on hover */
 }
 
+/*
+pie and donut
+*/
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 960px;
@@ -68,3 +71,8 @@ polyline{
 	fill: none;
   position: absolute;
 }
+
+.legend rect {
+ fill:white;
+ stroke:black;
+ opacity:0.8; }

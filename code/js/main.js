@@ -54,9 +54,13 @@ function visualizations() {
         // makeslider();
         timeslider(json);
         // piechart();
-        var data_male = obtaincountrydatamale(json)
-        var data_female = obtaincountrydatafemale(json)
-        drawlinegraph(data_male, data_female);
+        var data_male_total = obtaincountrydatamaletotal(json)
+        var data_female_total = obtaincountrydatafemaletotal(json)
+        var data_male_100k = obtaincountrydatamale100k(json)
+        var data_female_100k = obtaincountrydatafemale100k(json)
+        // console.log(data_female_100k)
+        // console.log(data_male_100k)
+        drawlinegraph(data_male_total, data_female_total, data_male_100k, data_female_100k);
         var data_pie = datapie(json);
         makepiechart(data_pie);
         var data_donut = datadonut(json);

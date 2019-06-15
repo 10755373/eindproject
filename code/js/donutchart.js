@@ -50,7 +50,7 @@ function donutchart(data_donut){
       .style("fill", function(d) { return colors(d.data.key);})
    donut.append("text")
          .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-         .text(function(d){ return d.data.key + ": " + d.data.value })
+         .text(function(d){ return d.data.value })
          .style("text-anchor", "middle")
          .style("font-size", 16)
 
