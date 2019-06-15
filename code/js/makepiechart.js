@@ -1,4 +1,8 @@
 function makepiechart(data_pie){
+
+  d3v5.select("#container3").selectAll("*").remove();
+
+
   var width = 450
       height = 450
       margin = 40

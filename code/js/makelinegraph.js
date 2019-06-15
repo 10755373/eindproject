@@ -1,5 +1,5 @@
 function drawlinegraph(data_male_total, data_female_total, data_male_100k, data_female_100k) {
-
+  // eventueel een hover: https://bl.ocks.org/alandunning/cfb7dcd7951826b9eacd54f0647f48d3
     var data_male_total = data_male_total
     var data_female_total = data_female_total
     // console.log(data_male_total)

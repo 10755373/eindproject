@@ -44,7 +44,7 @@ function worldmap(json, year){
       element: document.getElementById('container1'),
       projection: 'mercator', // big world map
       // countries don't listed in dataset will be painted with this color
-      fills: { defaultFill: '#FF0000' },
+      fills: { defaultFill: '#BB8FCE' },
       data: dataset,
       geographyConfig: {
         borderColor: '#DEDEDE',
@@ -54,10 +54,37 @@ function worldmap(json, year){
             return geography['fillColor'] || '#F5F5F5';
         },
         // change borderline only
-        highlightBorderColor: '#000000',
+        highlightBorderColor: '#2ECC71',
         popupTemplate: function(geography, data) {
        return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'No. of suicides: ' +  data.numberOfThings
       }},
+       done: function(datamap) {
+          datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+              country = geography.properties.name;
+              console.log(country)
+              // clickedoncountry(json, country)
+              var data_male_total = obtaincountrydatamaletotal(json, country)
+              var data_female_total = obtaincountrydatafemaletotal(json, country)
+              var data_male_100k = obtaincountrydatamale100k(json, country)
+              var data_female_100k = obtaincountrydatafemale100k(json, country)
+              var data_pie = datapie(json, country)
+              var data_donut = datadonut(json, country)
+               if (data_female_total.length > 0){
+                 drawlinegraph(data_male_total, data_female_total, data_male_100k, data_female_100k);
+                 makepiechart(data_pie);
+                 console.log(data_donut);
+                 console.log(data_pie)
+                 donutchart(data_donut);
+                 //
+                 // makelinegraph(data_country_female, data_country_male)
+                 // donutchart(datadonut(json, country))
+                 // piechart(datapie(json, country))
+               }
+                else{
+                  geendataland(country);
+                }
+          });
+      }
   });
 
 };

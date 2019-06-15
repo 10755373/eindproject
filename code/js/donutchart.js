@@ -1,4 +1,8 @@
 function donutchart(data_donut){
+
+  // d3v5.select("#container2").selectAll("*").remove();
+  var data = data_donut
+  console.log(data)
   var width = 450
       height = 450
       margin = 40
