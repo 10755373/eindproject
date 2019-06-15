@@ -70,10 +70,10 @@ function makepiechart(data_pie){
    //     .on("mouseover", tip.show)
    //     .on('mouseout', tip.hide);
 
-
+   // Source: http://bl.ocks.org/ZJONSSON/3918369
    legend = pie.append("g")
    .attr("class","legend")
-   .attr("transform","translate(150,200)")
+   .attr("transform","translate(125,150)")
    .style("font-size","12px")
    .call(d3.legend)
 

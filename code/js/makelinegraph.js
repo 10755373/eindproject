@@ -170,3 +170,56 @@ function drawlinegraph(data_male_total, data_female_total, data_male_100k, data_
     //     .call(d3v5.axisRight(y));
 
 };
+
+// /*
+// http://bl.ocks.org/dbuezas/9306799 */
+// /* Mouse-over effects */
+// .slider:hover {
+//   opacity: 1; /* Fully shown on mouse-over */
+// }
+//
+// /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+// .slider::-webkit-slider-thumb {
+//   -webkit-appearance: none; /* Override default look */
+//   appearance: none;
+//   width: 25px; /* Set a specific slider handle width */
+//   height: 25px; /* Slider handle height */
+//   background: #4CAF50; /* Green background */
+//   cursor: pointer; /* Cursor on hover */
+// }
+//
+// .slider::-moz-range-thumb {
+//   width: 25px; /* Set a specific slider handle width */
+//   height: 25px; /* Slider handle height */
+//   background: #4CAF50; /* Green background */
+//   cursor: pointer; /* Cursor on hover */
+// }
+//
+// /*
+// pie and donut
+// */
+// body {
+//   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+//   width: 960px;
+//   height: 500px;
+//   position: absolute;
+// }
+
+// svg {
+// 	width: 100%;
+// 	height: 100%;
+//   position: absolute;
+// }
+//
+// path.slice{
+// 	stroke-width:2px;
+//   position: absolute;
+// }
+//
+// polyline{
+// 	opacity: .3;
+// 	stroke: black;
+// 	stroke-width: 2px;
+// 	fill: none;
+//   position: absolute;
+// }

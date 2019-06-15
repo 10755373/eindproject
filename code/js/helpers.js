@@ -30,28 +30,29 @@ function makeslider() {
 
     g.call(slider);
 };
-function callslider(json){
-var slider = d3v5
-  .sliderHorizontal()
-  .min(1987)
-  .max(2010)
-  .step(1)
-  .width(800)
-  .displayValue(false)
-  .on('onchange', val => {
-    currentyear = val
-    d3v5.select('#value').text(currentyear);
-    worldmap(json, currentyear)
-  });
 
-d3v5.select('#slider')
-  .append('svg')
-  .attr('width', 500)
-  .attr('height', 300)
-  .append('g')
-  .attr('transform', 'translate(30,30)')
-  .call(slider);
-};
+// function callslider(json){
+// var slider = d3v5
+//   .sliderHorizontal()
+//   .min(1987)
+//   .max(2010)
+//   .step(1)
+//   .width(800)
+//   .displayValue(false)
+//   .on('onchange', val => {
+//     currentyear = val
+//     d3v5.select('#value').text(currentyear);
+//     worldmap(json, currentyear)
+//   });
+//
+// d3v5.select('#slider')
+//   .append('svg')
+//   .attr('width', 500)
+//   .attr('height', 300)
+//   .append('g')
+//   .attr('transform', 'translate(30,30)')
+//   .call(slider);
+// };
 
 function timeslider(json){
   // Time
@@ -69,16 +70,17 @@ function timeslider(json){
     .tickValues(dataTime)
     .default(new Date(1987, 10, 3))
     .on('onchange', val => {
+      d3v5.select('p#value-time').text(d3v5.timeFormat('%Y')(val));
       currentyear = val
-      console.log(currentyear)
-      console.log(typeof(currentyear))
-      d3v5.select('p#value').text(d3v5.timeFormat('%Y')(currentyear));
+      // console.log(currentyear)
+      // console.log(typeof(currentyear))
+      d3v5.select('#value').text(d3v5.timeFormat('%Y')(currentyear));
       year = d3v5.timeFormat('%Y')(currentyear)
       worldmap(json, year)
     });
 
   var gTime = d3v5
-    .select('#slider')
+    .select('div#slider-time')
     .append('svg')
     .attr('width', 1000)
     .attr('height', 100)
@@ -87,7 +89,7 @@ function timeslider(json){
 
   gTime.call(sliderTime);
 
-  d3v5.select('#value').text(d3v5.timeFormat('%Y')(sliderTime.value()));
+  d3v5.select('p#value-time').text(d3v5.timeFormat('%Y')(sliderTime.value()));
 }
 
 // retrieve right data

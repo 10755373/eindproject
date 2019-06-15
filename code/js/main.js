@@ -54,6 +54,15 @@ function visualizations() {
         // makeslider();
         timeslider(json);
         // piechart();
+
+        // // add slider, draw map again when it is moved
+        // d3.select('#slider').call(d3.slider()
+        //   .axis(true).min(1987).max(2010).step(1)
+        //   .on("slide", function(evt, value) {
+        //       console.log(value);
+        //   })
+        // );
+
         var data_male_total = obtaincountrydatamaletotal(json)
         var data_female_total = obtaincountrydatafemaletotal(json)
         var data_male_100k = obtaincountrydatamale100k(json)
