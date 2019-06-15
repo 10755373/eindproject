@@ -44,7 +44,7 @@ http://bl.ocks.org/dbuezas/9306799 */
 }
 
 
-/* body {
+body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 960px;
   height: 500px;
@@ -68,4 +68,4 @@ polyline{
 	stroke-width: 2px;
 	fill: none;
   position: absolute;
-} */
+}

@@ -13,7 +13,7 @@ function donutchart(){
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  var data = {male: 340, female: 400}
+  var data = {male: 670, female: 176}
 
   var colors = d3v5.scaleOrdinal()
     .domain(["male", "female"])
@@ -42,7 +42,7 @@ function donutchart(){
       .enter().append("g")
       .attr("class", "arc")
       .attr("stroke", "black")
-      .style("stroke-width", "2px")
+      .style("stroke-width", "1px")
       .style("opacity", 0.7)
 
   pie.append("path")
@@ -52,7 +52,7 @@ function donutchart(){
          .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
          .text(function(d){ return d.data.key + ": " + d.data.value })
          .style("text-anchor", "middle")
-         .style("font-size", 17)
+         .style("font-size", 16)
 
   // donut
   //   .selectAll('mySlices')
