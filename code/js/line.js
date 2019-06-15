@@ -16,7 +16,7 @@ function drawlinegraph(data_male, data_female) {
     var height = divsize.height - margin.top - margin.bottom;
 
     // var parseTime = d3v5.timeFormat('%Y')
-    var parseTime = d3v5.timeFormat('%Y')
+    var parseTime = d3v5.timeParse("%Y")
 
     // set the ranges
     var x = d3v5.scaleTime().range([0, width]);
@@ -30,54 +30,84 @@ function drawlinegraph(data_male, data_female) {
     // append the svg obgect to the body of the page
     // appends a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
-    var svg = d3v5.select("#container2").append("svg")
+    var svg_linegraph = d3v5.select("#container2").append("svg")
+        .attr("class", "linegraph")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
 
-      // // format the data
-      // data_male.forEach(function(d) {
-      //     d.x = parseTime(d.x);
-      //     d.y = +d.y;
-      // });
-      //
-      // console.log(data_male)
+    // for (let i = 0; i < data_male.length; i++){
+    //   data_male[i].x = parseTime(data_male[i].x)
+    //   console.log(data_male[i])
+    // }
+      // format the data
+      data_male.forEach(function(d) {
+          d.x = parseTime(d.x);
+          console.log(d.x);
+          d.y = +d.y;
+      });
+
+      console.log(data_male)
+
+      // format the data
+      data_female.forEach(function(d) {
+          d.x = parseTime(d.x);
+          console.log(d.x);
+          d.y = +d.y;
+      });
+
+      console.log(data_female)
+
 
       // Scale the range of the data
       x.domain(d3v5.extent(data_male, function(d) { return d.x; }));
       y.domain([0, d3v5.max(data_male, function(d) { return d.y; })]);
 
       // Add the valueline path.
-      svg.append("path")
+      svg_linegraph.append("path")
           .data([data_male])
           .attr("class", "line")
           .attr("id", "line_male")
-          .attr("d", valueline);
+          .attr("d", valueline)
+          .attr("stroke", "steelblue")
+          .attr("stroke-width", "2px")
+          .attr("fill", "none");
 
       // Add the valueline path.
-      svg.append("path")
+      svg_linegraph.append("path")
           .data([data_female])
           .attr("class", "line")
           .attr("id", "line_female")
-          .attr("d", valueline);
-
-      // Add the X Axis
-      svg.append("g")
+          .attr("d", valueline)
+          .attr("stroke", "pink")
+          .attr("stroke-width", "2px")
+          .attr("fill", "none");
+      // draw xaxis
+      svg_linegraph.append("g")
+          .attr("id", "xaxis")
           .attr("transform", "translate(0," + height + ")")
           .call(d3v5.axisBottom(x));
-
-      // Add the Y Axis
-      svg.append("g")
+      // write xaxis label
+      svg_linegraph.append("text")
+          .attr("transform",
+          "translate(" + (width) + " ," +
+                         (height - 20) + ")")
+          .style("text-anchor", "end")
+          .text("Year");
+      // draw yaxis
+      svg_linegraph.append("g")
+          .attr("id", "yaxis")
           .call(d3v5.axisLeft(y));
-          // .append("text")
-          // .attr("transform", "rotate(-90)")
-          // .attr("y", 6)
-          // .attr("dy", "1.5em")
-          // .style("text-anchor", "end")
-          // .attr("font-size", "10px")
-          // .text("No of suicides")
+      // write yaxis label
+      svg_linegraph.append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", "1.5em")
+          .style("text-anchor", "end")
+          // .attr("font-size", "15px")
+          .text("No of suicides");
 
 
 
