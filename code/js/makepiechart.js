@@ -50,13 +50,12 @@ function makepiechart(data_pie){
       .style("stroke-width", "1px")
       .style("opacity", 0.7)
 
-  //create tip
-  var tip = d3v5.tip()
-      .attr('class', 'd3-tip')
-      .offset([-10, 0])
-      .html(function(d) {
-        return "<span style='color:lavender'>" + d.data.value + "</span> <strong>%</strong>";
-        })
+  // var tip = d3v5.tip()
+  //     .attr('class', 'd3-tip')
+  //     .offset([-10, 0])
+  //     .html(function(d) {
+  //       return "<span style='color:lavender'>" + d.data.value + "</span> <strong>%</strong>";
+  //       })
 
   pie.append("path")
       .attr("d", arcGenerator)
@@ -67,6 +66,20 @@ function makepiechart(data_pie){
          .text(function(d){ return d.data.value })
          .style("text-anchor", "middle")
          .style("font-size", 16)
+    //
+    //      .on("mouseover", function(d) {
+    //        d3v5.select("#tooltip").style('opacity', 1)
+    //          .select("#value").text(d.data.value);
+    //      })
+    //      .on("mousemove", function(d) {
+    //        d3v5.select("#tooltip").style("top", (d3v5.event.pageY - 10) + "px")
+    //        .style("left", (d3v5.event.pageX + 10) + "px");
+    //      })
+    //      .on("mouseout", function() {
+    //        d3v5.select("#tooltip").style('opacity', 0);
+    //      });
+    //
+    // pie.call(tip);
 
    // pie.append("path")
    //     .attr("d", arcGenerator)
@@ -118,3 +131,6 @@ function makepiechart(data_pie){
   //     .call(d3.legend);
 
 };
+
+
+// Source: http://www.cagrimmett.com/til/2016/08/24/d3-pie-chart-update.html

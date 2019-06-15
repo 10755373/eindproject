@@ -27,3 +27,6 @@ Wederom een goede dag achter de rug! De lijngrafiek ziet er stukken beter uit ev
 
 # Day 12
 Een zware maar productieve dag achter de rug. De slider voor de worldmap werkt en ik weet hoe de piechart en donutchart over elkaar gelegd kunnen worden. Daarnaast ben ik opnieuw een linegraph gaan tekenen aangezien ik eerst een nieuw canvas aanmaakte ipv een al bestaande grafiek te vernieuwen. Morgen hoop ik alle visuals werkende te hebben.
+
+# Day 13
+Vandaag zijn de volgende dingen werkende geworden: de worldmap inclusief slider werken naar behoren, de pie chart valt precies in de donut chart (deze is tevens van een kleine legend voorzien), de lijngrafiek heb ik helemaal getekend en de update functie heb ik in gedachte. Daarnaast is de code opgeschoond en in de juiste mappen geplaatst. Kortom; dit was een lange doch zeer goede dag. 
