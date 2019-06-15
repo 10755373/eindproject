@@ -1,4 +1,4 @@
-function donutchart(){
+function donutchart(data_donut){
   var width = 450
       height = 450
       margin = 40
@@ -13,11 +13,11 @@ function donutchart(){
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  var data = {male: 670, female: 176}
+  var data = data_donut
 
   var colors = d3v5.scaleOrdinal()
     .domain(["male", "female"])
-    .range(["#80aaff", "#ffb3e6"]);
+    .range(["steelblue", "pink"]);
 
   var pie = d3v5.pie()
     .value(function(d) {return d.value; })

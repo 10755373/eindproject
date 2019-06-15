@@ -54,10 +54,13 @@ function visualizations() {
         // makeslider();
         timeslider(json);
         // piechart();
-        donutchart();
-        makepiechart();
         var data_male = obtaincountrydatamale(json)
         var data_female = obtaincountrydatafemale(json)
         drawlinegraph(data_male, data_female);
+        var data_pie = datapie(json);
+        makepiechart(data_pie);
+        var data_donut = datadonut(json);
+        donutchart(data_donut);
+
     });
 }

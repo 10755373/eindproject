@@ -192,36 +192,41 @@ function colorscale(data_map){
 
 
 
-function datapie(json, country){
+function datapie(json){
   data_pie = {}
   for (let i = 0; i < data.length; i++){
-    if (data[i].year == "2000" && data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
-      data_pie[data[i].sex] = data[i].suicides_no
-    }
-  }
-  for (let i = 0; i < data.length; i++){
-    if (data[i].year == "2000" && data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
+    if (data[i].year == "2000" && data[i].country == "Germany" && data[i].age == "15-24 years"){
       data_pie[data[i].sex] = data[i].suicides_no
     }
   }
   return data_pie
 };
 
-function datadonut(json, country){
+function datadonut(json){
   data_donut = {}
   for (let i = 0; i < data.length; i++){
-    if (data[i].year == "2000" && data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
-      data_donut[data[i].sex] = data[i].population
-    }
-  }
-  for (let i = 0; i < data.length; i++){
-    if (data[i].year == "2000" && data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
+    if (data[i].year == "2000" && data[i].country == "Germany" && data[i].age == "15-24 years"){
       data_donut[data[i].sex] = data[i].population
     }
   }
   return data_donut
-
 };
+
+// function datadonut(json, country){
+//   data_donut = {}
+//   for (let i = 0; i < data.length; i++){
+//     if (data[i].year == "2000" && data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
+//       data_donut[data[i].sex] = data[i].population
+//     }
+//   }
+//   for (let i = 0; i < data.length; i++){
+//     if (data[i].year == "2000" && data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
+//       data_donut[data[i].sex] = data[i].population
+//     }
+//   }
+//   return data_donut
+//
+// };
 
 
 function obtaincountrydatamale(json){

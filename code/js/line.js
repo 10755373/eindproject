@@ -2,8 +2,8 @@ function drawlinegraph(data_male, data_female) {
 
     var data_male = data_male
     var data_female = data_female
-    console.log(data_male)
-    console.log(data_female)
+    // console.log(data_male)
+    // console.log(data_female)
 
     d3v5.select("#container2").selectAll("*").remove();
 
@@ -37,35 +37,21 @@ function drawlinegraph(data_male, data_female) {
       .append("g")
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
-
-    // for (let i = 0; i < data_male.length; i++){
-    //   data_male[i].x = parseTime(data_male[i].x)
-    //   console.log(data_male[i])
-    // }
-      // format the data
+      // put years in correct format
       data_male.forEach(function(d) {
           d.x = parseTime(d.x);
-          console.log(d.x);
+          // console.log(d.x);
           d.y = +d.y;
       });
-
-      console.log(data_male)
-
-      // format the data
       data_female.forEach(function(d) {
           d.x = parseTime(d.x);
-          console.log(d.x);
+          // console.log(d.x);
           d.y = +d.y;
       });
-
-      console.log(data_female)
-
-
-      // Scale the range of the data
+      // determine scales
       x.domain(d3v5.extent(data_male, function(d) { return d.x; }));
       y.domain([0, d3v5.max(data_male, function(d) { return d.y; })]);
-
-      // Add the valueline path.
+      // draw line males
       svg_linegraph.append("path")
           .data([data_male])
           .attr("class", "line")
@@ -74,8 +60,7 @@ function drawlinegraph(data_male, data_female) {
           .attr("stroke", "steelblue")
           .attr("stroke-width", "2px")
           .attr("fill", "none");
-
-      // Add the valueline path.
+      // draw line females
       svg_linegraph.append("path")
           .data([data_female])
           .attr("class", "line")

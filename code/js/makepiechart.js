@@ -1,4 +1,4 @@
-function makepiechart(){
+function makepiechart(data_pie){
   var width = 450
       height = 450
       margin = 40
@@ -13,11 +13,11 @@ function makepiechart(){
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  var data = {male: 643, female: 350}
+  var data = data_pie
 
   var colors = d3v5.scaleOrdinal()
     .domain(["male", "female"])
-    .range(["#80aaff", "#ffb3e6"]);
+    .range(["steelblue", "pink"]);
 
   var pie = d3v5.pie()
     .value(function(d) {return d.value; })
