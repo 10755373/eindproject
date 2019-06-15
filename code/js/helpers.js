@@ -224,31 +224,37 @@ function datadonut(json, country){
 };
 
 
-function obtaincountrydatamale(data, country){
-  data = Object.values(data)
+function obtaincountrydatamale(json){
+  data = Object.values(json)
   list = []
+  dict_line_male = {}
   for (let i = 0; i < data.length; i++){
-    if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
+    if (data[i].country == "Germany" && data[i].sex == "male" && data[i].age == "15-24 years"){
       dict = {}
       dict["x"] = data[i].year
       dict["y"] = data[i].suicides_no
       list.push(dict)
+      // dict_line_male[data[i].year] = data[i].suicides_no
 }}
   return list
+  // return dict_line_male
   };
 
 
-function obtaincountrydatafemale(data, country){
-  data = Object.values(data)
+function obtaincountrydatafemale(json){
+  data = Object.values(json)
   list_linegraph_female = []
+  dict_line_female = {}
   for (i = 0; i < data.length; i++){
-    if (data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
+    if (data[i].country == "Germany" && data[i].sex == "female" && data[i].age == "15-24 years"){
       dict = {}
       dict["x"] = data[i].year
       dict["y"] = data[i].suicides_no
       list_linegraph_female.push(dict)
+      // dict_line_female[data[i].year] = data[i].suicides_no
 }}
   return list_linegraph_female
+  // return dict_line_female
   };
 
 

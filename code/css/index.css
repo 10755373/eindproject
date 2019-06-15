@@ -69,3 +69,9 @@ polyline{
 	fill: none;
   position: absolute;
 }
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}

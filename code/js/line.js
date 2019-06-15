@@ -1,7 +1,320 @@
+function drawlinegraph(data_male, data_female) {
+
+    var data_male = data_male
+    var data_female = data_female
+    console.log(data_male)
+    console.log(data_female)
+
+    d3v5.select("#container2").selectAll("*").remove();
+
+    var margin = {top: 120, right: 70, bottom: 70, left: 70};
+
+    var divsize = d3v5.select("#container2").node().getBoundingClientRect();
+
+    // width and height of graph in pixels
+    var width = divsize.width - margin.left - margin.right;
+    var height = divsize.height - margin.top - margin.bottom;
+
+    // var parseTime = d3v5.timeFormat('%Y')
+    var parseTime = d3v5.timeFormat('%Y')
+
+    // set the ranges
+    var x = d3v5.scaleTime().range([0, width]);
+    var y = d3v5.scaleLinear().range([height, 0]);
+
+    // define the line
+    var valueline = d3v5.line()
+        .x(function(d) { return x(d.x); })
+        .y(function(d) { return y(d.y); });
+
+    // append the svg obgect to the body of the page
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    var svg = d3v5.select("#container2").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+
+      // // format the data
+      // data_male.forEach(function(d) {
+      //     d.x = parseTime(d.x);
+      //     d.y = +d.y;
+      // });
+      //
+      // console.log(data_male)
+
+      // Scale the range of the data
+      x.domain(d3v5.extent(data_male, function(d) { return d.x; }));
+      y.domain([0, d3v5.max(data_male, function(d) { return d.y; })]);
+
+      // Add the valueline path.
+      svg.append("path")
+          .data([data_male])
+          .attr("class", "line")
+          .attr("id", "line_male")
+          .attr("d", valueline);
+
+      // Add the valueline path.
+      svg.append("path")
+          .data([data_female])
+          .attr("class", "line")
+          .attr("id", "line_female")
+          .attr("d", valueline);
+
+      // Add the X Axis
+      svg.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3v5.axisBottom(x));
+
+      // Add the Y Axis
+      svg.append("g")
+          .call(d3v5.axisLeft(y));
+          // .append("text")
+          // .attr("transform", "rotate(-90)")
+          // .attr("y", 6)
+          // .attr("dy", "1.5em")
+          // .style("text-anchor", "end")
+          // .attr("font-size", "10px")
+          // .text("No of suicides")
 
 
 
-function line(json){
+};
+
+/*
+Draws export line chart for selected countries.
+https://github.com/jellewe/programmeerproject/blob/master/javascript/project.js
+*/
+function drawlinegraph1(data_male, data_female) {
+  // // only draw new line chart if country is not Netherlands
+  // if (country != "NLD") {
+  //
+  //   // if chart title does not exist yet, draw it
+  //   if (!d3.select("#lineChart-title").select("div")[0][0]) {
+  //     d3.select("#lineChart-title")
+  //     .append("div")
+  //       .append("text")
+  //         .text("Export data of Netherlands to countries");
+  //   };
+    var data_male = data_male
+    var data_female = data_female
+    console.log(data_male)
+    console.log(data_female)
+
+
+    // for (element in data_male){
+    //   console.log(data_male[element])
+    // // }
+    // for (element in data_female){
+    //   console.log(data_female[element])
+    // }
+
+
+    d3.select("#container2").selectAll("*").remove();
+
+    var margin = {top: 120, right: 70, bottom: 70, left: 70};
+
+    var divsize = d3.select("#container2").node().getBoundingClientRect();
+
+    // width and height of graph in pixels
+    var width = divsize.width - margin.left - margin.right;
+    var height = divsize.height - margin.top - margin.bottom;
+
+    var parseTime = d3.timeParse("%y");
+    // var parseTime = d3v5.timeFormat('%Y')
+
+    // g element for line chart
+    var linegraph = d3.select("#container2")
+      .append("svg")
+      .attr("id", "linegraph")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," +
+                             margin.top + ")");
+
+    // // open export data file
+    // d3.json("https://raw.githubusercontent.com/jellewe/programmeerproject/master/doc/export_data.json", function(error, exportData) {
+    //   if (error) {
+    //     window.alert("an error has occured: " + error);
+    //   };
+    //
+    //   // arrays for export and year information
+    //   var exportArray = [];
+    //   var yearArray = [];
+    //   for (key in exportData[country]) {
+    //     yearArray.push(parseInt(key));
+    //     exportArray.push(parseInt(exportData[country][key]));
+    //   };
+    //
+    //   // check if all data available, else show 'no data' message to user
+    //   var noData = false;
+    //   exportArray.forEach(function(item) {
+    //     if ((!item)) {
+    //       noData = true;
+    //     };
+    //   });
+    //   if (noData) {
+    //     noDataMessage(data[country]["name"]);
+    //   };
+    //
+    //   // if line not yet drawn, draw it
+    //   if (!(lineData[country]) && noData == false) {
+    //     lineData[country] = exportArray;
+    //   }
+    //
+    //   // if line already drawn or no data, remove it
+    //   else {
+    //     delete lineData[country];
+    //   };
+
+    // // sum up all the values regarding the men
+    // sum_male = 0
+    // data_male.forEach(function(item){
+    //   sum_male.push()
+    // })
+    // for (key in data_male[i]) {
+    //   // console.log(data_male[i].y)
+    //   sum_male += data_male[i].y
+    // };
+
+    // sum up all the values regarding the woman
+    sum_male = 0
+    for (var i = 0; i < data_male.length; i ++) {
+      sum_male += data_male[i].y
+    };
+
+    // sum up all the values regarding the woman
+    sum_female = 0
+    for (var i = 0; i < data_female.length; i ++) {
+      sum_female += data_female[i].y
+    };
+    // console.log(sum_female)
+
+    male_yvalues = []
+    male_xvalues = []
+    for (var i = 0; i < data_male.length; i ++) {
+      // console.log(data_male[i].y)
+      male_yvalues.push(data_male[i].y)
+      male_xvalues.push(data_male[i].x)
+    };
+
+    female_yvalues = []
+    male_xvalues = []
+    for (var i = 0; i < data_female.length; i ++) {
+      female_yvalues.push(data_female[i].y)
+      male_xvalues.push(data_male[i].x)
+    };
+
+    var maxymale = d3.max(male_yvalues)
+    var maxyfemale = d3.max(female_yvalues)
+
+    // determine values of ticks
+    function maxyvalue() {
+      if (maxymale > maxyfemale){
+        return maxymale
+      }
+      else {
+        return maxyfemale
+            }
+      }
+
+    console.log(maxymale)
+
+    // scales for x and y dimensions
+    var scalex = d3.scale.linear()
+      .domain([d3.min(male_xvalues, function(d) { return d.male_xvalues }),
+               d3.max(male_xvalues, function(d) { return d.male_xvalues })])
+      .range([0, width]);
+
+    var scaley = d3.scale.linear()
+      .domain([0, maxyvalue()])
+      .range([height, 0]);
+
+    // variables for x and y axes
+    var axisx = d3.svg.axis()
+      .scale(scalex)
+      .orient("bottom")
+      .ticks(10)
+      .tickFormat(d3.format("d"));
+    var axisy = d3.svg.axis()
+      .scale(scaley)
+      .orient("left");
+
+    // g element for x axis
+    linegraph.append("g")
+      .attr("class", "x axis")
+      .style("font-size", "10px")
+      .attr("transform", "translate(0," + height + ")")
+      .call(axisx)
+      .selectAll("text")
+        .style("font-size", "10px")
+
+    // g element for y axis
+    linegraph.append("g")
+      .attr("class", "y axis")
+      .call(axisy)
+      .selectAll("text")
+        .style("font-size", "10px");
+
+    // label for y axis
+    linegraph.select(".y")
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("yScale", 6)
+      .attr("dy", "1.5em")
+      .style("text-anchor", "end")
+      .attr("font-size", "10px")
+      .text("No of suicides");
+
+    // var drawlines = d3.svg.line()
+    //   .defined(function(d) { return d; })
+    //   .x(function(d, i) { return scalex(data_male[element.x]); })
+    //   .y(function(d) { return scaley(data_male[element.y]); });
+
+      // define the line
+    var drawlines = d3.line()
+      .scalex(function(d) { return x(d.x); })
+      .scaley(function(d) { return y(d.y); });
+
+
+    // var colors = d3v5.scaleOrdinal()
+    //   .domain(["male", "female"])
+    //   .range(["#80aaff", "#ffb3e6"]);
+
+    // Add the valueline path.
+     linegraph.append("path")
+         .data([data_male])
+         .attr("class", "line")
+         .attr("d", drawlines)
+
+    // for (element in data_male) {
+    //   linegraph.append("path")
+    //     .attr("id", "line")
+    //     .data(data_male[element])
+    //     .attr("stroke", "#80aaff")
+    //     .attr("stroke-width", "3px")
+    //     .attr("fill", "none")
+    //     .attr("d", drawlines(data_male[element]));
+
+      // // draw country text next to line
+      // var lastDatum = [yearArray.slice(-1)[0], lineData[key].slice(-1)[0]];
+      // linegraph.append("text")
+      //   .attr("id", "line-name")
+      //   .data(lineData[key])
+      //   .attr("transform", function(d, i) {
+      //     return "translate (" + xScale(lastDatum[0]) + "," +
+      //            yScale(lastDatum[1]) + ")"; })
+      //   .text(data[key]["name"]);
+      //
+      // dataIndex += 1;
+    };
+
+
+
+function linegraph(json){
 
   data_male = Object.values(json);
 
@@ -11,21 +324,21 @@ function line(json){
       height = 500 - margin.top - margin.bottom;
 
   // parse the date / time
-  var parseTime = d3v5.timeFormat("%Y");
+  var parseTime = d3.timeFormat("%Y");
 
   // set the ranges
-  var x = d3v5.scaleTime().range([0, width]);
-  var y = d3v5.scaleLinear().range([height, 0]);
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
 
   // define the line
-  var valueline = d3v5.line()
+  var valueline = d3.line()
       .x(function(d) { return x(d.date); })
       .y(function(d) { return y(d.no); });
 
   // append the svg obgect to the body of the page
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  var svg = d3v5.select("#container2").append("svg")
+  var svg = d3.select("#container2").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -42,7 +355,7 @@ function line(json){
     }}
     console.log(list)
   // // Get the data
-  // d3v5.csv("data.csv", function(error, data) {
+  // d3.csv("data.csv", function(error, data) {
   //   // if (error) throw error;
   //   console.log(data)
   //
@@ -66,8 +379,8 @@ function line(json){
   //     }}
 
     // Scale the range of the data
-    x.domain(d3v5.extent(data, function(d) { return d.date; }));
-    y.domain([0, d3v5.max(data, function(d) { return d.no; })]);
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) { return d.no; })]);
 
     // Add the valueline path.
     svg.append("path")
@@ -78,15 +391,15 @@ function line(json){
     // Add the X Axis
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3v5.axisBottom(x));
+        .call(d3.axisBottom(x));
 
     // Add the Y Axis
     svg.append("g")
-        .call(d3v5.axisLeft(y));
+        .call(d3.axisLeft(y));
 
 
 
-  // // https://www.d3v5-graph-gallery.com/graph/line_basic.html
+  // // https://www.d3-graph-gallery.com/graph/line_basic.html
   //
   // // set the dimensions and margins of the graph
   // var margin = {top: 40, right: 40, bottom: 40, left: 40},
@@ -94,7 +407,7 @@ function line(json){
   //     height = 800 - margin.top - margin.bottom;
   //
   // // append the svg object to the body of the page
-  // var svg = d3v5v5.select("#my_dataviz")
+  // var svg = d3.select("#my_dataviz")
   //   .append("svg")
   //     .attr("width", width + margin.left + margin.right)
   //     .attr("height", height + margin.top + margin.bottom)
@@ -119,7 +432,7 @@ function line(json){
   //     // list_val.push(date, value)
   //     // list_values.push(list_val)
   //     dict = {}
-  //     dict["date"] = d3v5v5.timeParse("%Y")data[i].year
+  //     dict["date"] = d3.timeParse("%Y")data[i].year
   //     dict["value"] = data[i].suicides_100k
   //     list_values.push(dict)
   //   }
@@ -130,26 +443,26 @@ function line(json){
   //
   //   // // When reading the csv, I must format variables:
   //   // function(d){
-  //   //   return { date : d3v5v5.timeParse("%Y")(d.date), value : d.value }
+  //   //   return { date : d3.timeParse("%Y")(d.date), value : d.value }
   //   // },
   //
   //   // Now I can use this dataset:
   //   function(data) {
   //
   //     // Add X axis --> it is a date format
-  //     var x = d3v5v5.scaleTime()
-  //       .domain(d3v5v5.extent(data, function(d) { return d.date; }))
+  //     var x = d3.scaleTime()
+  //       .domain(d3.extent(data, function(d) { return d.date; }))
   //       .range([ 0, width ]);
   //     svg.append("g")
   //       .attr("transform", "translate(0," + height + ")")
-  //       .call(d3v5v5.axisBottom(x));
+  //       .call(d3.axisBottom(x));
   //
   //     // Add Y axis
-  //     var y = d3v5v5.scaleLinear()
-  //       .domain([0, d3v5v5.max(data, function(d) { return +d.value; })])
+  //     var y = d3.scaleLinear()
+  //       .domain([0, d3.max(data, function(d) { return +d.value; })])
   //       .range([ height, 0 ]);
   //     svg.append("g")
-  //       .call(d3v5v5.axisLeft(y));
+  //       .call(d3.axisLeft(y));
   //
   //     // Add the line
   //     svg.append("path")
@@ -157,7 +470,7 @@ function line(json){
   //       .attr("fill", "none")
   //       .attr("stroke", "steelblue")
   //       .attr("stroke-width", 1.5)
-  //       .attr("d", d3v5v5.line()
+  //       .attr("d", d3.line()
   //         .x(function(d) { return x(d.date) })
   //         .y(function(d) { return y(d.value) })
   //         )

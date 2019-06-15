@@ -56,5 +56,8 @@ function visualizations() {
         // piechart();
         donutchart();
         makepiechart();
+        var data_male = obtaincountrydatamale(json)
+        var data_female = obtaincountrydatafemale(json)
+        drawlinegraph(data_male, data_female);
     });
 }
