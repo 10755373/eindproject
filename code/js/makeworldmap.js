@@ -10,12 +10,13 @@ function worldmap(json, year){
     if (data[i].year == year && data[i].sex == "male" && data[i].age == "15-24 years"){
       list = []
       // console.log(data[i].suicides_no)
-      list.push(data[i].alpha_code, data[i].suicides_no)
+      list.push(data[i].alpha_code, data[i].gdp_per_capita)
       // list_values[data[i].alpha_code] = data[i].suicides_no
       series.push(list)
     }
   }
   console.log(series)
+  
   // Datamaps expect data in format:
   // { "USA": { "fillColor": "#42a844", numberOfWhatever: 75},
   //   "FRA": { "fillColor": "#8dc386", numberOfWhatever: 43 } }
@@ -30,7 +31,7 @@ function worldmap(json, year){
   // color can be whatever you wish
   var paletteScale = d3.scale.linear()
           .domain([minValue,maxValue])
-          .range(["#EFEFFF","#02386F"]); // blue color
+          .range(["#99ccff","#000099"]); // blue color
   // fill dataset in appropriate format
   series.forEach(function(item){ //
       // item example value ["USA", 70]
@@ -44,7 +45,7 @@ function worldmap(json, year){
       element: document.getElementById('container1'),
       projection: 'mercator', // big world map
       // countries don't listed in dataset will be painted with this color
-      fills: { defaultFill: '#BB8FCE' },
+      fills: { defaultFill: '#ffff99' },
       data: dataset,
       geographyConfig: {
         borderColor: '#DEDEDE',
@@ -56,7 +57,7 @@ function worldmap(json, year){
         // change borderline only
         highlightBorderColor: '#2ECC71',
         popupTemplate: function(geography, data) {
-       return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'No. of suicides: ' +  data.numberOfThings
+       return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'GDP per capita: ' +  data.numberOfThings
       }},
        done: function(datamap) {
           datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
@@ -65,15 +66,17 @@ function worldmap(json, year){
               // clickedoncountry(json, country)
               var data_male_total = obtaincountrydatamaletotal(json, country)
               var data_female_total = obtaincountrydatafemaletotal(json, country)
-              var data_male_100k = obtaincountrydatamale100k(json, country)
-              var data_female_100k = obtaincountrydatafemale100k(json, country)
+              // var data_male_100k = obtaincountrydatamale100k(json, country)
+              // var data_female_100k = obtaincountrydatafemale100k(json, country)
+              var gdp_per_capita = gdppercapita(json, country)
+              // console.log(gdp_per_capita)
               var data_pie = datapie(json, country)
               var data_donut = datadonut(json, country)
                if (data_female_total.length > 0){
-                 drawlinegraph(data_male_total, data_female_total, data_male_100k, data_female_100k);
+                 drawlinegraph(data_male_total, data_female_total, gdp_per_capita);
                  makepiechart(data_pie);
-                 console.log(data_donut);
-                 console.log(data_pie)
+                 // console.log(data_donut);
+                 // console.log(data_pie)
                  donutchart(data_donut);
                  //
                  // makelinegraph(data_country_female, data_country_male)

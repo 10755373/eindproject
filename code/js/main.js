@@ -45,15 +45,17 @@ function visualizations() {
         // drawpiechart();
         //drawbarchart();
         // testpie();
-        worldmap(json, 1987);
         // callslider(json);
         // d3.select('#slider').call(d3.slider()
         //     .axis(true).min(1987).max(2010).step(1)
         //     .on("slide", function(evt, value) {
         //   worldmap(json, value);
         // makeslider();
-        timeslider(json);
         // piechart();
+
+        initializelinegraph();
+        worldmap(json, 1987);
+        timeslider(json);
 
         // // add slider, draw map again when it is moved
         // d3.select('#slider').call(d3.slider()

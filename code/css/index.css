@@ -45,15 +45,3 @@
  	display: block;
  	opacity: 0;
  }
- .legend {
- 	font-size: 12px;
- }
- rect {
- 	cursor: pointer;                                              /* NEW */
- 	stroke-width: 2;
- }
- rect.disabled {                                                 /* NEW */
- 	fill: transparent !important;                                 /* NEW */
- }
-
- 

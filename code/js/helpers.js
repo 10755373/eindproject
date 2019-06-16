@@ -103,7 +103,7 @@ function retrievedata_map(json, currentyear){
     if (data[i].year == currentyear && data[i].sex == "male" && data[i].age == "15-24 years"){
       list = []
       // console.log(data[i].suicides_no)
-      list.push(data[i].alpha_code, data[i].suicides_no)
+      list.push(data[i].alpha_code, data[i].gdp_per_capita)
       // list_values[data[i].alpha_code] = data[i].suicides_no
       console.log(list)
       list_values.push(list)
@@ -295,7 +295,19 @@ function obtaincountrydatafemale100k(json, country){
   // return dict_line_male
   };
 
-
+function gdppercapita(json, country){
+  data = Object.values(json)
+  list_gdp_per_capita = []
+  for (let i = 0; i < data.length; i++){
+    if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
+      dict = {}
+      dict["x"] = data[i].year
+      dict["y"] = data[i].gdp_per_capita
+      list_gdp_per_capita.push(dict)
+}}
+  return list_gdp_per_capita
+  // console.log(list_gdp_per_capita)
+};
 
 // var test = [{"name":"aName","lastName":"aLastname"},{"name":"bName","lastName":"bLastname"}];
 //
