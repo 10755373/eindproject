@@ -213,18 +213,19 @@ function gdppercapita(data, country){
   return list_gdp_per_capita
 };
 
-function scatterdata(data, country){
-
-  // console.log(data[0])
-  series = []
+function scatterdatamale(json){
+  data = Object.values(json)
+  series = {}
   for (let i = 0; i < data.length; i++){
-    if (data[i].year == year && data[i].sex == "male" && data[i].age == "15-24 years"){
-      list_men = []
-      list_men.push(data[i].country, data[i].gdp_per_capita)
-      list_woman = []
-      list_woman.push(data[i].country, data[i].gdp_per_capita)
-      series.push(list_men, list_woman)
+    if (data[i].year == "2000" && data[i].sex == "male" && data[i].age == "15-24 years"){
+      list_men = {}
+      list_men[data[i].country] = data[i].suicides_no
+      list_woman = {}
+      list_woman[data[i].country] = data[i].suicides_no
+      console.log(list_men)
+      console.log(list_woman)
     }
+  return series
   }
   console.log(series)
 

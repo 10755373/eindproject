@@ -10,7 +10,8 @@ function visualizations() {
         // initializepiechart();
         // initializedonutchart();
         timeslider(json);
-
+        // scatterdatamale(json);
+        makescatterplot(json);
         // initializelinegraph();
         // worldmap(json, 1987);
         // timeslider(json);

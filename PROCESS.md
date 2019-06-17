@@ -29,4 +29,10 @@ Wederom een goede dag achter de rug! De lijngrafiek ziet er stukken beter uit ev
 Een zware maar productieve dag achter de rug. De slider voor de worldmap werkt en ik weet hoe de piechart en donutchart over elkaar gelegd kunnen worden. Daarnaast ben ik opnieuw een linegraph gaan tekenen aangezien ik eerst een nieuw canvas aanmaakte ipv een al bestaande grafiek te vernieuwen. Morgen hoop ik alle visuals werkende te hebben.
 
 # Day 13
-Vandaag zijn de volgende dingen werkende geworden: de worldmap inclusief slider werken naar behoren, de pie chart valt precies in de donut chart (deze is tevens van een kleine legend voorzien), de lijngrafiek heb ik helemaal getekend en de update functie heb ik in gedachte. Daarnaast is de code opgeschoond en in de juiste mappen geplaatst. Kortom; dit was een lange doch zeer goede dag. 
+Vandaag zijn de volgende dingen werkende geworden: de worldmap inclusief slider werken naar behoren, de pie chart valt precies in de donut chart (deze is tevens van een kleine legend voorzien), de lijngrafiek heb ik helemaal getekend en de update functie heb ik in gedachte. Daarnaast is de code opgeschoond en in de juiste mappen geplaatst. Kortom; dit was een lange doch zeer goede dag.
+
+# Day 14
+De update functie voor de linegraph werkt naar behoren en de pie + donut heb ik wat aangepast. Daarnaast is nu het gdp ook weergeven in de linegraph met een ylabel aan de rechterkant.
+
+# Day 15
+De pie + donut update werkt nog niet hoe ik het voor ogen heb (nu worden beiden verwijderd wanneer een nieuw land wordt aangeklikt) dus hier ga ik nog naar kijken. Daarnaast heb ik besloten een scatterplot erbij te plakken dus daar heb ik de afgelopen uren aan gewerkt. Het initialiseren van de pie + donut werkt overigens ook nog steeds niet...
