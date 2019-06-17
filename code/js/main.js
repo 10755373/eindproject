@@ -52,10 +52,15 @@ function visualizations() {
         //   worldmap(json, value);
         // makeslider();
         // piechart();
-
+        initializeworldmap(json, 1987);
         initializelinegraph();
-        worldmap(json, 1987);
+        initializepiechart();
+        initializedonutchart();
         timeslider(json);
+
+        // initializelinegraph();
+        // worldmap(json, 1987);
+        // timeslider(json);
 
         // // add slider, draw map again when it is moved
         // d3.select('#slider').call(d3.slider()

@@ -1,17 +1,23 @@
-function makepiechart(data_pie){
+function initializepiechart(){
 
   var divsize = d3v5.select("#container3").node().getBoundingClientRect();
 
-  var width = divsize.width
-  var height = divsize.height
-      margin = 40
+  var width = divsize.height
+  var height = divsize.width
+  var margin = 40
 
   var radius = Math.min(width, height) / 2 - margin
 
-  var pie_chart = d3v5.select("#pie_chart");
+  var pie_chart = d3v5.select("#container3").append("svg")
+    .attr("class", "pie")
+    .attr("id", "pie")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("id", "pie_chart")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  var data = data_pie
-  console.log(data)
+  var data = {male: 350, female: 211};
 
   var colors = d3v5.scaleOrdinal()
     .domain(["male", "female"])
@@ -20,7 +26,7 @@ function makepiechart(data_pie){
   var pie = d3v5.pie()
     .value(function(d) {return d.value; })
   var data_ready = pie(d3v5.entries(data))
-  console.log(data_ready)
+
   var arcGenerator = d3v5.arc()
     .innerRadius(0)
     .outerRadius(120)
@@ -37,59 +43,32 @@ function makepiechart(data_pie){
 
   var pie = pie_chart.selectAll("arc")
       .data(data_ready)
-      .enter()
-      // .append("g")
-      // .attr("class", "arc")
-      // .attr("stroke", "black")
-      // .style("stroke-width", "1px")
-      // .style("opacity", 0.7)
+      .enter().append("g")
+      .attr("class", "arc")
+      .attr("stroke", "black")
+      .style("stroke-width", "1px")
+      .style("opacity", 0.7)
 
-  pie.selectAll("path")
+  pie.append("path")
         .attr("d", arcGenerator)
         .attr("id", "pathdonut")
         .style("fill", function(d) { return colors(d.data.key);})
         .attr("data-legend",function(d) { return d.data.key})
- pie.selectAll("text")
+ pie.append("text")
        .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
        .text(function(d){ return d.data.value })
        .style("text-anchor", "middle")
        .style("font-size", 16)
 
-
-  // var pie = svgpiechart.selectAll("arc")
-  //     .data(data_ready)
-  //     .enter()
-  //     // .enter().append("g")
-  //     // .attr("class", "arc")
-  //     // .attr("stroke", "black")
-  //     // .style("stroke-width", "1px")
-  //     // .style("opacity", 0.7)
-  //
-  // // var tip = d3v5.tip()
-  // //     .attr('class', 'd3-tip')
-  // //     .offset([-10, 0])
-  // //     .html(function(d) {
-  // //       return "<span style='color:lavender'>" + d.data.value + "</span> <strong>%</strong>";
-  // //       })
-  // pie.selectAll("path")
-  //     .attr("d", arcGenerator)
-  //     .selectAll("pathdonut")
-  //     .style("fill", function(d) { return colors(d.data.key);})
-  //     .attr("data-legend",function(d) { return d.data.key})
-  // // pie.append("path")
-  // //     .attr("d", arcGenerator)
-  // //     .style("fill", function(d) { return colors(d.data.key);})
-  // //     .attr("data-legend",function(d) { return d.data.key})
-  //  pie.select("text")
-  //        .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-  //        .text(function(d){ return d.data.value })
-  //        .style("text-anchor", "middle")
-  //        .style("font-size", 16)
+  // var tip = d3v5.tip()
+  //     .attr('class', 'd3-tip')
+  //     .offset([-10, 0])
+  //     .html(function(d) {
+  //       return "<span style='color:lavender'>" + d.data.value + "</span> <strong>%</strong>";
+  //       })
 
 
-
-
-
+    //
     //      .on("mouseover", function(d) {
     //        d3v5.select("#tooltip").style('opacity', 1)
     //          .select("#value").text(d.data.value);
@@ -110,19 +89,20 @@ function makepiechart(data_pie){
    //     .on("mouseover", tip.show)
    //     .on('mouseout', tip.hide);
 
-  //  // Source: http://bl.ocks.org/ZJONSSON/3918369
-  //  legend = pie.append("g")
-  //  .attr("class","legend")
-  //  .attr("transform","translate(125,150)")
-  //  .style("font-size","12px")
-  //  .call(d3.legend)
-  //
-  // setTimeout(function() {
-  //  legend
-  //    .style("font-size","20px")
-  //    .attr("data-style-padding",10)
-  //    .call(d3.legend)
-  //  },1000)
+   // Source: http://bl.ocks.org/ZJONSSON/3918369
+   legend = pie.append("g")
+   .attr("class","legend")
+   .attr("id", "legend")
+   .attr("transform","translate(125,150)")
+   .style("font-size","12px")
+   .call(d3.legend)
+
+  setTimeout(function() {
+   legend
+     .style("font-size","20px")
+     .attr("data-style-padding",10)
+     .call(d3.legend)
+   },1000)
 
   // donut
   //   .selectAll('mySlices')

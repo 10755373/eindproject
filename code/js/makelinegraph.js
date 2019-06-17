@@ -97,7 +97,7 @@ function drawlinegraph(data_male_total, data_female_total, gdp_per_capita) {
           // .attr("id", "yaxisleft")
           .call(d3v5.axisLeft(y));
 
-          
+
       // // write yaxis label
       // svg_linegraph.append("text")
       //     .attr("transform", "rotate(-90)")
@@ -176,18 +176,18 @@ function drawlinegraph(data_male_total, data_female_total, gdp_per_capita) {
   //     });
   // }
 
-      // legend = svg_linegraph.append("g")
-      //   .attr("class","legend")
-      //   .attr("transform","translate(50,30)")
-      //   .style("font-size","12px")
-      //   .call(d3.legend)
-      //
-      // setTimeout(function() {
-      //   legend
-      //     .style("font-size","20px")
-      //     .attr("data-style-padding",10)
-      //     .call(d3.legend)
-      // },1000)
+      legend = svg_linegraph_container.append("g")
+        .attr("class","legend")
+        .attr("transform","translate(50,30)")
+        .style("font-size","12px")
+        .call(d3.legend)
+
+      setTimeout(function() {
+        legend
+          .style("font-size","20px")
+          .attr("data-style-padding",10)
+          .call(d3.legend)
+      },1000)
 
       // legend = svg_linegraph.append("g")
       //   .attr("class","legend")

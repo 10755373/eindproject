@@ -76,7 +76,7 @@ function timeslider(json){
       // console.log(typeof(currentyear))
       d3v5.select('#value').text(d3v5.timeFormat('%Y')(currentyear));
       year = d3v5.timeFormat('%Y')(currentyear)
-      worldmap(json, year)
+      updateworldmap(json, year)
     });
 
   var gTime = d3v5
@@ -194,7 +194,7 @@ function colorscale(data_map){
 
 
 
-function datapie(json, country){
+function datapie(data, country){
   data_pie = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == "2000" && data[i].country == country && data[i].age == "15-24 years"){
@@ -204,7 +204,7 @@ function datapie(json, country){
   return data_pie
 };
 
-function datadonut(json, country){
+function datadonut(data, country){
   data_donut = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == "2000" && data[i].country == country && data[i].age == "15-24 years"){
@@ -231,8 +231,9 @@ function datadonut(json, country){
 // };
 
 
-function obtaincountrydatamaletotal(json, country){
-  data = Object.values(json)
+function obtaincountrydatamaletotal(data, country){
+  // data = Object.values(json)
+  // console.log(json)
   list_linegraph_male_total = []
   dict_line_male = {}
   for (let i = 0; i < data.length; i++){
@@ -263,8 +264,8 @@ function obtaincountrydatamale100k(json, country){
   // return dict_line_male
   };
 
-function obtaincountrydatafemaletotal(json, country){
-  data = Object.values(json)
+function obtaincountrydatafemaletotal(data, country){
+  // data = Object.values(json)
   list_linegraph_female_total = []
   dict_line_female = {}
   for (i = 0; i < data.length; i++){
@@ -295,8 +296,8 @@ function obtaincountrydatafemale100k(json, country){
   // return dict_line_male
   };
 
-function gdppercapita(json, country){
-  data = Object.values(json)
+function gdppercapita(data, country){
+  // data = Object.values(json)
   list_gdp_per_capita = []
   for (let i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
@@ -379,47 +380,3 @@ function gdppercapita(json, country){
 //       .style("text-anchor", "end")
 //       .text("axis title");
 // };
-
-
-function data_pie(dummyvarable){
-  // Create dummy data
-  var data = {a: 9, b: 20, c:30, d:8, e:12}
-  return data
-};
-
-// function datapie(data){
-//   fetch("outputted.json")
-//     .then(response => response.json())
-//     .then(json => {
-//         data = Object.values(json);
-//         list_values = []
-//         list_male = {}
-//         list_female = {}
-//         for (let i = 0; i < data.length; i++){
-//           if (data[i].year == "2000" && data[i].sex == "male" && data[i].age == "15-24 years"){
-//             list_male[data[i].alpha_code] = data[i].suicides_no
-//             // list.push(data[i].alpha_code, data[i].suicides_no)
-//             // list_values[data[i].alpha_code] = data[i].suicides_no
-//           }
-//           else if (data[i].year == "2000" && data[i].sex == "male" && data[i].age == "15-24 years"){
-//             list_female[data[i].alpha_code] = data[i].suicides_no
-//           }
-//           else {
-//             break
-//           }
-//         }
-//         list_values.push(list_male)
-//         list_values.push(list_female)
-//         var data_pie = list_values
-//         return data_pie
-//       })};
-
-
-// function parseData(data, country) {
-//   var arr = [];
-//   for (let i  = 0; i < data.length; i++){
-//     if
-//     arr.push(         {            date: new Date(i), //date            value: +data.bpi[i] //convert string to number         });   }   return arr;}
-// };
-//
-// function parseData(data) {   var arr = [];   for (var i in data.bpi) {      arr.push(         {            date: new Date(i), //date            value: +data.bpi[i] //convert string to number         });   }   return arr;}
