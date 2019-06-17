@@ -74,10 +74,12 @@ function updateworldmap(json, year){
               var data_donut = datadonut(data, country)
                if (data_female_total.length > 0){
                  drawlinegraph(data_male_total, data_female_total, gdp_per_capita);
-                 makepiechart(data_pie);
+                 // makepiechart(data_pie);
                  // console.log(data_donut);
                  // console.log(data_pie)
-                 makedonutchart(data_donut);
+                 // makedonutchart(data_donut);
+                 initializepiechart(data_pie, data_donut);
+                 // initializedonutchart(data_donut);
                  //
                  // makelinegraph(data_country_female, data_country_male)
                  // donutchart(datadonut(json, country))

@@ -43,6 +43,8 @@ function makepiechart(data_pie){
       // .attr("stroke", "black")
       // .style("stroke-width", "1px")
       // .style("opacity", 0.7)
+      .on("mouseenter", mouseoverpiechart)
+      .on("mouseout", mouseoutpiechart)
 
   pie.selectAll("path")
         .attr("d", arcGenerator)
@@ -55,6 +57,18 @@ function makepiechart(data_pie){
        .style("text-anchor", "middle")
        .style("font-size", 16)
 
+ function mouseoverpiechart() {
+     d3v5.select(this)
+         .attr("stroke", "red")
+         .style("stroke-width", "3px")
+         .style("stroke-opacity", 0.7)
+ }
+ function mouseoutpiechart() {
+     d3v5.select(this)
+         .attr("stroke", "black")
+         .style("stroke-width", "1px")
+         .style("stroke-opacity", 0.7)
+       }
 
   // var pie = svgpiechart.selectAll("arc")
   //     .data(data_ready)

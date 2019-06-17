@@ -64,25 +64,17 @@ function initializeworldmap(json, year){
          datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
              country = geography.properties.name;
              console.log(country)
-             // clickedoncountry(json, country)
              var data_male_total = obtaincountrydatamaletotal(data, country)
              var data_female_total = obtaincountrydatafemaletotal(data, country)
-             // var data_male_100k = obtaincountrydatamale100k(json, country)
-             // var data_female_100k = obtaincountrydatafemale100k(json, country)
              var gdp_per_capita = gdppercapita(data, country)
-             // console.log(gdp_per_capita)
              var data_pie = datapie(data, country)
              var data_donut = datadonut(data, country)
               if (data_female_total.length > 0){
                 drawlinegraph(data_male_total, data_female_total, gdp_per_capita);
-                makepiechart(data_pie);
-                // console.log(data_donut);
-                // console.log(data_pie)
-                makedonutchart(data_donut);
-                //
-                // makelinegraph(data_country_female, data_country_male)
-                // donutchart(datadonut(json, country))
-                // piechart(datapie(json, country))
+                // makepiechart(data_pie);
+                // makedonutchart(data_donut);
+                initializepiechart(data_pie, data_donut);
+                // initializedonutchart(data_donut);
               }
                else{
                  geendataland(country);

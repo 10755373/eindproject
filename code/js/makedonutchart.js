@@ -28,6 +28,8 @@ function makedonutchart(data_donut){
       .attr("d", arcGenerator)
       .style("fill", function(d) { return colors(d.data.key);})
       .attr("data-legend",function(d) { return d.data.key})
+      .on("mouseenter", mouseoverdonutchart)
+      .on("mouseout", mouseoutdonutchart)
 
    donut.append("text")
          .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
@@ -35,5 +37,17 @@ function makedonutchart(data_donut){
          .style("text-anchor", "middle")
          .style("font-size", 16)
 
+   function mouseoverdonutchart() {
+       d3v5.select(this)
+           .attr("stroke", "red")
+           .style("stroke-width", "3px")
+           .style("stroke-opacity", 0.7)
+   }
+   function mouseoutdonutchart() {
+       d3v5.select(this)
+           .attr("stroke", "black")
+           .style("stroke-width", "1px")
+           .style("stroke-opacity", 0.7)
+   }
 
 };
