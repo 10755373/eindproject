@@ -19,6 +19,10 @@ function timeslider(json){
       d3v5.select('#value').text(d3v5.timeFormat('%Y')(currentyear));
       year = d3v5.timeFormat('%Y')(currentyear)
       updateworldmap(json, year)
+      // scattermale(json, year)
+      // scatterfemale(json, year)
+      // var scatter = merge(datamale, datafemale)
+      // makescatterplot(scatter)
     });
 
   var gTime = d3v5
@@ -213,43 +217,90 @@ function gdppercapita(data, country){
   return list_gdp_per_capita
 };
 
-function scatterdatamale(json){
-  data = Object.values(json)
-  series = {}
-  for (let i = 0; i < data.length; i++){
-    if (data[i].year == "2000" && data[i].sex == "male" && data[i].age == "15-24 years"){
-      list_men = {}
-      list_men[data[i].country] = data[i].suicides_no
-      list_woman = {}
-      list_woman[data[i].country] = data[i].suicides_no
-      console.log(list_men)
-      console.log(list_woman)
-    }
-  return series
-  }
-  console.log(series)
 
-  // Datamaps expect data in format:
-  // { "USA": { "fillColor": "#42a844", numberOfWhatever: 75},
-  //   "FRA": { "fillColor": "#8dc386", numberOfWhatever: 43 } }
-  var dataset = {};
-  // We need to colorize every country based on "numberOfWhatever"
-  // colors should be uniq for every value.
-  // For this purpose we create palette(using min/max series-value)
-  var onlyValues = series.map(function(obj){ return obj[1]; });
-  var minValue = Math.min(... onlyValues),
-          maxValue = Math.max(... onlyValues);
-  // create color palette function
-  // color can be whatever you wish
-  var paletteScale = d3.scale.linear()
-          .domain([minValue,maxValue])
-          .range(["#99ccff","#000099"]); // blue color
-  // fill dataset in appropriate format
-  series.forEach(function(item){ //
-      // item example value ["USA", 70]
-      var iso = item[0],
-              value = item[1];
-      dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
-  });
-  console.log(dataset)
+function scattermale(json){
+  data = Object.values(json)
+  datamale = []
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == "2000" && data[i].sex == "male", data[i].age == "15-24 years"){
+      list = []
+      list.push(data[i].country, data[i].suicides_no)
+      datamale.push(list)
+}}
+return datamale};
+
+function scatterfemale(json){
+  data = Object.values(json)
+  datafemale = []
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == "2000" && data[i].sex == "female", data[i].age == "15-24 years"){
+      list = []
+      list.push(data[i].country, data[i].suicides_no)
+      datafemale.push(list)
+}}
+return datafemale
 };
+
+function merge(datamale, datafemale){
+  console.log(datamale)
+  country = {}
+  for (let i = 0; i < datamale.length; i++){
+    for (let i = 0; i < datafemale.length; i++){
+      if (datamale[i][0] == datafemale[i][0]){
+        if (datamale[i][1] > 100 || datafemale[i][1] > 100){
+          i++
+        }
+        else{
+        country[datamale[i][0]] = {country: datamale[i][0], male: datamale[i][1], female: datafemale[i][1]}
+      }
+      }
+    }
+  }
+  return country
+}
+
+// function scattermale1(json){
+//   data = Object.values(json)
+//   datamale = []
+//   for (let i = 0; i < data.length; i++){
+//     if (data[i].year == "2000" && data[i].sex == "male"){
+//       list = []
+//       list.push(data[i].country, data[i].suicides_no)
+//       datamale.push(list)
+// }}
+// console.log(datamale)
+// return datamale};
+//
+// function scatterfemale1(json){
+//   data = Object.values(json)
+//   datafemale = []
+//   for (let i = 0; i < data.length; i++){
+//     if (data[i].year == "2000" && data[i].sex == "female"){
+//       list = []
+//       list.push(data[i].country, data[i].suicides_no)
+//       datafemale.push(list)
+// }}
+// return datafemale
+// };
+//
+// function merge1(datamale, datafemale){
+//   console.log(datamale)
+//   country = {}
+//   for (let i = 0; i < datamale.length; i++){
+//     for (let i = 0; i < datafemale.length; i++){
+//       if (datamale[i][0] == datafemale[i][0]){
+//         // if (datamale[i][1] > 100 || datafemale[i][1] > 100){
+//         //   i++
+//         // }
+//         // else{
+//         males = 0
+//         females = 0
+//         males += datamale[i][1]
+//         females += datafemale[i][1]
+//         country[datamale[i][0]] = {country: datamale[i][0], male: datamale[i][1], female: datafemale[i][1]}
+//       // }
+//       }
+//     }
+//   }
+//   return country
+// }

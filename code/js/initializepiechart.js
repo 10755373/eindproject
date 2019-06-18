@@ -44,16 +44,18 @@ function initializepiechart(data_pie, data_donut){
 
   // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
   pie_chart
-    .selectAll('mySlices')
+    .selectAll('.piechart')
     .data(data_ready)
     .enter()
     .append('path')
-      .attr("id", "piechart")
+      .attr("class", "piechart")
       .attr('d', arcGenerator)
       .attr('fill', function(d){ return(colors(d.data.key)) })
       .attr("stroke", "black")
       .style("stroke-width", "2px")
       .style("opacity", 0.7)
+      .on("mouseenter", mouseoverpiechart)
+      .on("mouseout", mouseoutpiechart)
 
   // Now add the annotation. Use the centroid method to get the best coordinates
   pie_chart
@@ -94,6 +96,8 @@ function initializepiechart(data_pie, data_donut){
       .attr("stroke", "black")
       .style("stroke-width", "2px")
       .style("opacity", 0.7)
+      .on("mouseenter", mouseoverpiechart)
+      .on("mouseout", mouseoutpiechart)
 
   // Now add the annotation. Use the centroid method to get the best coordinates
   pie_chart
@@ -105,6 +109,20 @@ function initializepiechart(data_pie, data_donut){
     .attr("transform", function(d) { return "translate(" + arcGenerator2.centroid(d) + ")";  })
     .style("text-anchor", "middle")
     .style("font-size", 17)
+
+
+    function mouseoverpiechart() {
+        d3v5.select(this)
+            .attr("stroke", "red")
+            .style("stroke-width", "2px")
+            .style("stroke-opacity", 0.7)
+    }
+    function mouseoutpiechart() {
+        d3v5.select(this)
+            .attr("stroke", "black")
+            .style("stroke-width", "2px")
+            .style("stroke-opacity", 0.7)
+    }
 
 
  //  var pie = pie_chart.selectAll("arc")

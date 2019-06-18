@@ -120,6 +120,7 @@ function initializelinegraph() {
     // write yaxis label rightside
     svg_linegraph_container.append("text")
         .attr("transform", "rotate(-90)")
+        // .attr("transform", "translate(" + width + " ,0)")
         .attr("y", width)
         // .attr("y", 6)
         .attr("dy", "1.5em")

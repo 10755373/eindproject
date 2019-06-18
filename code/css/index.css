@@ -53,3 +53,13 @@
 .donut{
   position: absolute;
 }
+
+.tooltipscatter {
+  stroke: black;
+	position: absolute;
+	background-color: white;
+	border: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	padding: 10px;
+}
