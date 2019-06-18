@@ -4,16 +4,16 @@ function initializelinegraph() {
 
     var divsize = d3v5.select("#container2").node().getBoundingClientRect();
 
-    var allGroup = ["5-14 years", "15-24 years", "25-34 years", "35-54 years", "55-74 years", "75+ years"];
+    var ageoptions = ["5-14 years", "15-24 years", "25-34 years", "35-54 years", "55-74 years", "75+ years"];
 
     // add the options to the button
     d3v5.select("#selectButton")
-      .selectAll('myOptions')
-     	.data(allGroup)
-      .enter()
-    	.append('option')
-      .text(function (d) { return d; }) // text showed in the menu
-      .attr("value", function (d) { return d; }) // corresponding value returned by the button
+        .selectAll('myOptions')
+       	.data(ageoptions)
+        .enter()
+      	.append('option')
+        .text(function (d) { return d; }) // text showed in the menu
+        .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
     // width and height of graph in pixels
     var width = divsize.width - margin.left - margin.right;

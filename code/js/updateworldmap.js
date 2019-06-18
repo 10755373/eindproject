@@ -2,45 +2,21 @@
 function updateworldmap(json, year){
 
   d3.select("#container1").selectAll("*").remove();
-  console.log(year)
-  data = Object.values(json)
-  // console.log(data[0])
-  series = []
-  for (let i = 0; i < data.length; i++){
-    if (data[i].year == year && data[i].sex == "male" && data[i].age == "15-24 years"){
-      list = []
-      // console.log(data[i].suicides_no)
-      list.push(data[i].alpha_code, data[i].gdp_per_capita)
-      // list_values[data[i].alpha_code] = data[i].suicides_no
-      series.push(list)
-    }
-  }
-  console.log(series)
 
-  // Datamaps expect data in format:
-  // { "USA": { "fillColor": "#42a844", numberOfWhatever: 75},
-  //   "FRA": { "fillColor": "#8dc386", numberOfWhatever: 43 } }
-  var dataset = {};
-  // We need to colorize every country based on "numberOfWhatever"
-  // colors should be uniq for every value.
-  // For this purpose we create palette(using min/max series-value)
-  var onlyValues = series.map(function(obj){ return obj[1]; });
-  var minValue = Math.min(... onlyValues),
-          maxValue = Math.max(... onlyValues);
-  // create color palette function
-  // color can be whatever you wish
-  var paletteScale = d3.scale.linear()
-          .domain([minValue,maxValue])
-          .range(["#99ccff","#000099"]); // blue color
-  // fill dataset in appropriate format
-  series.forEach(function(item){ //
-      // item example value ["USA", 70]
-      var iso = item[0],
-              value = item[1];
-      dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
-  });
+  function changegender() {
+    var dataset = dataworldmap(json, year, )
+    return dataset
+  }
+
+  // Event listener to the radio button
+  d3v5.select("#genderbutton").on("change", changegender )
+
+  var dataset = retrievedata_map(json, year)
   console.log(dataset)
-  // render map
+  // var test = retrievedata_maptest(json, year)
+  // console.log(test)
+  var males = retrievedata_maptestmale(json, year)
+  console.log(males)
   var map = new Datamap({
       element: document.getElementById('container1'),
       projection: 'mercator', // big world map
@@ -72,8 +48,10 @@ function updateworldmap(json, year){
               // console.log(gdp_per_capita)
               var data_pie = datapie(data, country)
               var data_donut = datadonut(data, country)
+              var optionmale = datamaleoption(data, country)
+              var optionfemale = datafemaleoption(data, country)
                if (data_female_total.length > 0){
-                 drawlinegraph(data_male_total, data_female_total, gdp_per_capita);
+                 drawlinegraph(data_male_total, data_female_total, gdp_per_capita, optionmale, optionfemale);
                  // makepiechart(data_pie);
                  // console.log(data_donut);
                  // console.log(data_pie)

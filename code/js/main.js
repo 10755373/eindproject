@@ -15,10 +15,10 @@ function visualizations() {
 
 
         var datamale = scattermale(json)
-        console.log(datamale)
+        // console.log(datamale)
         var datafemale = scatterfemale(json)
         var merged = merge(datamale, datafemale)
-        console.log(merged)
+        // console.log(merged)
         initializeworldmap(json, 1987);
         initializelinegraph();
         // initializepiechart();

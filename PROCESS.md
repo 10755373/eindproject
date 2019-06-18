@@ -36,3 +36,6 @@ De update functie voor de linegraph werkt naar behoren en de pie + donut heb ik 
 
 # Day 15
 De pie + donut update werkt nog niet hoe ik het voor ogen heb (nu worden beiden verwijderd wanneer een nieuw land wordt aangeklikt) dus hier ga ik nog naar kijken. Daarnaast heb ik besloten een scatterplot erbij te plakken dus daar heb ik de afgelopen uren aan gewerkt. Het initialiseren van de pie + donut werkt overigens ook nog steeds niet...
+
+# Day 16
+Na overleg en denken heb ik besloten om het gdp niet meer te betrekken in de visualisatie i.v.m. praktische en onderzoeksvraag beantwoordende overwegingen. Daarnaast heb ik vandaag een scatterplot gemaakt om de onderzoeksvraag beter te kunnen beantwoorden. De slider werkt, maar de dropdowns nog niet. Morgen ga ik deze als eerste maken en daaropvolgend de juiste data per grafiek bendenken die ik wil inladen want daar struggle ik nog steeds mee. Bij sommige ideëen is de hoeveelheid data simpelweg te groot om te laten zien of duurt het te lang om in te laden waardoor overgangen stroef verlopen of de site zelfs vastloopt.

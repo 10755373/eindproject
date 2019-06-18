@@ -1,14 +1,20 @@
-function drawlinegraph(data_male_total, data_female_total, gdp_per_capita) {
+function drawlinegraph(data_male_total, data_female_total, gdp_per_capita, optionmale, optionfemale) {
   // eventueel een hover: https://bl.ocks.org/alandunning/cfb7dcd7951826b9eacd54f0647f48d3
     var data_male_total = data_male_total
     var data_female_total = data_female_total
-    // console.log(data_male_total)
-    // console.log(data_female_total)
+    console.log(data_male_total)
+    console.log(data_female_total)
     // var data_male_100k = data_male_100k
     // var data_female_100k = data_female_100k
     var gdp_per_capita = gdp_per_capita
     // console.log(data_male_100k)
     // console.log(data_female_100k)
+    var optionmale = optionmale
+    var optionfemale = optionfemale
+    console.log(optionmale)
+    console.log(optionfemale)
+    console.log(typeof(optionfemale[0].z))
+
 
     // d3v5.select("#container2").selectAll("*").remove();
 
@@ -34,114 +40,104 @@ function drawlinegraph(data_male_total, data_female_total, gdp_per_capita) {
 
     var svg_linegraph_container = d3v5.select("#svg_linegraph_container")
 
-    // var svg_linegraph = d3v5.select("#container2").append("svg")
-    //     .attr("class", "linegraph")
-    //     .attr("width", width + margin.left + margin.right)
-    //     .attr("height", height + margin.top + margin.bottom)
-    //   .append("g")
-    //     .attr("transform",
-    //           "translate(" + margin.left + "," + margin.top + ")");
       // put years in correct format
-      data_male_total.forEach(function(d) {
+      optionmale.forEach(function(d) {
           d.x = parseTime(d.x);
           // console.log(d.x);
           d.y = +d.y;
       });
-      data_female_total.forEach(function(d) {
+      optionfemale.forEach(function(d) {
           d.x = parseTime(d.x);
           // console.log(d.x);
           d.y = +d.y;
       });
-      // determine scales
-      x.domain(d3v5.extent(data_male_total, function(d) { return d.x; }));
-      y.domain([0, d3v5.max(data_male_total, function(d) { return d.y; })]);
-      // draw line males
-      svg_linegraph_container.select("#line_male")
-          // .transition()
-          .data([data_male_total])
-          // .attr("class", "line")
-          // .attr("id", "line_male")
-          .attr("d", valueline)
-          // .attr("data-legend",function(d) { return d.x})
-          // .attr("stroke", "steelblue")
-          // .attr("stroke-width", "2px")
-          // .attr("fill", "none");
-      // draw line females
-      svg_linegraph_container.select("#line_female")
-          .data([data_female_total])
-          // .attr("class", "line")
-          // .attr("id", "line_female")
-          .attr("d", valueline)
-          // .attr("data-legend",function(d) { return d.x})
-          // .attr("stroke", "pink")
-          // .attr("stroke-width", "2px")
-          // .attr("fill", "none");
-      // draw xaxis
-      svg_linegraph_container.select("#xaxis")
-          // .attr("id", "xaxis")
-          // .attr("transform", "translate(0," + height + ")")
-          .call(d3v5.axisBottom(x));
+      // // determine scales
+      // x.domain(d3v5.extent(optionmale, function(d) { return d.x; }));
+      // y.domain([0, d3v5.max(optionfemale, function(d) { return d.y; })]);
 
+      var initialgraph = function(agegroup){
+        var datamaletest = []
+        for (let i = 0; i < optionmale.length; i++){
+          if (optionmale[i].z == agegroup){
+            datamaletest.push(optionmale[i])
+          }
+        }
+        var datafemaletest = []
+        for (let i = 0; i < optionfemale.length; i++){
+          if (optionfemale[i].z == agegroup){
+            datafemaletest.push(optionfemale[i])
+          }
+        }
+        // determine scales
+        x.domain(d3v5.extent(datamaletest, function(d) { return d.x; }));
+        y.domain([0, d3v5.max(datafemaletest, function(d) { return d.y; })]);
 
-      // // write xaxis label
-      // svg_linegraph.append("text")
-      //     .attr("transform",
-      //     "translate(" + (width) + " ," +
-      //                    (height + 50) + ")")
-      //     .style("text-anchor", "end")
-      //     .text("Year");
+        // var datamale = optionmale.map(function(d){return {x: d.x, y: d.y, z:d[agegroup]} })
+        // var datafemale = optionfemale.map(function(d){return {x: d.x, y: d.y, z:d[agegroup]} })
+        // console.log(datamale)
+        // console.log(datafemale)
+        // console.log(typeof(datafemale[0].z))
+        // draw line males
+        svg_linegraph_container.select("#line_male")
+            .data([datamaletest])
+            .attr("d", valueline)
+        // draw line females
+        svg_linegraph_container.select("#line_female")
+            .data([datafemaletest])
+            .attr("d", valueline)
+        // draw xaxis
+        svg_linegraph_container.select("#xaxis")
+            .call(d3v5.axisBottom(x));
+        // draw yaxis
+        svg_linegraph_container.select("#yaxisleft")
+            .call(d3v5.axisLeft(y));
+          }
 
+      initialgraph("5-14 years")
 
-      // draw yaxis
-      svg_linegraph_container.select("#yaxisleft")
-          // .attr("id", "yaxisleft")
-          .call(d3v5.axisLeft(y));
+   function update(selectedGroup) {
+     var datamaletest = []
+     for (let i = 0; i < optionmale.length; i++){
+       if (optionmale[i].z == selectedGroup){
+         datamaletest.push(optionmale[i])
+       }
+     }
+     var datafemaletest = []
+     for (let i = 0; i < optionfemale.length; i++){
+       if (optionfemale[i].z == selectedGroup){
+         datafemaletest.push(optionfemale[i])
+       }
+     }
+     svg_linegraph_container.select("#line_male")
+         .data([datamaletest])
+         .transition()
+         .attr("d", d3v5.line()
+           .x(function(d) { return x(d.x) })
+           .y(function(d) { return y(d.y) })
+         )
+         svg_linegraph_container.select("#line_female")
+         .data([datafemaletest])
+         .transition()
+         .attr("d", d3v5.line()
+           .x(function(d) { return x(d.x) })
+           .y(function(d) { return y(d.y) })
+         )
+         // draw xaxis
+         svg_linegraph_container.select("#xaxis")
+             .call(d3v5.axisBottom(x));
+         // draw yaxis
+         svg_linegraph_container.select("#yaxisleft")
+             .call(d3v5.axisLeft(y));
+       }
 
-
-      // // write yaxis label
-      // svg_linegraph.append("text")
-      //     .attr("transform", "rotate(-90)")
-      //     .attr("y", 0 - margin.left)
-      //     // .attr("y", 6)
-      //     .attr("dy", "1.5em")
-      //     .style("text-anchor", "end")
-      //     // .attr("font-size", "15px")
-      //     .text("No of suicides");
-
-      // set the ranges
-      var x = d3v5.scaleTime().range([0, width]);
-      var y = d3v5.scaleLinear().range([height, 0]);
-
-      // define the line
-      var gdpline = d3v5.line()
-          .x(function(d) { return x(d.x); })
-          .y(function(d) { return y(d.y); });
-      // put years in correct format
-      gdp_per_capita.forEach(function(d) {
-          d.x = parseTime(d.x);
-          // console.log(d.x);
-          d.y = +d.y;
-      });
-      // determine scales
-      x.domain(d3v5.extent(gdp_per_capita, function(d) { return d.x; }));
-      y.domain([0, d3v5.max(gdp_per_capita, function(d) { return d.y; })]);
-      // draw line gdp
-      svg_linegraph_container.select("#gdpline")
-          .data([gdp_per_capita])
-          // .attr("class", "line")
-          // .attr("id", "line_male")
-          .attr("d", gdpline)
-          // .attr("data-legend",function(d) { return d.x})
-          // .attr("stroke", "#27FF00")
-          // .attr("stroke-width", "2px")
-          // .attr("fill", "none");
-      // draw yaxis right side of the graph
-      svg_linegraph_container.select("#yaxisright")
-          // .attr("id", "yaxisright")
-          // .attr("transform", "translate(" + width + " ,0)")
-          .call(d3v5.axisRight(y));
-
-
+   // When the button is changed, run the updateChart function
+   d3v5.select("#selectButton").on("change", function(d) {
+       // recover the option that has been chosen
+       var selectedOption = d3v5.select(this).property("value")
+       // run the updateChart function with this selected option
+       update(selectedOption)
+   })
+};
 
   // // ** Update data section (Called from the onclick)
   // function updateData() {
@@ -176,18 +172,18 @@ function drawlinegraph(data_male_total, data_female_total, gdp_per_capita) {
   //     });
   // }
 
-      legend = svg_linegraph_container.append("g")
-        .attr("class","legend")
-        .attr("transform","translate(50,30)")
-        .style("font-size","12px")
-        .call(d3.legend)
-
-      setTimeout(function() {
-        legend
-          .style("font-size","20px")
-          .attr("data-style-padding",10)
-          .call(d3.legend)
-      },1000)
+      // legend = svg_linegraph_container.append("g")
+      //   .attr("class","legend")
+      //   .attr("transform","translate(50,30)")
+      //   .style("font-size","12px")
+      //   .call(d3.legend)
+      //
+      // setTimeout(function() {
+      //   legend
+      //     .style("font-size","20px")
+      //     .attr("data-style-padding",10)
+      //     .call(d3.legend)
+      // },1000)
 
       // legend = svg_linegraph.append("g")
       //   .attr("class","legend")
@@ -249,7 +245,7 @@ function drawlinegraph(data_male_total, data_female_total, gdp_per_capita) {
     //     .call(d3v5.axisRight(y));
 
 
-};
+
 
 // /*
 // http://bl.ocks.org/dbuezas/9306799 */

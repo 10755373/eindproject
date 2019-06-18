@@ -1,13 +1,13 @@
 function makescatterplot(scatter){
 
-  data = scatter
-  console.log(data)
+  // data = scatter
+  // console.log(data)
   datascatter = Object.values(scatter)
   // console.log(datascattered)
 
   var divsize = d3v5.select("#container7").node().getBoundingClientRect();
 
-   var margin = {top: 40, right: 30, bottom: 20, left: 80};
+   var margin = {top: 80, right: 30, bottom: 40, left: 50};
    var width = divsize.width - margin.left - margin.right;
    var height = divsize.height - margin.top - margin.bottom;
 
@@ -39,9 +39,9 @@ function makescatterplot(scatter){
    svgscatterplot.append("text")
        .attr("transform",
        "translate(" + (width) + " ," +
-                      (height + 50) + ")")
+                      (height + 30) + ")")
        .style("text-anchor", "end")
-       .text("No of suicides men");
+       .text("No of suicides men per 100K");
    // draw yaxis
    svgscatterplot.append("g")
        .attr("id", "yaxisleft")
@@ -49,35 +49,21 @@ function makescatterplot(scatter){
    // write yaxis label
    svgscatterplot.append("text")
        .attr("transform", "rotate(-90)")
-       .attr("y", 0 - margin.left)
+       .attr("y", -50)
        // .attr("y", 6)
        .attr("dy", "1.5em")
        .style("text-anchor", "end")
        // .attr("font-size", "15px")
-       .text("No of suicides woman");
+       .text("No of suicides woman per 100K");
 
   svgscatterplot.append("text")
       .attr("id", "title")
       .attr("x", (width / 2))
-      .attr("y", margin.bottom)
+      .attr("y", (margin.bottom / 2))
       .attr("text-anchor", "middle")
       .style("font-size", "18px")
       .style('fill', 'darkOrange')
       .text("Scatterplot: no. of suicides of men and woman per country");
-
-   svgscatterplot.append("text")
-          .attr("transform",
-              "translate(" + (width/2) + " ," +
-                             (height + margin.top) + ")")
-          .style("text-anchor", "middle")
-          .text("no of men");
-
-  svgscatterplot.append("text")
-           .attr("transform", "rotate(-90)")
-           .attr("x", - height/2)
-           .attr("y", 15)
-           .style("text-anchor", "middle")
-           .text("no of woman");
 
    var div = d3v5.select("#container7").append("div")
        .attr("class", "tooltipscatter")
