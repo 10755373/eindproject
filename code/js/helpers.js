@@ -78,13 +78,13 @@ function retrievedata_map(json, currentyear){
   return data_set
 };
 
-function retrievedata_maptestmale(json, year){
+function retrievetest(json, year, sex){
   data = Object.values(json)
   list_values_male = []
   for (let i = 0; i < data.length; i++){
-    if (data[i].year == year && data[i].sex == "male"){
+    if (data[i].year == year && data[i].sex == sex){
       list = []
-      list.push(data[i].alpha_code, data[i].suicides_no)
+      list.push(data[i].alpha_code, data[i].suicides_no, data[i].suicides_100k, data[i].country)
       list_values_male.push(list)
     }}
 
@@ -108,8 +108,10 @@ function retrievedata_maptestmale(json, year){
   var data_set = {}
   for (let i = 0; i < list_values_male.length; i++){
     dict = {}
-    dict["numberOfThings"] = list_values_male[i][1]
+    dict["suicides_no"] = list_values_male[i][1]
+    dict["suicides_100k"] = list_values_male[i][2]
     dict["fillColor"] = paletteScale(list_values_male[i][1])
+    dict["country"] = list_values_male[i][3]
     land = list_values_male[i][0]
     data_set[land] = dict
   }
@@ -117,6 +119,15 @@ function retrievedata_maptestmale(json, year){
   return data_set
   // makemap(data_set);
 };
+
+function data_scatter(data_set){
+  data = Object.values(data_set)
+  country = {}
+  for (let i = 0; i < data.length; i++){
+        country[datai][3]] = {country: data[i][3], no: data[i][1], ratio: data[i][2]}
+  }
+  return country
+}
 
 function retrievedata_maptest(json, year){
   data = Object.values(json)
