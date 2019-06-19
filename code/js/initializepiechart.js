@@ -26,11 +26,20 @@ function initializepiechart(data_pie, data_donut){
 
   var pie = d3v5.pie()
     .value(function(d) {return d.value; })
+
   var data_ready = pie(d3v5.entries(data_pie))
 
   var arcGenerator = d3v5.arc()
     .innerRadius(0)
     .outerRadius(120)
+
+  //create tip
+  var tip = d3v5.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(function(d) {
+        return "<span style='color:orange'>" + d.data.value + "</span> <strong>%</strong>";
+        })
 
   // var donut = svg.selectAll("arc")
   //   .data(data_ready)
@@ -55,7 +64,9 @@ function initializepiechart(data_pie, data_donut){
       .style("stroke-width", "2px")
       .style("opacity", 0.7)
       .on("mouseenter", mouseoverpiechart)
+      .on("mouseover", tip.show)
       .on("mouseout", mouseoutpiechart)
+      .on("mouseout", tip.hide)
 
   // Now add the annotation. Use the centroid method to get the best coordinates
   pie_chart
@@ -97,7 +108,9 @@ function initializepiechart(data_pie, data_donut){
       .style("stroke-width", "2px")
       .style("opacity", 0.7)
       .on("mouseenter", mouseoverpiechart)
+      .on("mouseover", tip.show)
       .on("mouseout", mouseoutpiechart)
+      .on("mouseout", tip.hide)
 
   // Now add the annotation. Use the centroid method to get the best coordinates
   pie_chart
@@ -124,7 +137,172 @@ function initializepiechart(data_pie, data_donut){
             .style("stroke-opacity", 0.7)
     }
 
+  };
 
+
+function initializepiechart1(data_pie, data_donut){
+  d3.select("#container3").selectAll("*").remove();
+
+  if ($("#graph").empty()){
+    newones(data_pie, data_donut)
+  }
+  else{
+    updateexisting(data_pie, data_donut)
+  }
+
+
+  function newones(data_pie, data_donut){
+
+  var divsize = d3v5.select("#container3").node().getBoundingClientRect();
+
+  var width = divsize.height
+  var height = divsize.width
+  var margin = 40
+
+  var radius = Math.min(width, height) / 2 - margin
+
+  var pie_chart = d3v5.select("#container3").append("svg")
+    .attr("class", "pie")
+    .attr("id", "pie")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("id", "pie_chart")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  var data_pie = data_pie;
+
+  var colors = d3v5.scaleOrdinal()
+    .domain(["male", "female"])
+    .range(["steelblue", "pink"]);
+
+  var pie = d3v5.pie()
+    .value(function(d) {return d.value; })
+
+  var data_ready = pie(d3v5.entries(data_pie))
+
+  var arcGenerator = d3v5.arc()
+    .innerRadius(0)
+    .outerRadius(120)
+
+  //create tip
+  var tip = d3v5.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(function(d) {
+        return "<span style='color:orange'>" + d.data.value + "</span> <strong>%</strong>";
+        })
+
+  // var donut = svg.selectAll("arc")
+  //   .data(data_ready)
+  //   .enter()
+  //   .append('path')
+  //     .attr('d', arcGenerator)
+  //     .attr('fill', function(d){ return(colors(d.data.key)) })
+  //     .attr("stroke", "black")
+  //     .style("stroke-width", "2px")
+  //     .style("opacity", 0.7)
+
+  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+  pie_chart
+    .selectAll('.piechart')
+    .data(data_ready)
+    .enter()
+    .append('path')
+      .attr("class", "piechart")
+      .attr('d', arcGenerator)
+      .attr('fill', function(d){ return(colors(d.data.key)) })
+      .attr("stroke", "black")
+      .style("stroke-width", "2px")
+      .style("opacity", 0.7)
+      .on("mouseenter", mouseoverpiechart)
+      .on("mouseover", tip.show)
+      .on("mouseout", mouseoutpiechart)
+      .on("mouseout", tip.hide)
+
+  // Now add the annotation. Use the centroid method to get the best coordinates
+  pie_chart
+    .selectAll('mySlices')
+    .data(data_ready)
+    .enter()
+    .append('text')
+    .text(function(d){ return "grp " + d.data.value})
+    .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+    .style("text-anchor", "middle")
+    .style("font-size", 17)
+
+  // make donut chart!!!!
+
+  var data_donut = data_donut;
+
+  var colors = d3v5.scaleOrdinal()
+    .domain(["male", "female"])
+    .range(["steelblue", "pink"]);
+
+  var pie = d3v5.pie()
+    .value(function(d) {return d.value; })
+  var data_corrected = pie(d3v5.entries(data_donut))
+
+  var arcGenerator2 = d3v5.arc()
+    .innerRadius(125)
+    .outerRadius(radius)
+
+  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+  pie_chart
+    .selectAll('mySlices')
+    .data(data_corrected)
+    .enter()
+    .append('path')
+      .attr("id", "piechart")
+      .attr('d', arcGenerator2)
+      .attr('fill', function(d){ return(colors(d.data.key)) })
+      .attr("stroke", "black")
+      .style("stroke-width", "2px")
+      .style("opacity", 0.7)
+      .on("mouseenter", mouseoverpiechart)
+      .on("mouseover", tip.show)
+      .on("mouseout", mouseoutpiechart)
+      .on("mouseout", tip.hide)
+
+  // Now add the annotation. Use the centroid method to get the best coordinates
+  pie_chart
+    .selectAll('mySlices')
+    .data(data_corrected)
+    .enter()
+    .append('text')
+    .text(function(d){ return "grp " + d.data.value})
+    .attr("transform", function(d) { return "translate(" + arcGenerator2.centroid(d) + ")";  })
+    .style("text-anchor", "middle")
+    .style("font-size", 17)
+
+
+    function mouseoverpiechart() {
+        d3v5.select(this)
+            .attr("stroke", "red")
+            .style("stroke-width", "2px")
+            .style("stroke-opacity", 0.7)
+    }
+    function mouseoutpiechart() {
+        d3v5.select(this)
+            .attr("stroke", "black")
+            .style("stroke-width", "2px")
+            .style("stroke-opacity", 0.7)
+    }
+
+    }
+
+    function updateexisting(data_pie, data_donut){
+
+      var pie = d3v5.pie()
+        .value(function(d) {return d.value; })
+      var data_ready = pie(d3v5.entries(data_pie))
+      var data_corrected = pie(d3v5.entries(data_donut))
+
+      path = d3v5.select("#piechart.figure").selectAll("path").data(pie);
+      path.transition().duration(750).attrTween("d", arcTween);
+
+    }
+  };
  //  var pie = pie_chart.selectAll("arc")
  //      .data(data_ready)
  //      .enter().append("g")
@@ -232,7 +410,6 @@ function initializepiechart(data_pie, data_donut){
   //     .style("font-size", "12px")
   //     .call(d3.legend);
 
-};
 
 // function initializepiechart(){
 //
