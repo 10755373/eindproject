@@ -1,4 +1,4 @@
-function updatescatterplot(json, year, sex, age){
+function initializescatterplot(json, year, sex, age){
 
   d3v5.select("#container7").selectAll("*").remove();
 

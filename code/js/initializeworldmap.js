@@ -1,9 +1,9 @@
 // draw worldmap
-function initializeworldmap(json, year){
+function initializeworldmap(json, year, sex, age){
 
   var container1 = d3v5.select("#container1").node().getBoundingClientRect();
 
-  var dataset = retrievedata_map(json, year)
+  var dataset = retrievedata_map(json, year, sex, age)
 
 
   // console.log(year)
@@ -61,29 +61,29 @@ function initializeworldmap(json, year){
         // change borderline only
         highlightBorderColor: '#2ECC71',
         popupTemplate: function(geography, data) {
-       return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'GDP per capita: ' +  data.numberOfThings
+       return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'Suicides no: ' +  data.numberOfThings
       }},
-      done: function(datamap) {
-         datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-             country = geography.properties.name;
-             console.log(country)
-             var data_male_total = obtaincountrydatamaletotal(data, country)
-             var data_female_total = obtaincountrydatafemaletotal(data, country)
-             var gdp_per_capita = gdppercapita(data, country)
-             var data_pie = datapie(data, country)
-             var data_donut = datadonut(data, country)
-              if (data_female_total.length > 0){
-                drawlinegraph(data_male_total, data_female_total, gdp_per_capita);
-                // makepiechart(data_pie);
-                // makedonutchart(data_donut);
-                initializepiechart(data_pie, data_donut);
-                // initializedonutchart(data_donut);
-              }
-               else{
-                 geendataland(country);
-               }
-         });
-     }
+     //  done: function(datamap) {
+     //     datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+     //         country = geography.properties.name;
+     //         console.log(country)
+     //         var data_male_total = obtaincountrydatamaletotal(data, country)
+     //         var data_female_total = obtaincountrydatafemaletotal(data, country)
+     //         var gdp_per_capita = gdppercapita(data, country)
+     //         var data_pie = datapie(data, country)
+     //         var data_donut = datadonut(data, country)
+     //          if (data_female_total.length > 0){
+     //            drawlinegraph(data_male_total, data_female_total, gdp_per_capita);
+     //            // makepiechart(data_pie);
+     //            // makedonutchart(data_donut);
+     //            initializepiechart(data_pie, data_donut);
+     //            // initializedonutchart(data_donut);
+     //          }
+     //           else{
+     //             geendataland(country);
+     //           }
+     //     });
+     // }
   });
 
 

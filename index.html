@@ -73,6 +73,8 @@
 				<script type="text/javascript" src="/code/js/initializepiechart.js"></script>
 				<script type="text/javascript" src="/code/js/makepiechart.js"></script>
 				<script type="text/javascript" src="/code/js/makescatterplot.js"></script>
+				<script type="text/javascript" src="/code/js/initializescatter.js"></script>
+
 
 
 
@@ -93,10 +95,27 @@
 	<div id="value"></div> -->
 
 	<!-- Create the radio button -->
-	<div id="genderbutton">
+	<!-- <div id="genderbutton">
 	  <input type="radio" name="gender" value="female" checked> Female<br>
 	  <input type="radio" name="gender" value="male"> Male<br>
-	</div>
+	</div> -->
+	<form>
+	 sex:
+		<select id="selectData1">
+				<option value="female"> Female</option>
+				<option value="male"> Male</option>
+		</select>
+		age:
+		<select id="selectData2">
+			<option value="5-14 years"> 5-14 years</option>
+			<option value="15-24 years"> 15-24 years</option>
+				<option value="235-54 years"> 35-54 years</option>
+				<option value="25-34 years"> 25-34 years</option>
+				<option value="55-74 years">55-74 years</option>
+				<option value="75+ years">75+ years</option>
+		</select>
+		<input type="button" value="Show graph" onclick= "userselected()">
+</form>
   <div id="container1" style="position: relative; width: 700px; height: 700px; top: 5px;"></div>
 	<h2>Year</h2>
 	<div class="row align-items-center">

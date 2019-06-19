@@ -1,5 +1,6 @@
 function makepiechart(data_pie){
-
+// source update: https://bl.ocks.org/adamjanes/5e53cfa2ef3d3f05828020315a3ba18c/22619fa86de2045b6eeb4060e747c5076569ec47
+// https://bl.ocks.org/adamjanes/53eedf0b915fd8b20f04fd08bc24ff00
   var divsize = d3v5.select("#container3").node().getBoundingClientRect();
 
   var width = divsize.width

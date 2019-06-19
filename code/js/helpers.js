@@ -1,4 +1,4 @@
-function timeslider(json){
+function timeslider(json, sex, age){
   // Time
   var dataTime = d3v5.range(0, 24).map(function(d) {
     return new Date(1987 + d, 10, 3);
@@ -18,7 +18,8 @@ function timeslider(json){
       currentyear = val
       d3v5.select('#value').text(d3v5.timeFormat('%Y')(currentyear));
       year = d3v5.timeFormat('%Y')(currentyear)
-      updateworldmap(json, year)
+      updateworldmap(json, year, sex, age)
+      updatescatterplot(json, year, sex, age)
       // var datamale = scattermaletest(json)
       // var datafemale = scatterfemaletest(json)
       // var merged = mergetest(datamale, datafemale)
@@ -43,16 +44,17 @@ function timeslider(json){
 
 // retrieve right data
 // Based on: // https://github.com/markmarkoh/datamaps/blob/master/src/examples/highmaps_world.html
-function retrievedata_map(json, currentyear){
+function retrievedata_map(json, currentyear, sex, age){
   data = Object.values(json)
   list_values = []
   for (let i = 0; i < data.length; i++){
-    if (data[i].year == currentyear && data[i].sex == "male" && data[i].age == "15-24 years"){
+    if (data[i].year == currentyear && data[i].sex == sex && data[i].age == age){
       list = []
-      list.push(data[i].alpha_code, data[i].gdp_per_capita)
+      list.push(data[i].alpha_code, data[i].suicides_no)
       list_values.push(list)
     }
   }
+  console.log(list_values)
 
   var onlyValues = []
   for (let i = 0; i < list_values.length; i++){
@@ -78,11 +80,27 @@ function retrievedata_map(json, currentyear){
   return data_set
 };
 
-function retrievetest(json, year, sex){
+function retrievedata_scatter(json, currentyear, sex, age){
+    data = Object.values(json)
+    countries = {}
+    for (let i = 0; i < data.length; i++){
+      if (data[i].year == currentyear && data[i].sex == sex && data[i].age == age){
+        countries[data[i].country] = {country: data[i].country, no: data[i].suicides_no, ratio: data[i].suicides_100k}
+      }
+    }
+    return countries
+    console.log(countries)
+  };
+
+
+
+
+
+function retrievetest(json, year, sex, age){
   data = Object.values(json)
   list_values_male = []
   for (let i = 0; i < data.length; i++){
-    if (data[i].year == year && data[i].sex == sex){
+    if (data[i].year == year && data[i].sex == sex, data[i].age == age){
       list = []
       list.push(data[i].alpha_code, data[i].suicides_no, data[i].suicides_100k, data[i].country)
       list_values_male.push(list)
@@ -124,7 +142,7 @@ function data_scatter(data_set){
   data = Object.values(data_set)
   country = {}
   for (let i = 0; i < data.length; i++){
-        country[datai][3]] = {country: data[i][3], no: data[i][1], ratio: data[i][2]}
+        country[data[i][3]] = {country: data[i][3], no: data[i][1], ratio: data[i][2]}
   }
   return country
 }
@@ -339,6 +357,8 @@ function merge(datamale, datafemale){
   }
   return country
 }
+
+
 
 // function scattermaletest(json, year){
 //   data = Object.values(json)
