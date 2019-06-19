@@ -4,16 +4,16 @@ function initializelinegraph() {
 
     var divsize = d3v5.select("#container2").node().getBoundingClientRect();
 
-    var ageoptions = ["5-14 years", "15-24 years", "25-34 years", "35-54 years", "55-74 years", "75+ years"];
-
-    // add the options to the button
-    d3v5.select("#selectButton")
-        .selectAll('myOptions')
-       	.data(ageoptions)
-        .enter()
-      	.append('option')
-        .text(function (d) { return d; }) // text showed in the menu
-        .attr("value", function (d) { return d; }) // corresponding value returned by the button
+    // var ageoptions = ["5-14 years", "15-24 years", "25-34 years", "35-54 years", "55-74 years", "75+ years"];
+    //
+    // // add the options to the button
+    // d3v5.select("#selectButton")
+    //     .selectAll('myOptions')
+    //    	.data(ageoptions)
+    //     .enter()
+    //   	.append('option')
+    //     .text(function (d) { return d; }) // text showed in the menu
+    //     .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
     // width and height of graph in pixels
     var width = divsize.width - margin.left - margin.right;
@@ -58,16 +58,16 @@ function initializelinegraph() {
         .attr("stroke", "pink")
         .attr("stroke-width", "2px")
         .attr("fill", "none");
-    // draw line gdp
-    svg_linegraph_container.append("path")
-        .data([0])
-        .attr("class", "line")
-        .attr("id", "gdpline")
-        .attr("d", gdpline)
-        // .attr("data-legend",function(d) { return d.x})
-        .attr("stroke", "#27FF00")
-        .attr("stroke-width", "2px")
-        .attr("fill", "none");
+    // // draw line gdp
+    // svg_linegraph_container.append("path")
+    //     .data([0])
+    //     .attr("class", "line")
+    //     .attr("id", "gdpline")
+    //     .attr("d", gdpline)
+    //     // .attr("data-legend",function(d) { return d.x})
+    //     .attr("stroke", "#27FF00")
+    //     .attr("stroke-width", "2px")
+    //     .attr("fill", "none");
     // draw xaxis
     svg_linegraph_container.append("g")
         .attr("id", "xaxis")
@@ -93,40 +93,40 @@ function initializelinegraph() {
         .style("text-anchor", "end")
         // .attr("font-size", "15px")
         .text("No of suicides");
-
-    var parseTime = d3v5.timeParse("%Y")
-
-    // define the line
-    var gdpline = d3v5.line()
-        .x(function(d) { return x(d.x); })
-        .y(function(d) { return y(d.y); });
-
-    // // draw line males
-    // svg_linegraph.append("path")
-    //     // .data([gdp_per_capita])
-    //     .attr("class", "line")
-    //     .attr("id", "line_male")
-    //     // .attr("d", gdpline)
-    //     // .attr("data-legend",function(d) { return d.x})
-    //     .attr("stroke", "#27FF00")
-    //     .attr("stroke-width", "2px")
-    //     .attr("fill", "none");
-
-    // draw yaxis right side of the graph
-    svg_linegraph_container.append("g")
-        .attr("id", "yaxisright")
-        .attr("transform", "translate(" + width + " ,0)")
-        .call(d3v5.axisRight(y));
-    // write yaxis label rightside
-    svg_linegraph_container.append("text")
-        .attr("transform", "rotate(-90)")
-        // .attr("transform", "translate(" + width + " ,0)")
-        .attr("y", width)
-        // .attr("y", 6)
-        .attr("dy", "1.5em")
-        .style("text-anchor", "end")
-        // .attr("font-size", "15px")
-        .text("GDP per capita");
+    //
+    // var parseTime = d3v5.timeParse("%Y")
+    //
+    // // define the line
+    // var gdpline = d3v5.line()
+    //     .x(function(d) { return x(d.x); })
+    //     .y(function(d) { return y(d.y); });
+    //
+    // // // draw line males
+    // // svg_linegraph.append("path")
+    // //     // .data([gdp_per_capita])
+    // //     .attr("class", "line")
+    // //     .attr("id", "line_male")
+    // //     // .attr("d", gdpline)
+    // //     // .attr("data-legend",function(d) { return d.x})
+    // //     .attr("stroke", "#27FF00")
+    // //     .attr("stroke-width", "2px")
+    // //     .attr("fill", "none");
+    //
+    // // draw yaxis right side of the graph
+    // svg_linegraph_container.append("g")
+    //     .attr("id", "yaxisright")
+    //     .attr("transform", "translate(" + width + " ,0)")
+    //     .call(d3v5.axisRight(y));
+    // // write yaxis label rightside
+    // svg_linegraph_container.append("text")
+    //     .attr("transform", "rotate(-90)")
+    //     // .attr("transform", "translate(" + width + " ,0)")
+    //     .attr("y", width)
+    //     // .attr("y", 6)
+    //     .attr("dy", "1.5em")
+    //     .style("text-anchor", "end")
+    //     // .attr("font-size", "15px")
+    //     .text("GDP per capita");
     // // append svg or the legend
     // var linegraphlegendsvg = d3v5.select("#svglinegraph").append("svg")
     //       .attr("id", "linegraphlegendsvg")

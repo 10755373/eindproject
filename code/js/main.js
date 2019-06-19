@@ -31,6 +31,10 @@ function selectedsecondoption(json, country, year){
   var secondgroup = document.getElementById("secondgroup").value
   console.log(value)
   console.log(secondgroup)
+  console.log(json)
+  console.log(country)
+  console.log(year)
+
   if (value == "no"){
     var data_pie = datapie1(json, country, year, secondgroup)
     var data_donut = datadonut1(json, country, year, secondgroup)

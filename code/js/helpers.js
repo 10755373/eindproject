@@ -92,8 +92,8 @@ function retrievedata_scatter(json, currentyear, sex, age){
     console.log(countries)
   };
 
-function datapie1(requests, country, year, secondgroup){
-  data = Object.values(requests)
+function datapie1(json, country, year, secondgroup){
+  data = Object.values(json)
   data_pie = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
@@ -103,8 +103,8 @@ function datapie1(requests, country, year, secondgroup){
   return data_pie
 };
 
-function datadonut1(requests, country, year, secondgroup){
-  data = Object.values(requests)
+function datadonut1(json, country, year, secondgroup){
+  data = Object.values(json)
   data_donut = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
@@ -114,8 +114,8 @@ function datadonut1(requests, country, year, secondgroup){
   return data_donut
 };
 
-function datapie2(requests, country, year, secondgroup){
-  data = Object.values(requests)
+function datapie2(json, country, year, secondgroup){
+  data = Object.values(json)
   data_pie = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
@@ -125,8 +125,8 @@ function datapie2(requests, country, year, secondgroup){
   return data_pie
 };
 
-function datadonut2(requests, country, year, secondgroup){
-  data = Object.values(requests)
+function datadonut2(json, country, year, secondgroup){
+  data = Object.values(json)
   data_donut = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
@@ -136,7 +136,8 @@ function datadonut2(requests, country, year, secondgroup){
   return data_donut
 };
 
-function obtaincountrydatamaletotal(data, country, secondgroup){
+function obtaincountrydatamaletotal(json, country, secondgroup){
+  data = Object.values(json)
   list_linegraph_male_total = []
   for (let i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "male" && data[i].age == secondgroup){
@@ -161,7 +162,8 @@ function obtaincountrydatamale100k(json, country, secondgroup){
   return list_linegraph_male_100k
   };
 
-function obtaincountrydatafemaletotal(data, country, secondgroup){
+function obtaincountrydatafemaletotal(json, country, secondgroup){
+  data = Object.values(json)
   list_linegraph_female_total = []
   for (i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "female" && data[i].age == secondgroup){
