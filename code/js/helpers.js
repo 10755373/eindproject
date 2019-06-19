@@ -92,6 +92,107 @@ function retrievedata_scatter(json, currentyear, sex, age){
     console.log(countries)
   };
 
+function datapie1(requests, country, year, secondgroup){
+  data = Object.values(requests)
+  data_pie = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
+      data_pie[data[i].sex] = data[i].suicides_no
+    }
+  }
+  return data_pie
+};
+
+function datadonut1(requests, country, year, secondgroup){
+  data = Object.values(requests)
+  data_donut = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
+      data_donut[data[i].sex] = data[i].population
+    }
+  }
+  return data_donut
+};
+
+function datapie2(requests, country, year, secondgroup){
+  data = Object.values(requests)
+  data_pie = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
+      data_pie[data[i].sex] = data[i].suicides_100k
+    }
+  }
+  return data_pie
+};
+
+function datadonut2(requests, country, year, secondgroup){
+  data = Object.values(requests)
+  data_donut = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
+      data_donut[data[i].sex] = data[i].population
+    }
+  }
+  return data_donut
+};
+
+function obtaincountrydatamaletotal(data, country, secondgroup){
+  list_linegraph_male_total = []
+  dict_line_male = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].country == country && data[i].sex == "male" && data[i].age == secondgroup){
+      dict = {}
+      dict["x"] = data[i].year
+      dict["y"] = data[i].suicides_no
+      list_linegraph_male_total.push(dict)
+}}
+  return list_linegraph_male_total
+  };
+
+function obtaincountrydatamale100k(json, country, secondgroup){
+  data = Object.values(json)
+  list_linegraph_male_100k = []
+  dict_line_male = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].country == country && data[i].sex == "male" && data[i].age == secondgroup){
+      dict = {}
+      dict["x"] = data[i].year
+      dict["y"] = data[i].suicides_100k
+      list_linegraph_male_100k.push(dict)
+}}
+  return list_linegraph_male_100k
+  };
+
+function obtaincountrydatafemaletotal(data, country, secondgroup){
+  list_linegraph_female_total = []
+  dict_line_female = {}
+  for (i = 0; i < data.length; i++){
+    if (data[i].country == country && data[i].sex == "female" && data[i].age == secondgroup){
+      dict = {}
+      dict["x"] = data[i].year
+      dict["y"] = data[i].suicides_no
+      list_linegraph_female_total.push(dict)
+}}
+  return list_linegraph_female_total
+  };
+
+function obtaincountrydatafemale100k(json, country, secondgroup){
+  data = Object.values(json)
+  list_linegraph_female_100k = []
+  dict_line_male = {}
+  for (let i = 0; i < data.length; i++){
+    if (data[i].country == country && data[i].sex == "male" && data[i].age == secondgroup){
+      dict = {}
+      dict["x"] = data[i].year
+      dict["y"] = data[i].suicides_100k
+      list_linegraph_female_100k.push(dict)
+}}
+  return list_linegraph_female_100k
+  };
+
+
+
+
 
 
 
@@ -202,80 +303,27 @@ function retrievedata_maptest(json, year){
   // makemap(data_set);
 };
 
-function datapie(data, country){
+function datapie(requests, country, year, value, secondgroup){
+  data = Object.values(requests)
   data_pie = {}
   for (let i = 0; i < data.length; i++){
-    if (data[i].year == "2000" && data[i].country == country && data[i].age == "15-24 years"){
+    if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
       data_pie[data[i].sex] = data[i].suicides_no
     }
   }
   return data_pie
 };
 
-function datadonut(data, country){
+function datadonut(requests, country, year, value, secondgroup){
+  data = Object.values(requests)
   data_donut = {}
   for (let i = 0; i < data.length; i++){
-    if (data[i].year == "2000" && data[i].country == country && data[i].age == "15-24 years"){
+    if (data[i].year == year && data[i].country == country && data[i].age == secondgroup && data[i].age == secondgroup){
       data_donut[data[i].sex] = data[i].population
     }
   }
   return data_donut
 };
-
-
-function obtaincountrydatamaletotal(data, country){
-  list_linegraph_male_total = []
-  dict_line_male = {}
-  for (let i = 0; i < data.length; i++){
-    if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
-      dict = {}
-      dict["x"] = data[i].year
-      dict["y"] = data[i].suicides_no
-      list_linegraph_male_total.push(dict)
-}}
-  return list_linegraph_male_total
-  };
-
-function obtaincountrydatamale100k(json, country){
-  data = Object.values(json)
-  list_linegraph_male_100k = []
-  dict_line_male = {}
-  for (let i = 0; i < data.length; i++){
-    if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
-      dict = {}
-      dict["x"] = data[i].year
-      dict["y"] = data[i].suicides_100k
-      list_linegraph_male_100k.push(dict)
-}}
-  return list_linegraph_male_100k
-  };
-
-function obtaincountrydatafemaletotal(data, country){
-  list_linegraph_female_total = []
-  dict_line_female = {}
-  for (i = 0; i < data.length; i++){
-    if (data[i].country == country && data[i].sex == "female" && data[i].age == "15-24 years"){
-      dict = {}
-      dict["x"] = data[i].year
-      dict["y"] = data[i].suicides_no
-      list_linegraph_female_total.push(dict)
-}}
-  return list_linegraph_female_total
-  };
-
-function obtaincountrydatafemale100k(json, country){
-  data = Object.values(json)
-  list_linegraph_female_100k = []
-  dict_line_male = {}
-  for (let i = 0; i < data.length; i++){
-    if (data[i].country == country && data[i].sex == "male" && data[i].age == "15-24 years"){
-      dict = {}
-      dict["x"] = data[i].year
-      dict["y"] = data[i].suicides_100k
-      list_linegraph_female_100k.push(dict)
-}}
-  return list_linegraph_female_100k
-  };
 
 function gdppercapita(data, country){
   list_gdp_per_capita = []

@@ -100,21 +100,21 @@
 	  <input type="radio" name="gender" value="male"> Male<br>
 	</div> -->
 	<form>
-	 sex:
-		<select id="selectData1">
+	 gender:
+		<select id="gender">
 				<option value="female"> Female</option>
 				<option value="male"> Male</option>
 		</select>
-		age:
-		<select id="selectData2">
+		group:
+		<select id="group">
 			<option value="5-14 years"> 5-14 years</option>
 			<option value="15-24 years"> 15-24 years</option>
-				<option value="235-54 years"> 35-54 years</option>
-				<option value="25-34 years"> 25-34 years</option>
-				<option value="55-74 years">55-74 years</option>
-				<option value="75+ years">75+ years</option>
+			<option value="25-34 years"> 25-34 years</option>
+			<option value="35-54 years years"> 35-54 years</option>
+			<option value="55-74 years">55-74 years</option>
+			<option value="75+ years">75+ years</option>
 		</select>
-		<input type="button" value="Show graph" onclick= "userselected()">
+		<input type="button" value="Show worldmap and scatterplot">
 </form>
   <div id="container1" style="position: relative; width: 700px; height: 700px; top: 5px;"></div>
 	<h2>Year</h2>
@@ -133,13 +133,24 @@
 		 <option value="val5">55-74 years</option>
 		 <option value="val6">75+ years</option>
     </select> -->
-	<select id="selectButton"></select>
 	<div id="container2" style="position: center; width: 1000px; height: 800px; top: 5px;"></div>
-	<div class="buttons" style="width: 300px; text-align: center;">
-	<button id="a" style="width:50px;">A</button>
-	<button id="b" style="width:50px;">B</button>
-	<button id="c" style="width:50px;">C</button>
-</div>
+	<form>
+		value:
+		 <select id="value">
+				 <option value="no"> Number</option>
+				 <option value="ratio"> Ratio</option>
+		 </select>
+		secondgroup:
+		<select id="secondgroup">
+			<option value="5-14 years"> 5-14 years</option>
+			<option value="15-24 years"> 15-24 years</option>
+				<option value="23-54 years"> 35-54 years</option>
+				<option value="25-34 years"> 25-34 years</option>
+				<option value="55-74 years">55-74 years</option>
+				<option value="75+ years">75+ years</option>
+		</select>
+		<input type="button" value="Show linegraph and piechart" onclick= "selectedsecondoption()">
+</form>
 	<div id="container3" style="position: center; width: 500px; height: 500px; top: 5px;"></div>
 	<div id="container6" style="position: relative; width: 500px; height: 500px; top: 5px;"></div>
 

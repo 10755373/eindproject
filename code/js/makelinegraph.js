@@ -1,20 +1,21 @@
-function drawlinegraph(data_male_total, data_female_total, gdp_per_capita, optionmale, optionfemale) {
+function drawlinegraph(data_male_total, data_female_total, optionmale, optionfemale) {
   // eventueel een hover: https://bl.ocks.org/alandunning/cfb7dcd7951826b9eacd54f0647f48d3
-    var data_male_total = data_male_total
-    var data_female_total = data_female_total
-    console.log(data_male_total)
-    console.log(data_female_total)
-    // var data_male_100k = data_male_100k
-    // var data_female_100k = data_female_100k
-    var gdp_per_capita = gdp_per_capita
-    // console.log(data_male_100k)
-    // console.log(data_female_100k)
-    var optionmale = optionmale
-    var optionfemale = optionfemale
-    console.log(optionmale)
-    console.log(optionfemale)
-    console.log(typeof(optionfemale[0].z))
+    // var data_male_total = data_male_total
+    // var data_female_total = data_female_total
+    // console.log(data_male_total)
+    // console.log(data_female_total)
+    // // var data_male_100k = data_male_100k
+    // // var data_female_100k = data_female_100k
+    // // var gdp_per_capita = gdp_per_capita
+    // // console.log(data_male_100k)
+    // // console.log(data_female_100k)
+    // var optionmale = optionmale
+    // var optionfemale = optionfemale
+    // console.log(optionmale)
+    // console.log(optionfemale)
+    // console.log(typeof(optionfemale[0].z))
 
+    
 
     // d3v5.select("#container2").selectAll("*").remove();
 

@@ -63,27 +63,29 @@ function initializeworldmap(json, year, sex, age){
         popupTemplate: function(geography, data) {
        return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'Suicides no: ' +  data.numberOfThings
       }},
-     //  done: function(datamap) {
-     //     datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-     //         country = geography.properties.name;
-     //         console.log(country)
-     //         var data_male_total = obtaincountrydatamaletotal(data, country)
-     //         var data_female_total = obtaincountrydatafemaletotal(data, country)
-     //         var gdp_per_capita = gdppercapita(data, country)
-     //         var data_pie = datapie(data, country)
-     //         var data_donut = datadonut(data, country)
-     //          if (data_female_total.length > 0){
-     //            drawlinegraph(data_male_total, data_female_total, gdp_per_capita);
-     //            // makepiechart(data_pie);
-     //            // makedonutchart(data_donut);
-     //            initializepiechart(data_pie, data_donut);
-     //            // initializedonutchart(data_donut);
-     //          }
-     //           else{
-     //             geendataland(country);
-     //           }
-     //     });
-     // }
+      done: function(datamap) {
+         datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+             country = geography.properties.name;
+             console.log(country)
+             selectedsecondoption(json, country, year)
+
+             // var data_male_total = obtaincountrydatamaletotal(data, country)
+             // var data_female_total = obtaincountrydatafemaletotal(data, country)
+             // var gdp_per_capita = gdppercapita(data, country)
+             // var data_pie = datapie(data, country)
+             // var data_donut = datadonut(data, country)
+             //  if (data_female_total.length > 0){
+             //    drawlinegraph(data_male_total, data_female_total, gdp_per_capita);
+             //    // makepiechart(data_pie);
+             //    // makedonutchart(data_donut);
+             //    initializepiechart(data_pie, data_donut);
+             //    // initializedonutchart(data_donut);
+             //  }
+             //   else{
+             //     geendataland(country);
+             //   }
+         });
+     }
   });
 
 
