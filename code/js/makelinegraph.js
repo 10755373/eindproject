@@ -1,4 +1,4 @@
-function drawlinegraph(data_male_total, data_female_total, optionmale, optionfemale) {
+function drawlinegraph(data_male, data_female) {
   // eventueel een hover: https://bl.ocks.org/alandunning/cfb7dcd7951826b9eacd54f0647f48d3
     // var data_male_total = data_male_total
     // var data_female_total = data_female_total
@@ -15,7 +15,9 @@ function drawlinegraph(data_male_total, data_female_total, optionmale, optionfem
     // console.log(optionfemale)
     // console.log(typeof(optionfemale[0].z))
 
-    
+    console.log(data_male)
+    console.log(data_female)
+
 
     // d3v5.select("#container2").selectAll("*").remove();
 
@@ -42,36 +44,40 @@ function drawlinegraph(data_male_total, data_female_total, optionmale, optionfem
     var svg_linegraph_container = d3v5.select("#svg_linegraph_container")
 
       // put years in correct format
-      optionmale.forEach(function(d) {
+      listmales = []
+      data_male.forEach(function(d) {
           d.x = parseTime(d.x);
           // console.log(d.x);
           d.y = +d.y;
+          listmales.push(d.y);
       });
-      optionfemale.forEach(function(d) {
+      listfemales = []
+      data_female.forEach(function(d) {
           d.x = parseTime(d.x);
           // console.log(d.x);
           d.y = +d.y;
+          listfemales.push(d.y);
       });
-      // // determine scales
-      // x.domain(d3v5.extent(optionmale, function(d) { return d.x; }));
-      // y.domain([0, d3v5.max(optionfemale, function(d) { return d.y; })]);
+      // determine scales
+      x.domain(d3v5.extent(listmales, function(d) { return d.x; }));
+      y.domain([0, d3v5.max(listfemales, function(d) { return d.y; })]);
 
-      var initialgraph = function(agegroup){
-        var datamaletest = []
-        for (let i = 0; i < optionmale.length; i++){
-          if (optionmale[i].z == agegroup){
-            datamaletest.push(optionmale[i])
-          }
-        }
-        var datafemaletest = []
-        for (let i = 0; i < optionfemale.length; i++){
-          if (optionfemale[i].z == agegroup){
-            datafemaletest.push(optionfemale[i])
-          }
-        }
+      // var initialgraph = function(agegroup){
+      //   var datamaletest = []
+      //   for (let i = 0; i < optionmale.length; i++){
+      //     if (optionmale[i].z == agegroup){
+      //       datamaletest.push(optionmale[i])
+      //     }
+      //   }
+      //   var datafemaletest = []
+      //   for (let i = 0; i < optionfemale.length; i++){
+      //     if (optionfemale[i].z == agegroup){
+      //       datafemaletest.push(optionfemale[i])
+      //     }
+      //   }
         // determine scales
-        x.domain(d3v5.extent(datamaletest, function(d) { return d.x; }));
-        y.domain([0, d3v5.max(datafemaletest, function(d) { return d.y; })]);
+        // x.domain(d3v5.extent(datamaletest, function(d) { return d.x; }));
+        // y.domain([0, d3v5.max(datafemaletest, function(d) { return d.y; })]);
 
         // var datamale = optionmale.map(function(d){return {x: d.x, y: d.y, z:d[agegroup]} })
         // var datafemale = optionfemale.map(function(d){return {x: d.x, y: d.y, z:d[agegroup]} })
@@ -80,11 +86,11 @@ function drawlinegraph(data_male_total, data_female_total, optionmale, optionfem
         // console.log(typeof(datafemale[0].z))
         // draw line males
         svg_linegraph_container.select("#line_male")
-            .data([datamaletest])
+            .data([data_male])
             .attr("d", valueline)
         // draw line females
         svg_linegraph_container.select("#line_female")
-            .data([datafemaletest])
+            .data([data_female])
             .attr("d", valueline)
         // draw xaxis
         svg_linegraph_container.select("#xaxis")
@@ -92,53 +98,53 @@ function drawlinegraph(data_male_total, data_female_total, optionmale, optionfem
         // draw yaxis
         svg_linegraph_container.select("#yaxisleft")
             .call(d3v5.axisLeft(y));
-          }
+          };
 
-      initialgraph("5-14 years")
+   //    initialgraph("5-14 years")
+   //
+   // function update(selectedGroup) {
+   //   var datamaletest = []
+   //   for (let i = 0; i < optionmale.length; i++){
+   //     if (optionmale[i].z == selectedGroup){
+   //       datamaletest.push(optionmale[i])
+   //     }
+   //   }
+   //   var datafemaletest = []
+   //   for (let i = 0; i < optionfemale.length; i++){
+   //     if (optionfemale[i].z == selectedGroup){
+   //       datafemaletest.push(optionfemale[i])
+   //     }
+   //   }
+   //   svg_linegraph_container.select("#line_male")
+   //       .data([datamaletest])
+   //       // .transition()
+   //       .attr("d", d3v5.line()
+   //         .x(function(d) { return x(d.x) })
+   //         .y(function(d) { return y(d.y) })
+   //       )
+   //       svg_linegraph_container.select("#line_female")
+   //       .data([datafemaletest])
+   //       // .transition()
+   //       .attr("d", d3v5.line()
+   //         .x(function(d) { return x(d.x) })
+   //         .y(function(d) { return y(d.y) })
+   //       )
+   //       // draw xaxis
+   //       svg_linegraph_container.select("#xaxis")
+   //           .call(d3v5.axisBottom(x));
+   //       // draw yaxis
+   //       svg_linegraph_container.select("#yaxisleft")
+   //           .call(d3v5.axisLeft(y));
+   //     }
+   //
+   // // When the button is changed, run the updateChart function
+   // d3v5.select("#selectButton").on("change", function(d) {
+   //     // recover the option that has been chosen
+   //     var selectedOption = d3v5.select(this).property("value")
+   //     // run the updateChart function with this selected option
+   //     update(selectedOption)
+   // })
 
-   function update(selectedGroup) {
-     var datamaletest = []
-     for (let i = 0; i < optionmale.length; i++){
-       if (optionmale[i].z == selectedGroup){
-         datamaletest.push(optionmale[i])
-       }
-     }
-     var datafemaletest = []
-     for (let i = 0; i < optionfemale.length; i++){
-       if (optionfemale[i].z == selectedGroup){
-         datafemaletest.push(optionfemale[i])
-       }
-     }
-     svg_linegraph_container.select("#line_male")
-         .data([datamaletest])
-         // .transition()
-         .attr("d", d3v5.line()
-           .x(function(d) { return x(d.x) })
-           .y(function(d) { return y(d.y) })
-         )
-         svg_linegraph_container.select("#line_female")
-         .data([datafemaletest])
-         // .transition()
-         .attr("d", d3v5.line()
-           .x(function(d) { return x(d.x) })
-           .y(function(d) { return y(d.y) })
-         )
-         // draw xaxis
-         svg_linegraph_container.select("#xaxis")
-             .call(d3v5.axisBottom(x));
-         // draw yaxis
-         svg_linegraph_container.select("#yaxisleft")
-             .call(d3v5.axisLeft(y));
-       }
-
-   // When the button is changed, run the updateChart function
-   d3v5.select("#selectButton").on("change", function(d) {
-       // recover the option that has been chosen
-       var selectedOption = d3v5.select(this).property("value")
-       // run the updateChart function with this selected option
-       update(selectedOption)
-   })
-};
 
   // // ** Update data section (Called from the onclick)
   // function updateData() {

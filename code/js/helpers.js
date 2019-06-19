@@ -138,7 +138,6 @@ function datadonut2(requests, country, year, secondgroup){
 
 function obtaincountrydatamaletotal(data, country, secondgroup){
   list_linegraph_male_total = []
-  dict_line_male = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "male" && data[i].age == secondgroup){
       dict = {}
@@ -152,7 +151,6 @@ function obtaincountrydatamaletotal(data, country, secondgroup){
 function obtaincountrydatamale100k(json, country, secondgroup){
   data = Object.values(json)
   list_linegraph_male_100k = []
-  dict_line_male = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "male" && data[i].age == secondgroup){
       dict = {}
@@ -165,7 +163,6 @@ function obtaincountrydatamale100k(json, country, secondgroup){
 
 function obtaincountrydatafemaletotal(data, country, secondgroup){
   list_linegraph_female_total = []
-  dict_line_female = {}
   for (i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "female" && data[i].age == secondgroup){
       dict = {}
@@ -179,9 +176,8 @@ function obtaincountrydatafemaletotal(data, country, secondgroup){
 function obtaincountrydatafemale100k(json, country, secondgroup){
   data = Object.values(json)
   list_linegraph_female_100k = []
-  dict_line_male = {}
   for (let i = 0; i < data.length; i++){
-    if (data[i].country == country && data[i].sex == "male" && data[i].age == secondgroup){
+    if (data[i].country == country && data[i].sex == "female" && data[i].age == secondgroup){
       dict = {}
       dict["x"] = data[i].year
       dict["y"] = data[i].suicides_100k

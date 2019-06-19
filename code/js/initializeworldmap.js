@@ -66,9 +66,12 @@ function initializeworldmap(json, year, sex, age){
       done: function(datamap) {
          datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
              country = geography.properties.name;
-             console.log(country)
              selectedsecondoption(json, country, year)
-
+             console.log(country)
+             console.log(year)
+             console.log(json)
+             d3.select("#value").on("change",function(d){selectedsecondoption(json, country, year)})
+             d3.select("#secondgroup").on("change",function(d){selectedsecondoption(json, country, year)})
              // var data_male_total = obtaincountrydatamaletotal(data, country)
              // var data_female_total = obtaincountrydatafemaletotal(data, country)
              // var gdp_per_capita = gdppercapita(data, country)

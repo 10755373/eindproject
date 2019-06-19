@@ -28,8 +28,11 @@ function updateworldmap(json, year, sex, age){
           datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
               country = geography.properties.name;
               console.log(country)
+              console.log(year)
               console.log(json)
               selectedsecondoption(json, country, year)
+              d3.select("#value").on("change",function(d){selectedsecondoption(json, country, year)})
+              d3.select("#secondgroup").on("change",function(d){selectedsecondoption(json, country, year)})
           //     // clickedoncountry(json, country)
           //     var data_male_total = obtaincountrydatamaletotal(data, country)
           //     var data_female_total = obtaincountrydatafemaletotal(data, country)
