@@ -1,26 +1,36 @@
-function initializescatterplot(json, year, sex, age){
+function drawscatterplot(json, year, sex, age){
 
-  d3v5.select("#container7").selectAll("*").remove();
+  if( $('#container7').is(':empty')){
+    newscatterplot(json, year, sex, age)
+  }
+  else{
+    updatescatterplot(json, year, sex, age)
+  }};
+
+
+function newscatterplot(json, year, sex, age){
+  console.log(year)
+  // d3v5.select("#container7").selectAll("*").remove();
 
   var divsize = d3v5.select("#container7").node().getBoundingClientRect();
 
   var data = retrievedata_scatter(json, year, sex, age)
-  console.log(data)
+  // console.log(data)
 
   datascatter = Object.values(data)
-  console.log(datascatter)
+  // console.log(datascatter)
 
    var margin = {top: 80, right: 30, bottom: 40, left: 50};
    var width = divsize.width - margin.left - margin.right;
    var height = divsize.height - margin.top - margin.bottom;
 
    var svgscatterplot = d3v5.select("#container7").append("svg")
-               .attr("class", "scatterplot")
+               .attr("class", "svgscatterplot")
                .attr("id", "scatterplot")
                .attr("width", width + margin.left + margin.right)
                .attr("height", height + margin.top + margin.bottom)
                .append("g")
-                 .attr("id", "svgscatterplot")
+                 .attr("id", "gscatterplot")
                  .attr("transform",
                        "translate(" + margin.left + "," + margin.top + ")");
 
@@ -45,6 +55,7 @@ function initializescatterplot(json, year, sex, age){
                       (height + 30) + ")")
        .style("text-anchor", "end")
        .text("No of suicides");
+
    // draw yaxis
    svgscatterplot.append("g")
        .attr("id", "yaxisleft")
@@ -127,5 +138,82 @@ function initializescatterplot(json, year, sex, age){
        //   }
 
 
+
+};
+
+function updatescatterplot(json, year, sex, age){
+  console.log(year)
+
+  var divsize = d3v5.select("#container7").node().getBoundingClientRect();
+
+  var svgscatterplot = d3v5.select("#container7")
+
+  var data = retrievedata_scatter(json, year, sex, age)
+  console.log(data)
+
+  datascatter = Object.values(data)
+  console.log(datascatter)
+
+   var margin = {top: 80, right: 30, bottom: 40, left: 50};
+   var width = divsize.width - margin.left - margin.right;
+   var height = divsize.height - margin.top - margin.bottom;
+
+   var scalex = d3v5.scaleLinear()
+     .domain([d3v5.min(datascatter, function(d) { return d.no; }), d3v5.max(datascatter, function(d) { return d.no; })])
+     .range([0, width]);
+
+   var scaley = d3v5.scaleLinear()
+     .domain([d3v5.min(datascatter, function(d) { return d.ratio; }), d3v5.max(datascatter, function(d) { return d.ratio; })])
+     .range([height, 0]);
+
+   // draw xaxis
+   svgscatterplot.select("#xaxis")
+       .call(d3v5.axisBottom(scalex));
+
+   // // write xaxis label
+   // svgscatterplot.append("text")
+   //     .attr("transform",
+   //     "translate(" + (width) + " ," +
+   //                    (height + 30) + ")")
+   //     .style("text-anchor", "end")
+   //     .text("No of suicides");
+
+   // draw yaxis
+   svgscatterplot.select("#yaxisleft")
+       .call(d3v5.axisLeft(scaley));
+
+   // // write yaxis label
+   // svgscatterplot.append("text")
+   //     .attr("transform", "rotate(-90)")
+   //     .attr("y", -50)
+   //     // .attr("y", 6)
+   //     .attr("dy", "1.5em")
+   //     .style("text-anchor", "end")
+   //     // .attr("font-size", "15px")
+   //     .text("No of suicides per 100K");
+
+  // svgscatterplot.append("text")
+  //     .attr("id", "title")
+  //     .attr("x", (width / 2))
+  //     .attr("y", (margin.bottom / 2))
+  //     .attr("text-anchor", "middle")
+  //     .style("font-size", "18px")
+  //     .style('fill', 'darkOrange')
+  //     .text("Scatterplot: no. of suicides of men and woman per country");
+
+   // var div = d3v5.select("#container7").append("div")
+   //     .attr("class", "tooltipscatter")
+   //     .style("opacity", 0);
+
+ // Circles
+   var circles = svgscatterplot.selectAll('circle')
+       .data(datascatter)
+       .transition()
+       .duration(200)
+       .attr('cx',function (d) { return scalex(d.no) })
+       .attr('cy',function (d) { return scaley(d.ratio) })
+       .attr('r','3')
+       .attr('stroke','black')
+       .attr('stroke-width',1)
 
 };

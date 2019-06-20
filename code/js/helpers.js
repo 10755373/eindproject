@@ -19,7 +19,7 @@ function timeslider(json, sex, age){
       d3v5.select('#value').text(d3v5.timeFormat('%Y')(currentyear));
       year = d3v5.timeFormat('%Y')(currentyear)
       updateworldmap(json, year, sex, age)
-      updatescatterplot(json, year, sex, age)
+      drawscatterplot(json, year, sex, age)
       // var datamale = scattermaletest(json)
       // var datafemale = scatterfemaletest(json)
       // var merged = mergetest(datamale, datafemale)
@@ -54,7 +54,6 @@ function retrievedata_map(json, currentyear, sex, age){
       list_values.push(list)
     }
   }
-  console.log(list_values)
 
   var onlyValues = []
   for (let i = 0; i < list_values.length; i++){
@@ -89,7 +88,6 @@ function retrievedata_scatter(json, currentyear, sex, age){
       }
     }
     return countries
-    console.log(countries)
   };
 
 function datapie1(json, country, year, secondgroup){
