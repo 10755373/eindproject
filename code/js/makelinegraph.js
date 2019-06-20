@@ -133,6 +133,9 @@ function drawlinegraph(data_male, data_female) {
         .style("text-anchor", "end")
         .text("No of suicides");
 
+    //     // update title
+    // document.getElementById("titleRadar").innerHTML = "Emissions (%) per sector in <br>" + currentCountry + ", " + currentYear;
+
     var titlelinegraph = svg_linegraph_container.append("g")
     .attr("id", "titlelinegraph");
     titlelinegraph
@@ -142,9 +145,8 @@ function drawlinegraph(data_male, data_female) {
     .attr("class", "title")
     .attr("text-anchor", "middle")
     .style("font-size", "14px")
-    .text("No. of suicides and GDP per capita");
-
-
+    .text("Data for ");
+};
     // // draw country text next to line
     // var lastvaluemale = [yearsmale.slice(-1)[0], valuesmale.slice(-1)[0]];
     // svg_linegraph_container.append("text")
@@ -163,8 +165,6 @@ function drawlinegraph(data_male, data_female) {
     //     return "translate (" + x(lastvaluefemale[0]) + "," +
     //            y(lastvaluefemale[1]) + ")"; })
     //   .text("Females");
-
-};
 
 
 function drawlinegraph1(data_male, data_female) {

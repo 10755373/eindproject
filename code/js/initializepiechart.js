@@ -140,21 +140,21 @@ function initializepiechart(data_pie, data_donut){
   };
 
 
-function initializepiechart1(data_pie, data_donut){
-  d3.select("#container3").selectAll("*").remove();
-
-  if ($("#graph").empty()){
-    newones(data_pie, data_donut)
+function drawpiechart(data_pie, data_donut){
+//
+  if ($("#container3").empty()){
+    newpiechart(data_pie, data_donut)
   }
   else{
-    updateexisting(data_pie, data_donut)
-  }
+    updatepiechart(data_pie, data_donut)
+  }};
 
 
-  function newones(data_pie, data_donut){
+  function newpiechart(data_pie, data_donut){
 
   var divsize = d3v5.select("#container3").node().getBoundingClientRect();
-
+  console.log(data_pie)
+  console.log(data_donut)
   var width = divsize.height
   var height = divsize.width
   var margin = 40
@@ -183,7 +183,7 @@ function initializepiechart1(data_pie, data_donut){
 
   var arcGenerator = d3v5.arc()
     .innerRadius(0)
-    .outerRadius(120)
+    .outerRadius(140)
 
   //create tip
   var tip = d3v5.tip()
@@ -203,6 +203,10 @@ function initializepiechart1(data_pie, data_donut){
   //     .style("stroke-width", "2px")
   //     .style("opacity", 0.7)
 
+  var div = d3v5.select("#container3").append("div")
+      .attr("class", "tooltipscatter")
+      .style("opacity", 0);
+
   // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
   pie_chart
     .selectAll('.piechart')
@@ -215,10 +219,37 @@ function initializepiechart1(data_pie, data_donut){
       .attr("stroke", "black")
       .style("stroke-width", "2px")
       .style("opacity", 0.7)
+      .on("mouseover", function(d) {
+       div.transition()
+           .duration(200)
+           .style("opacity", .9);
+       div .html(d.data.key + "<br/>")
+            .html(d.data.value + "<br/>")
+           .style("left", (d3v5.event.pageX + 15) + "px")
+           .style("top", (d3v5.event.pageY - 20) + "px");
+       })
+       .on("mouseout", function(d) {
+       div.transition()
+           .duration(500)
+           .style("opacity", 0);
+           })
       .on("mouseenter", mouseoverpiechart)
-      .on("mouseover", tip.show)
-      .on("mouseout", mouseoutpiechart)
-      .on("mouseout", tip.hide)
+      // .on("mouseover", tip.show)
+      .on("mouseout", mouseoutpiechart);
+      // .on("mouseout", tip.hide)
+      // .on("mouseover", function (d) {
+      // d3.select("#tooltip")
+      //     .style("left", d3.event.pageX + "px")
+      //     .style("top", d3.event.pageY + "px")
+      //     .style("opacity", 1)
+      //     .select("#value")
+      //     .text(d.value);
+      //   })
+      // .on("mouseout", function () {
+      // // Hide the tooltip
+      // d3.select("#tooltip")
+      //     .style("opacity", 0);;
+      //   });
 
   // Now add the annotation. Use the centroid method to get the best coordinates
   pie_chart
@@ -226,7 +257,7 @@ function initializepiechart1(data_pie, data_donut){
     .data(data_ready)
     .enter()
     .append('text')
-    .text(function(d){ return "grp " + d.data.value})
+    .text(function(d){ return d.data.value})
     .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
     .style("text-anchor", "middle")
     .style("font-size", 17)
@@ -244,7 +275,7 @@ function initializepiechart1(data_pie, data_donut){
   var data_corrected = pie(d3v5.entries(data_donut))
 
   var arcGenerator2 = d3v5.arc()
-    .innerRadius(125)
+    .innerRadius(145)
     .outerRadius(radius)
 
   // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
@@ -259,10 +290,24 @@ function initializepiechart1(data_pie, data_donut){
       .attr("stroke", "black")
       .style("stroke-width", "2px")
       .style("opacity", 0.7)
+      .on("mouseover", function(d) {
+       div.transition()
+           .duration(200)
+           .style("opacity", .9);
+      div  .html(d.data.key + "<br/>")
+           .html(d.data.value + "<br/>")
+           .style("left", (d3v5.event.pageX + 15) + "px")
+           .style("top", (d3v5.event.pageY - 20) + "px");
+       })
+       .on("mouseout", function(d) {
+       div.transition()
+           .duration(500)
+           .style("opacity", 0);
+           })
       .on("mouseenter", mouseoverpiechart)
-      .on("mouseover", tip.show)
-      .on("mouseout", mouseoutpiechart)
-      .on("mouseout", tip.hide)
+      // .on("mouseover", tip.show)
+      .on("mouseout", mouseoutpiechart);
+      // .on("mouseout", tip.hide)
 
   // Now add the annotation. Use the centroid method to get the best coordinates
   pie_chart
@@ -270,7 +315,7 @@ function initializepiechart1(data_pie, data_donut){
     .data(data_corrected)
     .enter()
     .append('text')
-    .text(function(d){ return "grp " + d.data.value})
+    .text(function(d){ return d.data.value})
     .attr("transform", function(d) { return "translate(" + arcGenerator2.centroid(d) + ")";  })
     .style("text-anchor", "middle")
     .style("font-size", 17)
@@ -291,18 +336,64 @@ function initializepiechart1(data_pie, data_donut){
 
     }
 
-    function updateexisting(data_pie, data_donut){
+    function updatepiechart(data_pie, data_donut){
 
       var pie = d3v5.pie()
         .value(function(d) {return d.value; })
       var data_ready = pie(d3v5.entries(data_pie))
       var data_corrected = pie(d3v5.entries(data_donut))
 
-      path = d3v5.select("#piechart.figure").selectAll("path").data(pie);
-      path.transition().duration(750).attrTween("d", arcTween);
+      path = d3v5.select("#piechart.figure").selectAll("path").data(data_ready);
+      path.transition().duration(500).attrTween("d", arcTween);
+
+      path2 = d3v5.select("#piechart.figure").selectAll("path").data(data_corrected);
+      path2.transition().duration(500).attrTween("d", arc2Tween);
 
     }
-  };
+
+
+      function arcTween(a) {
+
+        var divsize = d3v5.select("#container3").node().getBoundingClientRect();
+
+        var width = divsize.height
+        var height = divsize.width
+        var margin = 40
+
+        var radius = Math.min(width, height) / 2 - margin
+
+        var arcGenerator = d3v5.arc()
+          .innerRadius(0)
+          .outerRadius(140)
+
+        var i = d3v5.interpolate(this._current, a);
+        this._current = i(0);
+          return function(t) {
+        return arc(i(t));
+        };
+    }
+
+
+      function arc2Tween(a) {
+        var divsize = d3v5.select("#container3").node().getBoundingClientRect();
+
+        var width = divsize.height
+        var height = divsize.width
+        var margin = 40
+
+        var radius = Math.min(width, height) / 2 - margin
+
+        var arcGenerator2 = d3v5.arc()
+          .innerRadius(145)
+          .outerRadius(radius)
+
+        var i = d3v5.interpolate(this._current, a);
+        this._current = i(0);
+        return function(t) {
+          return arc(i(t));
+        };
+    }
+
  //  var pie = pie_chart.selectAll("arc")
  //      .data(data_ready)
  //      .enter().append("g")

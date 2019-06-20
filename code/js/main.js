@@ -13,21 +13,29 @@ function optionselected(json){
   d3v5.selectAll("svg").remove();
   var sex = document.getElementById("gender").value
   var age = document.getElementById("group").value
-  console.log(sex)
-  console.log(age)
-  console.log(json)
+  // console.log(sex)
+  // console.log(age)
+  // console.log(json)
   var dataslider = Object.values(json)
-  console.log(dataslider)
-  initializelinegraph()
+  // console.log(dataslider)
   initializeworldmap(json, 1987, sex, age);
   initializescatterplot(json, 1987, sex, age);
   timeslider(dataslider, sex, age);
+  var data_pie = datapie1(json, "Netherlands", 1987, "5-14 years")
+  var data_donut = datadonut1(json, "Netherlands", 1987, "5-14 years")
+  drawpiechart(data_pie, data_donut)
+  var line_no_male = obtaincountrydatamaletotal(json, "Netherlands", "5-14 years")
+  console.log(line_no_male)
+  var line_no_female = obtaincountrydatafemaletotal(json, "Netherlands", "5-14 years")
+  console.log(line_no_female)
+
+  drawlinegraph(line_no_male, line_no_female)
 
 
 }
 
 function selectedsecondoption(json, country, year){
-  var value = document.getElementById("value").value
+  var value = document.getElementById("interested").value
   var secondgroup = document.getElementById("secondgroup").value
   console.log(value)
   console.log(secondgroup)
@@ -38,18 +46,18 @@ function selectedsecondoption(json, country, year){
   if (value == "no"){
     var data_pie = datapie1(json, country, year, secondgroup)
     var data_donut = datadonut1(json, country, year, secondgroup)
-    initializepiechart(data_pie, data_donut)
+    drawpiechart(data_pie, data_donut)
     var line_no_male = obtaincountrydatamaletotal(json, country, secondgroup)
     var line_no_female = obtaincountrydatafemaletotal(json, country, secondgroup)
-    drawlinegraph(line_no_male, line_no_female)
+    drawlinegraph(line_no_male, line_no_female, country)
   }
   else{
     var data_pie = datapie2(json, country, year, secondgroup)
     var data_donut = datadonut2(json, country, year, secondgroup)
-    initializepiechart(data_pie, data_donut)
+    drawpiechart(data_pie, data_donut)
     var line_male_ratio = obtaincountrydatamale100k(json, country, secondgroup)
     var line_female_ratio = obtaincountrydatafemale100k(json, country, secondgroup)
-    drawlinegraph(line_male_ratio, line_female_ratio)
+    drawlinegraph(line_male_ratio, line_female_ratio, country)
   }
 }
 

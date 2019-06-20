@@ -31,7 +31,7 @@ function updateworldmap(json, year, sex, age){
               console.log(year)
               console.log(json)
               selectedsecondoption(json, country, year)
-              d3.select("#value").on("change",function(d){selectedsecondoption(json, country, year)})
+              d3.select("#interested").on("change",function(d){selectedsecondoption(json, country, year)})
               d3.select("#secondgroup").on("change",function(d){selectedsecondoption(json, country, year)})
           //     // clickedoncountry(json, country)
           //     var data_male_total = obtaincountrydatamaletotal(data, country)
