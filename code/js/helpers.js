@@ -90,7 +90,7 @@ function retrievedata_scatter(json, currentyear, sex, age){
     return countries
   };
 
-function datapie1(json, country, year, secondgroup){
+function datapienumber(json, country, year, secondgroup){
   data = Object.values(json)
   data_pie = {}
   for (let i = 0; i < data.length; i++){
@@ -101,7 +101,7 @@ function datapie1(json, country, year, secondgroup){
   return data_pie
 };
 
-function datadonut1(json, country, year, secondgroup){
+function datadonutnumber(json, country, year, secondgroup){
   data = Object.values(json)
   data_donut = {}
   for (let i = 0; i < data.length; i++){
@@ -112,7 +112,7 @@ function datadonut1(json, country, year, secondgroup){
   return data_donut
 };
 
-function datapie2(json, country, year, secondgroup){
+function datapieratio(json, country, year, secondgroup){
   data = Object.values(json)
   data_pie = {}
   for (let i = 0; i < data.length; i++){
@@ -123,7 +123,7 @@ function datapie2(json, country, year, secondgroup){
   return data_pie
 };
 
-function datadonut2(json, country, year, secondgroup){
+function datadonutratio(json, country, year, secondgroup){
   data = Object.values(json)
   data_donut = {}
   for (let i = 0; i < data.length; i++){

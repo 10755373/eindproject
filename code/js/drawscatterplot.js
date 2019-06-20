@@ -83,6 +83,10 @@ function newscatterplot(json, year, sex, age){
        .attr("class", "tooltipscatter")
        .style("opacity", 0);
 
+   var paletteScale = d3.scale.linear()
+           .domain([d3v5.min(datascatter, function(d) { return d.no; }), d3v5.max(datascatter, function(d) { return d.no; })])
+           .range(["#99ccff", "#000099"]);
+
  // Circles
    var circles = svgscatterplot.selectAll('circle')
        .data(datascatter)
@@ -91,6 +95,7 @@ function newscatterplot(json, year, sex, age){
        .attr('cx',function (d) { return scalex(d.no) })
        .attr('cy',function (d) { return scaley(d.ratio) })
        .attr('r','3')
+       .style("fill", function (d) { return paletteScale(d.no) })
        .attr('stroke','black')
        .attr('stroke-width',1)
        .on("mouseover", function(d) {
@@ -137,6 +142,34 @@ function newscatterplot(json, year, sex, age){
        //       .style("opacity", 0)
        //   }
 
+       // gridlines in x axis function
+       function make_x_gridlines() {
+           return d3v5.axisBottom(scalex)
+               .ticks(6)
+       }
+
+       // gridlines in y axis function
+       function make_y_gridlines() {
+           return d3v5.axisLeft(scaley)
+               .ticks(6)
+       }
+
+       // add the X gridlines
+       svgscatterplot.append("g")
+           .attr("class", "grid")
+           .attr("transform", "translate(0," + height + ")")
+           .call(make_x_gridlines()
+               .tickSize(-height)
+               .tickFormat("")
+           )
+
+       // add the Y gridlines
+       svgscatterplot.append("g")
+           .attr("class", "grid")
+           .call(make_y_gridlines()
+               .tickSize(-width)
+               .tickFormat("")
+           )
 
 
 };
@@ -146,7 +179,7 @@ function updatescatterplot(json, year, sex, age){
 
   var divsize = d3v5.select("#container7").node().getBoundingClientRect();
 
-  var svgscatterplot = d3v5.select("#container7")
+  var svgscatterplot = d3v5.select("#container7");
 
   var data = retrievedata_scatter(json, year, sex, age)
   console.log(data)
@@ -204,6 +237,9 @@ function updatescatterplot(json, year, sex, age){
    // var div = d3v5.select("#container7").append("div")
    //     .attr("class", "tooltipscatter")
    //     .style("opacity", 0);
+   var paletteScale = d3.scale.linear()
+           .domain([d3v5.min(datascatter, function(d) { return d.no; }), d3v5.max(datascatter, function(d) { return d.no; })])
+           .range(["#99ccff", "#000099"]);
 
  // Circles
    var circles = svgscatterplot.selectAll('circle')
@@ -212,6 +248,7 @@ function updatescatterplot(json, year, sex, age){
        .duration(200)
        .attr('cx',function (d) { return scalex(d.no) })
        .attr('cy',function (d) { return scaley(d.ratio) })
+       .style("fill", function (d) { return paletteScale(d.no) })
        .attr('r','3')
        .attr('stroke','black')
        .attr('stroke-width',1)

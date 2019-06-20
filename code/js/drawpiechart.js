@@ -1,3 +1,95 @@
+
+
+function newpiechart1(data_pie, data_donut){
+
+  var divsize = d3v5.select("#container3").node().getBoundingClientRect();
+  console.log(data_pie)
+  console.log(data_donut)
+  var width = divsize.height
+  var height = divsize.width
+  var margin = 40
+
+  var radius = Math.min(width, height) / 2 - margin;
+
+  var colors = d3v5.scaleOrdinal()
+    .domain(["male", "female"])
+    .range(["steelblue", "pink"]);
+
+  var arcGenerator = d3v5.arc()
+    .innerRadius(0)
+    .outerRadius(140);
+
+  var pie_chart = d3v5.select("#container3").append("svg")
+    // .attr("id", "pie")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  var data_pie = data_pie;
+
+  var pie = d3v5.pie()
+    .value(function(d) {return d.value; })
+    .sort(null);
+
+  var data_ready = pie(d3v5.entries(data_pie))
+
+  var svgpie = pie_chart.selectAll("path")
+        .data(data_pie)
+        .enter().append("path")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+        .style("fill", function(d) {return(colors(d.data.key))})
+        .attr("class", "arcpie")
+        .attr("d", arcGenerator)
+        .attr("stroke", "black")
+        .style("stroke-width", "2px")
+        .style("opacity", 0.7)
+
+
+  //create tip
+  var tip = d3v5.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(function(d) {
+        return "<span style='color:orange'>" + d.data.value + "</span> <strong>%</strong>";
+        })
+
+  var div = d3v5.select("#container3").append("div")
+      .attr("class", "tooltipscatter")
+      .style("opacity", 0);
+
+
+
+  svgpie.append("path")
+        .attr("d", arcGenerator)
+        .style("fill", function(d) {return(colors(d.data.key))})
+        .attr("stroke", "black")
+        .style("stroke-width", "2px")
+        .style("opacity", 0.7)
+        .on("mouseover", function(d) {
+         div.transition()
+             .duration(200)
+             .style("opacity", .9);
+         div .html(d.data.key + "<br/>")
+              .html(d.data.value + "<br/>")
+             .style("left", (d3v5.event.pageX + 15) + "px")
+             .style("top", (d3v5.event.pageY - 20) + "px");
+         })
+         .on("mouseout", function(d) {
+         div.transition()
+             .duration(500)
+             .style("opacity", 0);
+           });
+
+
+  svgpie.append("text")
+        .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+        .style("text-anchor", "middle")
+        .style("font-size", 17);
+
+}
+
+
 function drawpiechart(data_pie, data_donut){
 //
   if ( $('#container3').is(':empty')){
@@ -65,7 +157,6 @@ function drawpiechart(data_pie, data_donut){
       .attr("class", "tooltipscatter")
       .style("opacity", 0);
 
-  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
   pie_chart
     .selectAll('.piechart')
     .data(data_ready)
@@ -91,9 +182,9 @@ function drawpiechart(data_pie, data_donut){
            .duration(500)
            .style("opacity", 0);
            })
-      .on("mouseenter", mouseoverpiechart)
+      // .on("mouseenter", mouseoverpiechart)
+      // .on("mouseout", mouseoutpiechart);
       // .on("mouseover", tip.show)
-      .on("mouseout", mouseoutpiechart);
       // .on("mouseout", tip.hide)
       // .on("mouseover", function (d) {
       // d3.select("#tooltip")
@@ -109,7 +200,6 @@ function drawpiechart(data_pie, data_donut){
       //     .style("opacity", 0);;
       //   });
 
-  // Now add the annotation. Use the centroid method to get the best coordinates
   pie_chart
     .selectAll('mySlices')
     .data(data_ready)
@@ -120,16 +210,20 @@ function drawpiechart(data_pie, data_donut){
     .style("text-anchor", "middle")
     .style("font-size", 17)
 
+
+
   // make donut chart!!!!
+
+
 
   var data_donut = data_donut;
 
-  var colors = d3v5.scaleOrdinal()
-    .domain(["male", "female"])
-    .range(["steelblue", "pink"]);
-
-  var pie = d3v5.pie()
-    .value(function(d) {return d.value; })
+  // var colors = d3v5.scaleOrdinal()
+  //   .domain(["male", "female"])
+  //   .range(["steelblue", "pink"]);
+  //
+  // var pie = d3v5.pie()
+  //   .value(function(d) {return d.value; })
   var data_corrected = pie(d3v5.entries(data_donut))
 
   var arcGenerator2 = d3v5.arc()
@@ -162,9 +256,9 @@ function drawpiechart(data_pie, data_donut){
            .duration(500)
            .style("opacity", 0);
            })
-      .on("mouseenter", mouseoverpiechart)
+      // .on("mouseenter", mouseoverpiechart)
       // .on("mouseover", tip.show)
-      .on("mouseout", mouseoutpiechart);
+      // .on("mouseout", mouseoutpiechart);
       // .on("mouseout", tip.hide)
 
   // Now add the annotation. Use the centroid method to get the best coordinates
@@ -178,41 +272,42 @@ function drawpiechart(data_pie, data_donut){
     .style("text-anchor", "middle")
     .style("font-size", 17)
 
-
-    function mouseoverpiechart() {
-        d3v5.select(this)
-            .attr("stroke", "red")
-            .style("stroke-width", "2px")
-            .style("stroke-opacity", 0.7)
-    }
-    function mouseoutpiechart() {
-        d3v5.select(this)
-            .attr("stroke", "black")
-            .style("stroke-width", "2px")
-            .style("stroke-opacity", 0.7)
-    }
-
-    }
-
-    function updatepiechart(data_pie, data_donut){
-      console.log(data_pie)
-      var pie = d3v5.pie()
-        .value(function(d) {return d.value; })
-      var data_ready = pie(d3v5.entries(data_pie))
-      var data_corrected = pie(d3v5.entries(data_donut))
-
-      path = d3v5.select("#container3").selectAll("path").data(data_ready);
-      console.log(path)
-      path.transition().duration(500).attrTween("d", arcTween);
-      path.enter().append("path").attr("d", arcTween).each(function(d) {this._current = d; });
-
-
-      path2 = d3v5.select("#container3").selectAll("path").data(data_corrected);
-      console.log(path2)
-      path2.transition().duration(500).attrTween("d", arc2Tween);
-      path2.enter().append("path").attr("d", arc2Tween).each(function(d) {this._current = d; });
+    //
+    // function mouseoverpiechart() {
+    //     d3v5.select(this)
+    //         .attr("stroke", "red")
+    //         .style("stroke-width", "2px")
+    //         .style("stroke-opacity", 0.7)
+    // }
+    // function mouseoutpiechart() {
+    //     d3v5.select(this)
+    //         .attr("stroke", "black")
+    //         .style("stroke-width", "2px")
+    //         .style("stroke-opacity", 0.7)
+    // }
 
     }
+
+function updatepiechart(data_pie, data_donut){
+  console.log(data_pie)
+  var pie = d3v5.pie()
+    .value(function(d) {return d.value; })
+  var data_ready = pie(d3v5.entries(data_pie))
+  var data_corrected = pie(d3v5.entries(data_donut))
+  console.log(data_corrected)
+
+  path = d3v5.select("#container3").selectAll("mySlices").data(data_ready);
+  console.log(path)
+  path.transition().duration(500).attrTween("d", arcTween);
+  path.enter().append("path").attr("d", arcTween).each(function(d) {this._current = d; });
+
+
+  path2 = d3v5.select("#container3").selectAll("mySlices").data(data_corrected);
+  console.log(path2)
+  path2.transition().duration(500).attrTween("d", arc2Tween);
+  path2.enter().append("path").attr("d", arc2Tween).each(function(d) {this._current = d; });
+
+}
 
 
   function arcTween(a) {

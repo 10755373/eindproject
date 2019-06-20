@@ -99,6 +99,170 @@ function newworldmap(json, year, sex, age){
      }
   });
 
+// // source: github https://github.com/SammyH1994/project/blob/master/src/code/js/map.js
+//   // Create legend
+// var w = 100, h = 250;
+// // var key = d3v5.select("container1").append("svg").attr("width", w).attr("height", h);
+// var key = d3v5.select("container1").append("g")
+//     .attr("id", "legend")
+//     .attr("width", w)
+//     .attr("height", h);
+//
+// var legend = key.append("defs")
+//     .append("svg:linearGradient")
+//     .attr("id", "gradient")
+//     .attr("x1", "100%")
+//     .attr("y1", "0%")
+//     .attr("x2", "100%")
+//     .attr("y2", "100%")
+//     .attr("spreadMethod", "pad");
+//
+// legend
+//     .append("stop")
+//     .attr("offset", "0%")
+//     .attr("stop-color", "#008545")
+//     .attr("stop-opacity", 1);
+//
+// legend
+//     .append("stop")
+//     .attr("offset", "100%")
+//     .attr("stop-color", "#b5f2d2")
+//     .attr("stop-opacity", 1);
+//
+// key
+//     .append("rect")
+//     .attr("width", 20)
+//     .attr("height", h)
+//     .style("fill", "url(#gradient)")
+//     .style("stroke", "grey")
+//     .attr("transform", "translate(0,10)");
+//
+// // Create legend axis
+// var y = d3v5.scaleLinear()
+//     .range([250, 0])
+//     .domain([375000, 3500000])
+//     .nice();
+//
+// var yAxis = d3v5.axisRight()
+//     .scale(y)
+//     .ticks(10)
+//     .tickFormat(d3v5.format(".3s"));
+//
+//  key
+//     .append("g")
+//     .attr("class", "y axis")
+//     .attr("transform", "translate(22,10)")
+//     .call(yAxis)
+//     .append("text")
+//     .attr("transform", "rotate(-90)")
+//     .attr("y", 30)
+//     .attr("dy", ".71em")
+//     .style("text-anchor", "end")
+//     .text("axis title");
+//
+// ----------------------------
+
+                                        // var w = 140, h = 400;
+                                        //
+                                      	// var key = d3v5.select("container1").append("svg").attr("width", w).attr("height", h);
+                                        //
+                                      	// var legend = key.append("defs")
+                                        //         .append("svg:linearGradient")
+                                        //         .attr("id", "gradient")
+                                        //         .attr("x1", "100%")
+                                        //         .attr("y1", "0%")
+                                        //         .attr("x2", "100%")
+                                        //         .attr("y2", "100%")
+                                        //         .attr("spreadMethod", "pad");
+                                        //
+                                      	// legend.append("stop")
+                                        //       .attr("offset", "0%")
+                                        //       .attr("stop-color", "#B30000")
+                                        //       .attr("stop-opacity", 1);
+                                        //
+                                      	// legend.append("stop")
+                                        //       .attr("offset", "100%")
+                                        //       .attr("stop-color", "#FEE8c8")
+                                        //       .attr("stop-opacity", 1);
+                                        //
+                                      	// key.append("rect")
+                                        //     .attr("width", w - 100)
+                                        //     .attr("height", h - 100)
+                                        //     .style("fill", "url(#gradient)")
+                                        //     .attr("transform", "translate(0,10)");
+                                        //
+                                      	// var y = d3v5.scaleLinear()
+                                        //     .range([300, 0])
+                                        //     .domain([1, 100]);
+                                        //
+                                        // var yAxis = d3v5.axisRight()
+                                        //         .scale(y);
+                                        //
+                                      	// key.append("g")
+                                        //   .attr("class", "y axis")
+                                        //   .attr("transform", "translate(41,10)")
+                                        //   .call(yAxis).append("text")
+                                        //   .attr("transform", "rotate(-90)")
+                                        //   .attr("y", 30).attr("dy", ".71em")
+                                        //   .style("text-anchor", "end")
+                                        //   .text("axis title");
+
+
+// --------------------------------------
+//   // source: https://bl.ocks.org/duspviz-mit/9b6dce37101c30ab80d0bf378fe5e583
+//
+// var width = 300, height = 50;
+//
+// var key = d3v5.select("#container11")
+//   .append("svg")
+//   .attr("width", width)
+//   .attr("height", height);
+//
+// var legend = key.append("defs")
+//   .append("svg:linearGradient")
+//   .attr("id", "gradient")
+//   .attr("x1", "0%")
+//   .attr("y1", "100%")
+//   .attr("x2", "100%")
+//   .attr("y2", "100%")
+//   .attr("spreadMethod", "pad");
+//
+// legend.append("stop")
+//   .attr("class", "start")
+//   .attr("offset", "0%")
+//   .attr("stop-color", "#99ccff")
+//   .attr("stop-opacity", 1);
+//
+// legend.append("stop")
+//   .attr("offset", "100%")
+//   .attr("stop-color", "#000099")
+//   .attr("stop-opacity", 1);
+//
+// key.append("rect")
+//   .attr("width", width)
+//   .attr("height", height - 30)
+//   .style("fill", "url(#gradient)")
+//   .attr("transform", "translate(0,10)");
+//
+// var y = d3v5.scaleLinear()
+//   .range([300, 0])
+//   .domain([68, 12]);
+//
+// var yAxis = d3v5.axisBottom()
+//   .scale(y)
+//   .ticks(5);
+//
+// key.append("g")
+//   .attr("class", "y axis")
+//   .attr("transform", "translate(0,30)")
+//   .call(yAxis)
+//   .append("text")
+//   .attr("transform", "rotate(-90)")
+//   .attr("y", 0)
+//   .attr("dy", ".71em")
+//   .style("text-anchor", "end")
+//   .text("axis title");
+
 
 };
 

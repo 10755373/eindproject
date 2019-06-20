@@ -36,6 +36,7 @@
         <script src="https://d3js.org/d3.v3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+				<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
 
         <script>
           d3v3 = d3;
@@ -58,7 +59,6 @@
 				<script type="text/javascript" src="/code/js/helpers.js"></script>
 				<script type="text/javascript" src="/code/js/drawworldmap.js"></script>
 				<script type="text/javascript" src="/code/js/nodata.js"></script>
-				<script type="text/javascript" src="/code/js/initializedonutchart.js"></script>
 				<script type="text/javascript" src="/code/js/drawlinegraph.js"></script>
 				<script type="text/javascript" src="/code/js/drawpiechart.js"></script>
 				<script type="text/javascript" src="/code/js/drawscatterplot.js"></script>
@@ -111,6 +111,8 @@
 		</select>
 </form>
   <div id="container1" style="position: relative; width: 700px; height: 700px; top: 5px;"></div>
+	<div id="container11" style="position: relative;"></div>
+
 	<h2>Year</h2>
 	<div class="row align-items-center">
 		<div class="col-sm-2"><p id="value-time"></p></div>
@@ -127,6 +129,7 @@
 		 <option value="val5">55-74 years</option>
 		 <option value="val6">75+ years</option>
     </select> -->
+	<div id="titlelinegraph" style="position: center; width: 600px; height: 80px;"></div>
 	<div id="container2" style="position: center; width: 1000px; height: 800px; top: 5px;"></div>
 	<form>
 		interested:
