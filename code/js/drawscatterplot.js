@@ -1,6 +1,6 @@
 function drawscatterplot(json, year, sex, age){
 
-  if( $('#container7').is(':empty')){
+  if( $('#containerscatter').is(':empty')){
     newscatterplot(json, year, sex, age)
   }
   else{
@@ -10,21 +10,18 @@ function drawscatterplot(json, year, sex, age){
 
 function newscatterplot(json, year, sex, age){
   console.log(year)
-  // d3v5.select("#container7").selectAll("*").remove();
 
-  var divsize = d3v5.select("#container7").node().getBoundingClientRect();
+  var divsize = d3v5.select("#containerscatter").node().getBoundingClientRect();
 
   var data = retrievedata_scatter(json, year, sex, age)
-  // console.log(data)
 
   datascatter = Object.values(data)
-  // console.log(datascatter)
 
-   var margin = {top: 80, right: 30, bottom: 40, left: 50};
+   var margin = {top: 20, right: 30, bottom: 40, left: 25};
    var width = divsize.width - margin.left - margin.right;
    var height = divsize.height - margin.top - margin.bottom;
 
-   var svgscatterplot = d3v5.select("#container7").append("svg")
+   var svgscatterplot = d3v5.select("#containerscatter").append("svg")
                .attr("class", "svgscatterplot")
                .attr("id", "scatterplot")
                .attr("width", width + margin.left + margin.right)
@@ -51,10 +48,10 @@ function newscatterplot(json, year, sex, age){
    // write xaxis label
    svgscatterplot.append("text")
        .attr("transform",
-       "translate(" + (width) + " ," +
-                      (height + 30) + ")")
+       "translate(" + (width - 10) + " ," +
+                      (height) + ")")
        .style("text-anchor", "end")
-       .text("No of suicides");
+       .text("Suicides no");
 
    // draw yaxis
    svgscatterplot.append("g")
@@ -63,12 +60,12 @@ function newscatterplot(json, year, sex, age){
    // write yaxis label
    svgscatterplot.append("text")
        .attr("transform", "rotate(-90)")
-       .attr("y", -50)
+       .attr("y", -5)
        // .attr("y", 6)
        .attr("dy", "1.5em")
        .style("text-anchor", "end")
        // .attr("font-size", "15px")
-       .text("No of suicides per 100K");
+       .text("Suicides per 100K");
 
   svgscatterplot.append("text")
       .attr("id", "title")
@@ -79,7 +76,7 @@ function newscatterplot(json, year, sex, age){
       .style('fill', 'darkOrange')
       .text("Scatterplot: no. of suicides of men and woman per country");
 
-   var div = d3v5.select("#container7").append("div")
+   var div = d3v5.select("#containerscatter").append("div")
        .attr("class", "tooltipscatter")
        .style("opacity", 0);
 
@@ -177,9 +174,9 @@ function newscatterplot(json, year, sex, age){
 function updatescatterplot(json, year, sex, age){
   console.log(year)
 
-  var divsize = d3v5.select("#container7").node().getBoundingClientRect();
+  var divsize = d3v5.select("#scatterplot").node().getBoundingClientRect();
 
-  var svgscatterplot = d3v5.select("#container7");
+  var svgscatterplot = d3v5.select("#scatterplot");
 
   var data = retrievedata_scatter(json, year, sex, age)
   console.log(data)
@@ -187,7 +184,7 @@ function updatescatterplot(json, year, sex, age){
   datascatter = Object.values(data)
   console.log(datascatter)
 
-   var margin = {top: 80, right: 30, bottom: 40, left: 50};
+   var margin = {top: 20, right: 30, bottom: 40, left: 25};
    var width = divsize.width - margin.left - margin.right;
    var height = divsize.height - margin.top - margin.bottom;
 

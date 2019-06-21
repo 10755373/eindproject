@@ -1,6 +1,6 @@
 function drawworldmap(json, year, sex, age){
 
-  if( $('#container1').is(':empty')){
+  if( $('#containermap').is(':empty')){
     newworldmap(json, year, sex, age)
   }
   else{
@@ -11,7 +11,7 @@ function drawworldmap(json, year, sex, age){
 // draw worldmap
 function newworldmap(json, year, sex, age){
 
-  var container1 = d3v5.select("#container1").node().getBoundingClientRect();
+  var container1 = d3v5.select("#containermap").node().getBoundingClientRect();
 
   var dataset = retrievedata_map(json, year, sex, age)
 
@@ -54,8 +54,9 @@ function newworldmap(json, year, sex, age){
   //     dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
   // });
   // // render map
+  console.log(dataset)
   new Datamap({
-      element: document.getElementById('container1'),
+      element: document.getElementById('containermap'),
       projection: 'mercator', // big world map
       // countries don't listed in dataset will be painted with this color
       fills: { defaultFill: '#ffff99' },
@@ -211,57 +212,57 @@ function newworldmap(json, year, sex, age){
 // --------------------------------------
 //   // source: https://bl.ocks.org/duspviz-mit/9b6dce37101c30ab80d0bf378fe5e583
 //
-// var width = 300, height = 50;
-//
-// var key = d3v5.select("#container11")
-//   .append("svg")
-//   .attr("width", width)
-//   .attr("height", height);
-//
-// var legend = key.append("defs")
-//   .append("svg:linearGradient")
-//   .attr("id", "gradient")
-//   .attr("x1", "0%")
-//   .attr("y1", "100%")
-//   .attr("x2", "100%")
-//   .attr("y2", "100%")
-//   .attr("spreadMethod", "pad");
-//
-// legend.append("stop")
-//   .attr("class", "start")
-//   .attr("offset", "0%")
-//   .attr("stop-color", "#99ccff")
-//   .attr("stop-opacity", 1);
-//
-// legend.append("stop")
-//   .attr("offset", "100%")
-//   .attr("stop-color", "#000099")
-//   .attr("stop-opacity", 1);
-//
-// key.append("rect")
-//   .attr("width", width)
-//   .attr("height", height - 30)
-//   .style("fill", "url(#gradient)")
-//   .attr("transform", "translate(0,10)");
-//
-// var y = d3v5.scaleLinear()
-//   .range([300, 0])
-//   .domain([68, 12]);
-//
-// var yAxis = d3v5.axisBottom()
-//   .scale(y)
-//   .ticks(5);
-//
-// key.append("g")
-//   .attr("class", "y axis")
-//   .attr("transform", "translate(0,30)")
-//   .call(yAxis)
-//   .append("text")
-//   .attr("transform", "rotate(-90)")
-//   .attr("y", 0)
-//   .attr("dy", ".71em")
-//   .style("text-anchor", "end")
-//   .text("axis title");
+var width = 300, height = 50;
+
+var key = d3v5.select("#containermap")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+var legend = key.append("defs")
+  .append("svg:linearGradient")
+  .attr("id", "gradient")
+  .attr("x1", "0%")
+  .attr("y1", "100%")
+  .attr("x2", "100%")
+  .attr("y2", "100%")
+  .attr("spreadMethod", "pad");
+
+legend.append("stop")
+  .attr("class", "start")
+  .attr("offset", "0%")
+  .attr("stop-color", "#99ccff")
+  .attr("stop-opacity", 1);
+
+legend.append("stop")
+  .attr("offset", "100%")
+  .attr("stop-color", "#000099")
+  .attr("stop-opacity", 1);
+
+key.append("rect")
+  .attr("width", width)
+  .attr("height", height - 30)
+  .style("fill", "url(#gradient)")
+  .attr("transform", "translate(0,10)");
+
+var y = d3v5.scaleLinear()
+  .range([300, 0])
+  .domain([68, 12]);
+
+var yAxis = d3v5.axisBottom()
+  .scale(y)
+  .ticks(5);
+
+key.append("g")
+  .attr("class", "y axis")
+  .attr("transform", "translate(0,30)")
+  .call(yAxis)
+  .append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 0)
+  .attr("dy", ".71em")
+  .style("text-anchor", "end")
+  .text("axis title");
 
 
 };
@@ -270,11 +271,15 @@ function newworldmap(json, year, sex, age){
 // draw worldmap
 function updateworldmap(json, year, sex, age){
 
-  d3.select("#container1").selectAll("*").remove();
+  // var container1 = d3v5.select("#container1").node().getBoundingClientRect();
+
+  d3.select("#containermap").selectAll("*").remove();
 
   var dataset = retrievedata_map(json, year, sex, age)
+  console.log(dataset)
+  // var map = new Datamap({dataset})
   var map = new Datamap({
-      element: document.getElementById('container1'),
+      element: document.getElementById('containermap'),
       projection: 'mercator', // big world map
       // countries don't listed in dataset will be painted with this color
       fills: { defaultFill: '#ffff99' },
@@ -328,4 +333,5 @@ function updateworldmap(json, year, sex, age){
           //       }
           // });
       })}
-})};
+})
+};

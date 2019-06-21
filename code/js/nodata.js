@@ -24,425 +24,225 @@ function geendataland(country){
 
 };
 
+function makeverticallegend(){
+      var w = 140, h = 400;
 
-// d3.select("#container2").selectAll("*").remove();
-//
-// var margin = {top: 120, right: 70, bottom: 70, left: 70};
-//
-// var divsize = d3v5.select("#container2").node().getBoundingClientRect();
-//
-// var parseTime = d3v5.timeParse("%Y")
-//
-// var width = divsize.width - margin.left - margin.right;
-// var height = divsize.height - margin.top - margin.bottom;
-//
-// var x = d3v5.scaleTime().range([0, width]);
-// var y = d3v5.scaleLinear().range([height, 0]);
-//
-// var valueline = d3v5.line()
-//     .x(function(d) { return x(d.x); })
-//     .y(function(d) { return y(d.y); });
-//
-// yearsmale = []
-// valuesmale = []
-// data_male.forEach(function(d) {
-//     d.x = parseTime(d.x);
-//     yearsmale.push(d.x);
-//     valuesmale.push(d.y);
-//     d.y = +d.y;
-// });
-// yearsfemale = []
-// valuesfemale = []
-// data_female.forEach(function(d) {
-//     d.x = parseTime(d.x);
-//     yearsfemale.push(d.x);
-//     valuesfemale.push(d.y);
-//     d.y = +d.y;
-// });
-//
-// var maxmale = d3v5.max(data_male, function(d) {return d.y})
-// var maxfemale = d3v5.max(data_female, function(d) {return d.y})
-// if (maxmale > maxfemale){
-//   x.domain(d3v5.extent(data_male, function(d) { return d.x; }));
-//   y.domain([0, d3v5.max(data_male, function(d) { return d.y; })]);
-// }
-// else{
-//   x.domain(d3v5.extent(data_male, function(d) { return d.x; }));
-//   y.domain([0, d3v5.max(data_female, function(d) { return d.y; })]);
-// }
-//
-// var svg_linegraph_container = d3v5.select("#container2").append("svg")
-//     .attr("class", "svglinegraph")
-//     .attr("id", "svglinegraph")
-//     .attr("width", width + margin.left + margin.right)
-//     .attr("height", height + margin.top + margin.bottom)
-//   .append("g")
-//     .attr("id", "svg_linegraph_container")
-//     .attr("transform",
-//           "translate(" + margin.left + "," + margin.top + ")");
-//     // .attr("transform",
-//     //       "translate(" + margin.left + "," + margin.right + "," + margin.top + ")");
-//
-// var lastvaluemale = [yearsmale.slice(-1)[0], valuesmale.slice(-1)[0]];
-// console.log(lastvaluemale)
-// // svg_linegraph_container
-// //   .append("text")
-// //   .attr("id", "line-name")
-// //   .data(lineData[key])
-// //   .attr("transform", function(d, i) {
-// //     return "translate (" + x(lastvaluemale[0]) + "," +
-// //            y(lastvaluemale[1]) + ")"; })
-// //   .text("Males");
-//
-//
-// svg_linegraph_container.append("path")
-//     .data([data_male])
-//     .attr("class", "line")
-//     .attr("id", "line_male")
-//     .attr("d", valueline)
-//     .attr("data-legend",function(d) { return d.x})
-//     .attr("stroke", "steelblue")
-//     .attr("stroke-width", "2px")
-//     .attr("fill", "none")
-//     .append("text")
-//     .attr("id", "line-name-male")
-//     .attr("transform", function(d, i) {
-//       return "translate (" + x(lastvaluemale[0]) + "," +
-//              y(lastvaluemale[1]) + ")"; })
-//     .text("Males");
-//
-// var lastvaluefemale = [yearsfemale.slice(-1)[0], valuesfemale.slice(-1)[0]];
-// console.log(lastvaluefemale)
-//
-// // svg_linegraph_container.append("text")
-// //   .attr("id", "line-name")
-// //   .data(lineData[key])
-// //   .attr("transform", function(d, i) {
-// //     return "translate (" + x(lastvaluefemale[0]) + "," +
-// //            y(lastvaluefemale[1]) + ")"; })
-// //   .text("Females");
-//
-// svg_linegraph_container.append("path")
-//     .data([data_female])
-//     .attr("class", "line")
-//     .attr("id", "line_female")
-//     .attr("d", valueline)
-//     .attr("data-legend",function(d) { return d.x})
-//     .attr("stroke", "pink")
-//     .attr("stroke-width", "2px")
-//     .attr("fill", "none")
-//     .append("text")
-//       .attr("id", "line-name")
-//       .attr("transform", function(d, i) {
-//         return "translate (" + x(lastvaluefemale[0]) + "," +
-//                y(lastvaluefemale[1]) + ")"; })
-//       .text("Females");
-//
-// svg_linegraph_container.append("g")
-//     .attr("id", "xaxis")
-//     .attr("transform", "translate(0," + height + ")")
-//     .call(d3v5.axisBottom(x));
-// svg_linegraph_container.append("text")
-//     .attr("transform",
-//     "translate(" + (width) + " ," +
-//                    (height + 50) + ")")
-//     .style("text-anchor", "end")
-//     .text("Year");
-// svg_linegraph_container.append("g")
-//     .attr("id", "yaxisleft")
-//     .call(d3v5.axisLeft(y));
-// svg_linegraph_container.append("text")
-//     .attr("transform", "rotate(-90)")
-//     .attr("y", 0 - margin.left)
-//     .attr("dy", "1.5em")
-//     .style("text-anchor", "end")
-//     .text("No of suicides");
-//
-// //     // update title
-// // document.getElementById("titleRadar").innerHTML = "Emissions (%) per sector in <br>" + currentCountry + ", " + currentYear;
-//
-// var titlelinegraph = svg_linegraph_container.append("g")
-// .attr("id", "titlelinegraph");
-// titlelinegraph
-// .append("text")
-// .attr("x", (width / 2))
-// .attr("y", top)
-// .attr("class", "title")
-// .attr("text-anchor", "middle")
-// .style("font-size", "14px")
-// .text("Data for ");
+			var key = d3v5.select("#container9").append("svg").attr("width", w).attr("height", h);
 
+			var legend = key.append("defs")
+              .append("svg:linearGradient")
+              .attr("id", "gradient")
+              .attr("x1", "100%")
+              .attr("y1", "0%")
+              .attr("x2", "100%")
+              .attr("y2", "100%")
+              .attr("spreadMethod", "pad");
 
-function testdrawpiechart(data_pie, data_donut){
-//
-  if ( $('#container3').is(':empty')){
-    newpiechart(data_pie, data_donut)
-  }
-  else{
-    updatepiechart(data_pie, data_donut)
-  }};
+			legend.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "#B30000")
+            .attr("stop-opacity", 1);
 
+			legend.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "#FEE8c8")
+            .attr("stop-opacity", 1);
 
-  function newpiechart(data_pie, data_donut){
+			key.append("rect")
+          .attr("width", w - 100)
+          .attr("height", h - 100)
+          .style("fill", "url(#gradient)")
+          .attr("transform", "translate(0,10)");
 
-  var divsize = d3v5.select("#container3").node().getBoundingClientRect();
-  console.log(data_pie)
-  console.log(data_donut)
-  var width = divsize.height
-  var height = divsize.width
-  var margin = 40
+			var y = d3v5.scaleLinear().range([300, 0]).domain([1, 100]);
 
-  var radius = Math.min(width, height) / 2 - margin
+			var yAxis = d3v5.axisRight().scale(y);
 
-  var pie_chart = d3v5.select("#container3").append("svg")
-    .attr("class", "pie")
-    .attr("id", "pie")
-    .attr("width", width)
-    .attr("height", height)
+			key.append("g")
+          .attr("class", "y axis")
+          .attr("transform", "translate(41,10)")
+          .call(yAxis).append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 30)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("axis title");
+};
+
+function drawpiechart(id, name, year){
+
+    var countryfilename = 'data/' + [id] + '.json'
+    //console.log(countryfilename)
+
+    fetch(countryfilename)
+      .then(response => response.json())
+      .then(countrydata => {
+          //console.log(countrydata.length)
+          var piedata1 = {
+              "type" : "Food",
+              "amount" : 0
+          }
+          var piedata2 = {
+              "type" : "Feed",
+              "amount": 0
+          };
+          for (i = 0; i < countrydata.length; i ++) {
+               if (countrydata[i].Element == "Food") {
+                   piedata1["amount"] +=1
+               }
+               else {
+                   piedata2["amount"] +=1
+               }
+          }
+      //console.log(piedata)
+      piedata1["amount"] = Math.round(piedata1["amount"] / countrydata.length * 100)
+      piedata2["amount"] = Math.round(piedata2["amount"] / countrydata.length * 100);
+
+      var piedata = [piedata1, piedata2];
+
+      // shorten display name for long names
+      if (name == "Democratic Republic of the Congo") {
+          name = "DR Congo"
+      }
+      else if (name == "United States of America") {
+          name = "the USA"
+      }
+      else if (name == "United Republic of Tanzania") {
+          name = "Tazania"
+      }
+
+      //if no piechart yet
+      if( $('#piechart.figure').is(':empty')) {
+        newpiechart(countrydata, piedata, id, name, year)
+        //drawbarchart(countrydata, id, name, 'Food', year);
+    }
+        else{
+        $('#barchart').empty()
+        updatepiechart(countrydata, piedata, id, name, year)
+    }
+})
+}
+
+function newpiechart(countrydata, piedata, id, name, year){
+
+    // Set the width, height and radius
+    var w = 350,
+        h = 350,
+        r = Math.min(w, h) / 2;
+
+    // Set the color scheme
+    var color = d3v5.scaleOrdinal()
+                    .domain(piedata)
+                    .range(d3v5.schemeBuGn[7]);
+
+    // Set up the pie chart
+     var pie = d3v5.pie()
+          .value(function(d) {
+                //console.log(d.amount)
+                return d.amount; }) (piedata);
+
+    // Set the arcs for the chart and the labels with inner & outer radii
+    var arc = d3v5.arc()
+        .outerRadius(r - 10)
+        .innerRadius(0);
+
+    var labelArc = d3v5.arc()
+        .outerRadius(r - 100)
+          .innerRadius(r - 40);
+
+  //create tip
+  var tip = d3v5.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(function(d) {
+        return "<span style='color:lavender'>" + d.value + "</span> <strong>%</strong>";
+        })
+
+ // Select the svg and append the pie
+  var svg = d3v5.select("#piechart")
+    .append("svg")
+    .attr("id","pies")
+    .attr("width", w + 250)
+    .attr("height", h + 150)
     .append("g")
-    .attr("id", "pie_chart")
-    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    .attr("transform", "translate(" + w / 2 + "," + h /1.2 +")");
 
-  var data_pie = data_pie;
+    svg.call(tip);
 
-  var colors = d3v5.scaleOrdinal()
-    .domain(["male", "female"])
-    .range(["steelblue", "pink"]);
+    var g = svg.selectAll("arc")
+        .data(pie)
+        .enter().append("g")
+        .attr("transform", "translate(" + w / 3 + "," + h / 10 +")")
+        .attr("class", "arc");
 
-  var pie = d3v5.pie()
-    .value(function(d) {return d.value; })
+    g.append("path")
+        .attr("d", arc)
+        .style("fill", function(d) { return color(d.data.type);})
+        .on("mouseover", tip.show)
+        .on('mouseout', tip.hide);
 
-  var data_ready = pie(d3v5.entries(data_pie))
+    // Add labels
+    g.append("text")
+        .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+        .text(function(d) { return d.data.type;})
+        .style("fill", "#fff");
 
-  var arcGenerator = d3v5.arc()
-    .innerRadius(0)
-    .outerRadius(140)
+    var actualyear = year.replace('Y', '');
 
-  var path = svg.datum(data).selectAll("path")
-      .data(data_pie)
-    .enter().append("path")
-      .attr("fill", function(d){ return(colors(d.data.key)) })
-      .attr("d", arcGenerator)
-      .each(function(d) { this._current = d; }); // store the initial angles
+    // Add title
+    svg.append("text")
+        .attr("class","title")
+        .attr("x", (w / 3))
+        .attr("y", - .55 * h)
+        .attr("text-anchor", "middle")
+        .style("font-size", "30px")
+        .style("fill", "#00491b")
+        .style("font-family", "Palatino")
+        .text("Food v Feed for " + [name] + " in " + [actualyear]);
 
-  // //create tip
-  // var tip = d3v5.tip()
-  //     .attr('class', 'd3-tip')
-  //     .offset([-10, 0])
-  //     .html(function(d) {
-  //       return "<span style='color:orange'>" + d.data.value + "</span> <strong>%</strong>";
-  //       })
+        // Draw barchart when clicking on an slice
+        svg.selectAll(".arc")
+          .on("click", function(d) {
+              drawbarchart(countrydata, id, name, d.data.type, year);
+          });
+}
 
-  // var donut = svg.selectAll("arc")
-  //   .data(data_ready)
-  //   .enter()
-  //   .append('path')
-  //     .attr('d', arcGenerator)
-  //     .attr('fill', function(d){ return(colors(d.data.key)) })
-  //     .attr("stroke", "black")
-  //     .style("stroke-width", "2px")
-  //     .style("opacity", 0.7)
+function updatepiechart(countrydata, piedata, id, name, year) {
 
-  // var div = d3v5.select("#container3").append("div")
-  //     .attr("class", "tooltipscatter")
-  //     .style("opacity", 0);
-  //
-  // // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-  // pie_chart
-  //   .selectAll('.piechart')
-  //   .data(data_ready)
-  //   .enter()
-  //   .append('path')
-  //     .attr("class", "piechart")
-  //     .attr('d', arcGenerator)
-  //     .attr('fill', function(d){ return(colors(d.data.key)) })
-  //     .attr("stroke", "black")
-  //     .style("stroke-width", "2px")
-  //     .style("opacity", 0.7)
-  //     .on("mouseover", function(d) {
-  //      div.transition()
-  //          .duration(200)
-  //          .style("opacity", .9);
-  //      div .html(d.data.key + "<br/>")
-  //           .html(d.data.value + "<br/>")
-  //          .style("left", (d3v5.event.pageX + 15) + "px")
-  //          .style("top", (d3v5.event.pageY - 20) + "px");
-  //      })
-  //      .on("mouseout", function(d) {
-  //      div.transition()
-  //          .duration(500)
-  //          .style("opacity", 0);
-  //          })
-  //     .on("mouseenter", mouseoverpiechart)
-  //     // .on("mouseover", tip.show)
-  //     .on("mouseout", mouseoutpiechart);
-  //     // .on("mouseout", tip.hide)
-  //     // .on("mouseover", function (d) {
-  //     // d3.select("#tooltip")
-  //     //     .style("left", d3.event.pageX + "px")
-  //     //     .style("top", d3.event.pageY + "px")
-  //     //     .style("opacity", 1)
-  //     //     .select("#value")
-  //     //     .text(d.value);
-  //     //   })
-  //     // .on("mouseout", function () {
-  //     // // Hide the tooltip
-  //     // d3.select("#tooltip")
-  //     //     .style("opacity", 0);;
-  //     //   });
-  //
-  // // Now add the annotation. Use the centroid method to get the best coordinates
-  // pie_chart
-  //   .selectAll('mySlices')
-  //   .data(data_ready)
-  //   .enter()
-  //   .append('text')
-  //   .text(function(d){ return d.data.value})
-  //   .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-  //   .style("text-anchor", "middle")
-  //   .style("font-size", 17)
+    var svg = d3v5.select("#piechart")
 
-  // make donut chart!!!!
+    var pie = d3v5.pie()
+           .value(function(d) {
+               return d.amount; })(piedata);
+    // new angles
+    path = svg.selectAll("path").data(pie);
 
-  var data_donut = data_donut;
+    var actualyear = year.replace('Y', '');
 
-  var colors = d3v5.scaleOrdinal()
-    .domain(["male", "female"])
-    .range(["steelblue", "pink"]);
+    svg.select("text.title").text("Food v Feed for " + [name] + " in " + [actualyear]);
 
-  var pie = d3v5.pie()
-    .value(function(d) {return d.value; })
-  var data_corrected = pie(d3v5.entries(data_donut))
+    // redraw arcs
+    path.transition().duration(750).attrTween("d", arcTween);
 
-  var arcGenerator2 = d3v5.arc()
-    .innerRadius(145)
-    .outerRadius(radius)
+    svg.selectAll(".arc")
+      .on("click", function(d) {
+          drawbarchart(countrydata, id, name, d.data.type, year);
 
-  var path = svg.datum(data).selectAll("path")
-    .data(data_donut)
-  .enter().append("path")
-    .attr("fill", function(d){ return(colors(d.data.key)) })
-    .attr("d", arc)
-    .each(function(d) { this._current = d; }); // store the initial angles
+})
+}
 
-  // // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-  // pie_chart
-  //   .selectAll('mySlices')
-  //   .data(data_corrected)
-  //   .enter()
-  //   .append('path')
-  //     .attr("id", "piechart")
-  //     .attr('d', arcGenerator2)
-  //     .attr('fill', function(d){ return(colors(d.data.key)) })
-  //     .attr("stroke", "black")
-  //     .style("stroke-width", "2px")
-  //     .style("opacity", 0.7)
-  //     .on("mouseover", function(d) {
-  //      div.transition()
-  //          .duration(200)
-  //          .style("opacity", .9);
-  //     div  .html(d.data.key + "<br/>")
-  //          .html(d.data.value + "<br/>")
-  //          .style("left", (d3v5.event.pageX + 15) + "px")
-  //          .style("top", (d3v5.event.pageY - 20) + "px");
-  //      })
-  //      .on("mouseout", function(d) {
-  //      div.transition()
-  //          .duration(500)
-  //          .style("opacity", 0);
-  //          })
-  //     .on("mouseenter", mouseoverpiechart)
-  //     // .on("mouseover", tip.show)
-  //     .on("mouseout", mouseoutpiechart);
-  //     // .on("mouseout", tip.hide)
-  //
-  // // Now add the annotation. Use the centroid method to get the best coordinates
-  // pie_chart
-  //   .selectAll('mySlices')
-  //   .data(data_corrected)
-  //   .enter()
-  //   .append('text')
-  //   .text(function(d){ return d.data.value})
-  //   .attr("transform", function(d) { return "translate(" + arcGenerator2.centroid(d) + ")";  })
-  //   .style("text-anchor", "middle")
-  //   .style("font-size", 17)
-  //
-  //
-  //   function mouseoverpiechart() {
-  //       d3v5.select(this)
-  //           .attr("stroke", "red")
-  //           .style("stroke-width", "2px")
-  //           .style("stroke-opacity", 0.7)
-  //   }
-  //   function mouseoutpiechart() {
-  //       d3v5.select(this)
-  //           .attr("stroke", "black")
-  //           .style("stroke-width", "2px")
-  //           .style("stroke-opacity", 0.7)
-  //   }
+function arcTween(a) {
+var w = 350,
+    h = 350,
+    r = Math.min(w, h) / 2;
 
+var arc = d3v5.arc()
+    .outerRadius(r - 10)
+    .innerRadius(0);
 
-    }
-
-    function updatepiechart(data_pie, data_donut){
-      console.log(data_pie)
-      var pie = d3v5.pie()
-        .value(function(d) {return d.value; })
-      var data_ready = pie(d3v5.entries(data_pie))
-      var data_corrected = pie(d3v5.entries(data_donut))
-
-      path = d3v5.select("#container3").selectAll("path").data(data_ready);
-      console.log(path)
-      path.transition().duration(500).attrTween("d", arcTween);
-      path.enter().append("path").attr("d", arcTween).each(function(d) {this._current = d; });
-
-
-      path2 = d3v5.select("#container3").selectAll("path").data(data_corrected);
-      console.log(path2)
-      path2.transition().duration(500).attrTween("d", arc2Tween);
-      path2.enter().append("path").attr("d", arc2Tween).each(function(d) {this._current = d; });
-
-    }
-
-
-  function arcTween(a) {
-
-    var divsize = d3v5.select("#container3").node().getBoundingClientRect();
-
-    var width = divsize.height
-    var height = divsize.width
-    var margin = 40
-
-    var radius = Math.min(width, height) / 2 - margin
-
-    var arcGenerator = d3v5.arc()
-      .innerRadius(0)
-      .outerRadius(140)
-
-    var i = d3v5.interpolate(this._current, a);
-    this._current = i(0);
-      return function(t) {
-    return arcGenerator(i(t));
-    };
-    }
-
-
-  function arc2Tween(a) {
-    var divsize = d3v5.select("#container3").node().getBoundingClientRect();
-
-    var width = divsize.height
-    var height = divsize.width
-    var margin = 40
-
-    var radius = Math.min(width, height) / 2 - margin
-
-    var arcGenerator2 = d3v5.arc()
-      .innerRadius(145)
-      .outerRadius(radius)
-
-    var i = d3v5.interpolate(this._current, a);
-    this._current = i(0);
-    return function(t) {
-      return arcGenerator2(i(t));
-    };
+var i = d3v5.interpolate(this._current, a);
+this._current = i(0);
+return function(t) {
+return arc(i(t));
+};
 }
