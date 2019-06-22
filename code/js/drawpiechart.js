@@ -94,7 +94,7 @@ function drawpiechart(data_pie, data_donut){
 //
   if ( $('#containerpiechart').is(':empty')){
     newpiechart(data_pie)
-    newdonut(data_donut)
+    // newdonut(data_donut)
   }
   else{
     updatepiechart(data_pie)
@@ -102,10 +102,13 @@ function drawpiechart(data_pie, data_donut){
   }};
 
 
-  function newpiechart(data_pie, data_donut){
+function newpiechart(data_pie, data_donut){
 
-      var width = 450
-          height = 450
+    var divsize = d3v5.select("#containerlinegraph").node().getBoundingClientRect();
+
+
+      var width = divsize.width
+          height = divsize.width
           margin = 40
 
       var radius = Math.min(width, height) / 2 - margin
@@ -396,7 +399,7 @@ function drawpiechart(data_pie, data_donut){
 
   };
 
-  function newdonut(data_donut){
+function newdonut(data_donut){
     var width = 450
         height = 450
         margin = 40
@@ -483,7 +486,7 @@ function updatedonut(data_donut){
   pathdonut.transition().duration(500).attrTween("d", arc2Tween);
 }
 
-  function arcTween(a) {
+function arcTween(a) {
 
     var divsize = d3v5.select("#containerpiechart").node().getBoundingClientRect();
 
@@ -504,8 +507,7 @@ function updatedonut(data_donut){
     };
     }
 
-
-  function arc2Tween(a) {
+function arc2Tween(a) {
     var divsize = d3v5.select("#containerpiechart").node().getBoundingClientRect();
 
     var width = divsize.height
