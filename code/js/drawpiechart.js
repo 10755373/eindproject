@@ -1,6 +1,6 @@
 
 
-function newpiechart1(data_pie, data_donut){
+function newpiechart1(data_pie, data_donut, country, value, age){
 
   var divsize = d3v5.select("#container3").node().getBoundingClientRect();
   console.log(data_pie)
@@ -90,19 +90,19 @@ function newpiechart1(data_pie, data_donut){
 }
 
 
-function drawpiechart(data_pie, data_donut){
+function drawpiechart(data_pie, data_donut, country, value, age){
 //
   if ( $('#containerpiechart').is(':empty')){
-    newpiechart(data_pie)
+    newpiechart(data_pie, country, value, age)
     // newdonut(data_donut)
   }
   else{
-    updatepiechart(data_pie)
+    updatepiechart(data_pie, country, value, age)
     // updatedonut(data_donut)
   }};
 
 
-function newpiechart(data_pie){
+function newpiechart(data_pie, country, value, age){
 
   var divsize = d3v5.select("#containerpiechart").node().getBoundingClientRect();
 
@@ -171,6 +171,15 @@ function newpiechart(data_pie){
             .style("opacity", 0);
             });
 
+  svgpiechart.append("text")
+      .attr("class", "titlelinegraph")
+      .attr("id", "title")
+      .attr("x", (width / 2))
+      .attr("y", (margin.bottom / 2))
+      .attr("text-anchor", "middle")
+      .style("font-size", "15px")
+      .style('fill', 'black')
+      .text("Linegraph for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 
   //
   // var pie_chart = d3v5.select("#containerpiechart").append("svg")
@@ -414,7 +423,7 @@ function newdonut(data_donut){
          .style("font-size", 16)
   }
 
-function updatepiechart(data_pie){
+function updatepiechart(data_pie, country, value, age){
   var pie = d3v5.pie()
     .value(function(d) {return d.value; })
   var data_ready = pie(d3v5.entries(data_pie))
@@ -427,6 +436,9 @@ function updatepiechart(data_pie){
 
 
   // path2.enter().attr("d", arc2Tween).each(function(d) {this._current = a; });
+
+  piesvg.select("text.titlelinegraph")
+    .text("Piechart for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 
 }
 

@@ -67,13 +67,14 @@ function newscatterplot(json, year, sex, age){
        .text("Suicides per 100K");
 
   svgscatterplot.append("text")
+      .attr("class", "titlescatterplot")
       .attr("id", "title")
       .attr("x", (width / 2))
       .attr("y", (margin.bottom / 2))
       .attr("text-anchor", "middle")
-      .style("font-size", "18px")
-      .style('fill', 'darkOrange')
-      .text("Scatterplot: no. of suicides of men and woman per country");
+      .style("font-size", "15px")
+      .style('fill', 'black')
+      .text("Scatterplot regarding suicides amongst " + [sex] + " between " + [age]);
 
    var div = d3v5.select("#containerscatter").append("div")
        .attr("class", "tooltipscatter")
@@ -248,5 +249,8 @@ function updatescatterplot(json, year, sex, age){
        .attr('r','3')
        .attr('stroke','black')
        .attr('stroke-width',1)
+
+ svgscatterplot.select("text.titlescatterplot")
+     .text("Scatterplot regarding suicides amongst " + [sex] + " between " + [age]);
 
 };

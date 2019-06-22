@@ -1,13 +1,13 @@
-function drawlinegraph(data_male, data_female, country) {
+function drawlinegraph(data_male, data_female, country, value, age) {
 
   if ( $('#containerlinegraph').is(':empty')){
-    newlinegraph(data_male, data_female, country)
+    newlinegraph(data_male, data_female, country, value, age)
   }
   else{
-    updatelinegraph(data_male, data_female, country)
+    updatelinegraph(data_male, data_female, country, value, age)
   };
 
-function newlinegraph(data_male, data_female){
+function newlinegraph(data_male, data_female, country, value, age){
 
     var duration = 250;
 
@@ -273,17 +273,16 @@ function newlinegraph(data_male, data_female){
             .tickFormat("")
         )
 
-    var titlelinegraph = svg_linegraph_container.append("g")
-    .attr("id", "titlelinegraph");
-    // add initial title to line chart
-    titlelinegraph
-    .append("text")
-    .attr("x", (width / 2))
-    .attr("y", top)
-    .attr("class", "title")
-    .attr("text-anchor", "middle")
-    .style("font-size", "14px")
-    .text("No. of suicides and GDP per capita for: ", country);
+  svg_linegraph_container.append("text")
+      .attr("class", "titlelinegraph")
+      .attr("id", "title")
+      .attr("x", (width / 2))
+      .attr("y", (margin.bottom / 2))
+      .attr("text-anchor", "middle")
+      .style("font-size", "15px")
+      .style('fill', 'black')
+      .text("Linegraph for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
+
 
 }
 
@@ -351,9 +350,8 @@ function updatelinegraph(data_male, data_female) {
     svg_linegraph_container.select("#yaxisleft")
         .call(d3v5.axisLeft(y));
 
-
-    //     // update title
-    document.getElementById("titlelinegraph").innerHTML = "Numbers female and male for: <br>" + country;
+  svg_linegraph_container.select("text.titlelinegraph")
+    .text("Linegraph for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 
 };
 };

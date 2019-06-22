@@ -18,10 +18,10 @@ function optionselected(json){
   maketimeslider(dataslider, sex, age);
   var data_pie = datapienumber(json, "Netherlands", 1987, age)
   var data_donut = datadonutnumber(json, "Netherlands", 1987, age)
-  drawpiechart(data_pie, data_donut)
+  drawpiechart(data_pie, data_donut, "Netherlands", "no", "5-14 years")
   var line_no_male = obtaincountrydatamaletotal(json, "Netherlands", age)
   var line_no_female = obtaincountrydatafemaletotal(json, "Netherlands", age)
-  drawlinegraph(line_no_male, line_no_female)
+  drawlinegraph(line_no_male, line_no_female, "Netherlands", "no", "5-14 years")
 }
 
 function selectedsecondoption(json, country, year){
@@ -30,17 +30,17 @@ function selectedsecondoption(json, country, year){
   if (value == "no"){
     var data_pie = datapienumber(json, country, year, secondgroup)
     var data_donut = datadonutnumber(json, country, year, secondgroup)
-    drawpiechart(data_pie, data_donut)
+    drawpiechart(data_pie, data_donut, country, value, age)
     var line_no_male = obtaincountrydatamaletotal(json, country, secondgroup)
     var line_no_female = obtaincountrydatafemaletotal(json, country, secondgroup)
-    drawlinegraph(line_no_male, line_no_female, country)
+    drawlinegraph(line_no_male, line_no_female, country, value, secondgroup)
   }
   else{
     var data_pie = datapieratio(json, country, year, secondgroup)
     var data_donut = datadonutratio(json, country, year, secondgroup)
-    drawpiechart(data_pie, data_donut)
+    drawpiechart(data_pie, data_donut, country, value, age)
     var line_male_ratio = obtaincountrydatamale100k(json, country, secondgroup)
     var line_female_ratio = obtaincountrydatafemale100k(json, country, secondgroup)
-    drawlinegraph(line_male_ratio, line_female_ratio, country)
+    drawlinegraph(line_male_ratio, line_female_ratio, country, value, secondgroup)
   }
 }
