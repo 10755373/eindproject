@@ -2,7 +2,7 @@ window.onload = function() {
     fetch("/data/dataproject.json")
       .then(response => response.json())
       .then(json => {
-        makeverticallegend();
+        // makeverticallegend();
         optionselected(json);
         d3.select("#gender").on("change",function(d){optionselected(json)})
         d3.select("#group").on("change",function(d){optionselected(json)})

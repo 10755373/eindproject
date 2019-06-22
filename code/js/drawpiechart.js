@@ -154,7 +154,7 @@ function newpiechart(data_pie){
 
   pie.append("text")
        .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-       .text(function(d){ return d.data.key + ": " + d.data.value })
+       .text(function(d){ return d.data.key })
        .style("text-anchor", "middle")
        .style("font-size", 16)
        .on("mouseover", function(d) {

@@ -163,10 +163,13 @@ function retrievedata_map(json, currentyear, sex, age){
   var minValue = Math.min(... onlyValues),
           maxValue = Math.max(... onlyValues);
 
+  // var paletteScale = d3v5.scaleLinear()
+  //         .domain([minValue,maxValue])
+  //         .range(["#99ccff", "#000099"]); // blue color
 
-  var paletteScale = d3.scale.linear()
-          .domain([minValue,maxValue])
-          .range(["#99ccff", "#000099"]); // blue color
+  var paletteScale = d3v5.scaleSequential()
+      .domain([minValue, maxValue])
+      .interpolator(d3v5.interpolateBlues);
 
   var data_set = {}
   for (let i = 0; i < list_values.length; i++){
@@ -178,6 +181,70 @@ function retrievedata_map(json, currentyear, sex, age){
   }
   return data_set
 };
+
+function drawlegend(dataset) {
+
+  var data = Object.values(dataset)
+  onlyvalues = []
+  for (let i = 0; i < data.length; i++){
+    onlyvalues.push(data[i].numberOfThings)
+  }
+
+  var minValue = Math.min(... onlyvalues),
+          maxValue = Math.max(... onlyvalues);
+
+    colors = d3v5.scaleSequential(d3v5.interpolateBlues).domain([0, 500])
+
+    var width = 500, height = 160;
+    var svglegend = d3v5.select("#containermap")
+      .append("svg")
+      .attr("id", "gradientlegend")
+      .attr("width", width)
+      .attr("height", height);
+      //
+      // key.append("text")
+      //         .attr("x", (w / 2))
+      //         .attr("y", h / 2.5 )
+      //         .attr("text-anchor", "middle")
+      //         .style("font-size", "20px")
+      //         //.style("text-decoration", "underline")
+      //         .style("font-style", "bold")
+      //         .text("No of suicides");
+
+    var legend = svglegend.append("defs")
+      .append("svg:linearGradient")
+      .attr("id", "gradient");
+
+    legend.selectAll("stop")
+        .data(colors.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: colors(t) })))
+        .enter().append("stop")
+        .attr("offset", d => d.offset)
+        .attr("stop-color", d => d.color);
+
+    svglegend.append("rect")
+      .attr("width", width)
+      .attr("height", height - 130)
+      .style("fill", "url(#gradient)")
+      .attr("transform", "translate(0,100)");
+
+    var y = d3v5.scaleLinear()
+      .range([500, 0])
+      .domain([maxValue, minValue]);
+    var axisy = d3v5.axisBottom()
+      .scale(y)
+      .ticks(10);
+    svglegend.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(0,130)")
+      .call(axisy)
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("axis title");
+}
+
 
 function retrievedata_scatter(json, currentyear, sex, age){
     data = Object.values(json)

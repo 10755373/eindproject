@@ -12,10 +12,10 @@ function drawworldmap(json, year, sex, age){
 function newworldmap(json, year, sex, age){
 
   var container1 = d3v5.select("#containermap").node().getBoundingClientRect();
-
+  var width = container1.width
+  var height = container1.height
   var dataset = retrievedata_map(json, year, sex, age)
-
-
+  var year = year
   // console.log(year)
   // data = Object.values(json)
   // // console.log(data[0])
@@ -55,7 +55,9 @@ function newworldmap(json, year, sex, age){
   // });
   // // render map
   console.log(dataset)
-  new Datamap({
+  var sdf = Object.values(dataset)
+  console.log(sdf)
+  var map = new Datamap({
       element: document.getElementById('containermap'),
       projection: 'mercator', // big world map
       // countries don't listed in dataset will be painted with this color
@@ -96,9 +98,29 @@ function newworldmap(json, year, sex, age){
              //   else{
              //     geendataland(country);
              //   }
-         });
-     }
+              })
+              }
+
   });
+  // draw legend for datamap
+   map.legend({
+     legendTitle : "No of suicides",
+     defaultFillName: "No data: ",
+
+   });
+   // add title
+  map.svg.append('text')
+         .attr("x", (width / 2))
+         .attr("y", 50)
+         .attr("text-anchor", "middle")
+         .style("font-size", "20px")
+         .style("fill", "black")
+         // .style("font-family", "Palatino")
+         .text("No of suicides per country in year: " + year);
+   // makelegend(dataset)
+   drawlegend(dataset)
+
+ };
 
 // // source: github https://github.com/SammyH1994/project/blob/master/src/code/js/map.js
 //   // Create legend
@@ -212,60 +234,165 @@ function newworldmap(json, year, sex, age){
 // --------------------------------------
 //   // source: https://bl.ocks.org/duspviz-mit/9b6dce37101c30ab80d0bf378fe5e583
 //
-var width = 300, height = 50;
-
-var key = d3v5.select("#containermap")
-  .append("svg")
-  .attr("width", width)
-  .attr("height", height);
-
-var legend = key.append("defs")
-  .append("svg:linearGradient")
-  .attr("id", "gradient")
-  .attr("x1", "0%")
-  .attr("y1", "100%")
-  .attr("x2", "100%")
-  .attr("y2", "100%")
-  .attr("spreadMethod", "pad");
-
-legend.append("stop")
-  .attr("class", "start")
-  .attr("offset", "0%")
-  .attr("stop-color", "#99ccff")
-  .attr("stop-opacity", 1);
-
-legend.append("stop")
-  .attr("offset", "100%")
-  .attr("stop-color", "#000099")
-  .attr("stop-opacity", 1);
-
-key.append("rect")
-  .attr("width", width)
-  .attr("height", height - 30)
-  .style("fill", "url(#gradient)")
-  .attr("transform", "translate(0,10)");
-
-var y = d3v5.scaleLinear()
-  .range([300, 0])
-  .domain([68, 12]);
-
-var yAxis = d3v5.axisBottom()
-  .scale(y)
-  .ticks(5);
-
-key.append("g")
-  .attr("class", "y axis")
-  .attr("transform", "translate(0,30)")
-  .call(yAxis)
-  .append("text")
-  .attr("transform", "rotate(-90)")
-  .attr("y", 0)
-  .attr("dy", ".71em")
-  .style("text-anchor", "end")
-  .text("axis title");
-
-
-};
+// var width = 300, height = 50;
+//
+// var key = d3v5.select("#containermap")
+//   .append("svg")
+//   .attr("width", width)
+//   .attr("height", height);
+//
+// var legend = key.append("defs")
+//   .append("svg:linearGradient")
+//   .attr("id", "gradient")
+//   .attr("x1", "0%")
+//   .attr("y1", "100%")
+//   .attr("x2", "100%")
+//   .attr("y2", "100%")
+//   .attr("spreadMethod", "pad");
+//
+// legend.append("stop")
+//   .attr("class", "start")
+//   .attr("offset", "0%")
+//   .attr("stop-color", "#99ccff")
+//   .attr("stop-opacity", 1);
+//
+// legend.append("stop")
+//   .attr("offset", "100%")
+//   .attr("stop-color", "#000099")
+//   .attr("stop-opacity", 1);
+//
+// key.append("rect")
+//   .attr("width", width)
+//   .attr("height", height - 30)
+//   .style("fill", "url(#gradient)")
+//   .attr("transform", "translate(0,10)");
+//
+// var y = d3v5.scaleLinear()
+//   .range([300, 0])
+//   .domain([68, 12]);
+//
+// var yAxis = d3v5.axisBottom()
+//   .scale(y)
+//   .ticks(5);
+//
+// key.append("g")
+//   .attr("class", "y axis")
+//   .attr("transform", "translate(0,30)")
+//   .call(yAxis)
+//   .append("text")
+//   .attr("transform", "rotate(-90)")
+//   .attr("y", 0)
+//   .attr("dy", ".71em")
+//   .style("text-anchor", "end")
+//   .text("axis title");
+//
+// function makelegend(dataset){
+// ///////////////////////////////////////////////////////////////////////////
+// //////////////// Create the gradient for the legend ///////////////////////
+// ///////////////////////////////////////////////////////////////////////////
+//
+// var divsize = d3v5.select("#containermap").node().getBoundingClientRect();
+// var margin = {top: 20, right: 30, bottom: 40, left: 25};
+// var width = divsize.width - margin.left - margin.right;
+// var height = divsize.height - margin.top - margin.bottom;
+//
+// var svg = d3v5.select('#containermap')
+// 	.append("svg")
+// 	.attr("width", width + margin.left + margin.right)
+// 	.attr("height", height + margin.top + margin.bottom)
+// 	.append("g")
+// 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+//
+//   // // sort by value
+//   // dataset.sort(function (a, b) {
+//   //   return a.numberOfThings - b.numberOfThings;
+//   // });
+//   //
+//   // var sorted = dataset.sort(function (a, b) {
+//   //   return a.numberOfThings - b.numberOfThings;
+//   // });
+//
+// var colorScale = d3v5.scaleLinear()
+// 	.domain([0, d3v5.max(dataset, function(d) {return d.numberOfThings; })])
+// 	.range(["#99ccff", "#000099"])
+//
+// console.log(colorScale)
+//
+// //Extra scale since the color scale is interpolated
+// var countScale = d3v5.scaleLinear(dataset)
+// 	.domain([0, d3v5.max(dataset, function(d) {return d.numberOfThings; })])
+// 	.range([0, width])
+// console.log(countScale)
+//
+// //Calculate the variables for the temp gradient
+// var numStops = 10;
+// countRange = countScale.domain();
+// countRange[2] = countRange[1] - countRange[0];
+// countPoint = [];
+// for(var i = 0; i < numStops; i++) {
+// 	countPoint.push(i * countRange[2]/(numStops-1) + countRange[0]);
+// }//for i
+//
+// //Create the gradient
+// svg.append("defs")
+// 	.append("linearGradient")
+// 	.attr("id", "legend-traffic")
+// 	.attr("x1", "0%").attr("y1", "0%")
+// 	.attr("x2", "100%").attr("y2", "0%")
+// 	.selectAll("stop")
+// 	.data(d3v5.range(numStops))
+// 	.enter().append("stop")
+// 	.attr("offset", function(d,i) {
+// 		return countScale( countPoint[i] )/width;
+// 	})
+// 	.attr("stop-color", function(d,i) {
+// 		return colorScale( countPoint[i] );
+// 	});
+//
+// ///////////////////////////////////////////////////////////////////////////
+// ////////////////////////// Draw the legend ////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////
+//
+//   var legendWidth = Math.min(width*0.8, 400);
+//   //Color Legend container
+//   var legendsvg = svg.append("g")
+//   	.attr("class", "legendWrapper")
+//   	.attr("transform", "translate(" + (width/2) + ")");
+//
+//   //Draw the Rectangle
+//   legendsvg.append("rect")
+//   	.attr("class", "legendRect")
+//   	.attr("x", -legendWidth/2)
+//   	.attr("y", 0)
+//   	.attr("width", legendWidth)
+//   	.attr("height", 10)
+//   	.style("fill", "url(#legend-traffic)");
+//
+//   //Append title
+//   legendsvg.append("text")
+//   	.attr("class", "legendTitle")
+//   	.attr("x", 0)
+//   	.attr("y", -10)
+//   	.style("text-anchor", "middle")
+//   	.text("Number of Accidents");
+//
+//   //Set scale for x-axis
+//   var xScale = d3v5.scaleLinear()
+//   	 .range([-legendWidth/2, legendWidth/2])
+//   	 .domain([ 0, d3v5.max(dataset, function(d) { return d.numberOfThings; })] );
+//
+//   //Define x-axis
+//   var xAxis = d3v5.axisBottom()
+//   	  .ticks(5)
+//   	  .scale(xScale);
+//
+//   //Set up X axis
+//   legendsvg.append("g")
+//   	.attr("class", "axis")
+//   	.attr("transform", "translate(0," + (10) + ")")
+//   	.call(xAxis);
+// };
+// };
 
 
 // draw worldmap
@@ -274,8 +401,11 @@ function updateworldmap(json, year, sex, age){
   // var container1 = d3v5.select("#container1").node().getBoundingClientRect();
 
   d3.select("#containermap").selectAll("*").remove();
-
+  var container1 = d3v5.select("#containermap").node().getBoundingClientRect();
+  var width = container1.width
+  var height = container1.height
   var dataset = retrievedata_map(json, year, sex, age)
+  var year = year
   console.log(dataset)
   // var map = new Datamap({dataset})
   var map = new Datamap({
@@ -334,4 +464,21 @@ function updateworldmap(json, year, sex, age){
           // });
       })}
 })
+// draw legend for datamap
+ map.legend({
+   legendTitle : "No of suicides",
+   defaultFillName: "No data: ",
+
+ });
+ // add title
+map.svg.append('text')
+       .attr("x", (width / 2))
+       .attr("y", 50)
+       .attr("text-anchor", "middle")
+       .style("font-size", "20px")
+       .style("fill", "black")
+       // .style("font-family", "Palatino")
+       .text("No of suicides per country in year: " + year);
+   // makelegend(dataset)
+   drawlegend(dataset)
 };
