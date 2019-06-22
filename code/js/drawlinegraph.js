@@ -7,7 +7,7 @@ function drawlinegraph(data_male, data_female, country) {
     updatelinegraph(data_male, data_female, country)
   };
 
-  function newlinegraph(data_male, data_female){
+function newlinegraph(data_male, data_female){
 
     var duration = 250;
 

@@ -9,7 +9,6 @@ function drawscatterplot(json, year, sex, age){
 
 
 function newscatterplot(json, year, sex, age){
-  console.log(year)
 
   var divsize = d3v5.select("#containerscatter").node().getBoundingClientRect();
 

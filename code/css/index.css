@@ -57,28 +57,9 @@
    stroke-width: 0;
  }
 
- /* body {
-   font: 10px sans-serif;
- }
 
- .axis path,
- .axis line {
-   fill: none;
-   stroke: #000;
-   shape-rendering: crispEdges;
- }
 
- .x.axis path {
-   display: none;
- }
-
- .line {
-   fill: none;
-   stroke: steelblue;
-   stroke-width: 1.5px;
- } */
-
- .tooltip {
+ /* .tooltip {
  	background: #eee;
  	box-shadow: 0 0 5px #999999;
  	color: #333;
@@ -90,17 +71,10 @@
  	top: 95px;
  	width: 80px;
  	z-index: 10;
- 	display: block;
  	opacity: 0;
- }
+ } */
 
-.pie{
-  position: absolute;
-}
 
-.donut{
-  position: absolute;
-}
 
 .tooltipscatter {
   stroke: black;
@@ -111,6 +85,17 @@
 	border-radius: 5px;
 	padding: 10px;
 }
+
+.tooltippiechart {
+  stroke: black;
+	position: absolute;
+	background-color: white;
+	border: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	padding: 10px;
+}
+
 
 
 .d3-tip {

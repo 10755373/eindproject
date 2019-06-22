@@ -102,125 +102,76 @@ function drawpiechart(data_pie, data_donut){
   }};
 
 
-function newpiechart(data_pie, data_donut){
+function newpiechart(data_pie){
 
-    var divsize = d3v5.select("#containerlinegraph").node().getBoundingClientRect();
+  var divsize = d3v5.select("#containerpiechart").node().getBoundingClientRect();
+
+  var margin = {top: 20, right: 30, bottom: 40, left: 25};
+  var width = divsize.width - margin.left - margin.right;
+  var height = divsize.height - margin.top - margin.bottom;
+      margin = 40
+
+  var radius = Math.min(width, height) / 2 - margin
+
+  var svgpiechart = d3v5.select("#containerpiechart").append("svg")
+          .attr("class", "svgpiechart")
+          .attr("id", "piechart")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("id", "gpiechart")
+          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  var colors = d3v5.scaleOrdinal()
+          .domain(["male", "female"])
+          .range(["steelblue", "pink"]);
+
+  var div = d3v5.select("#containerpiechart").append("div")
+          .attr("class", "tooltippiechart")
+          .style("opacity", 0);
+
+  var pie = d3v5.pie()
+          .value(function(d) {return d.value; })
+
+  var data_ready = pie(d3v5.entries(data_pie))
+
+  var arcGenerator = d3v5.arc()
+          .innerRadius(0)
+          .outerRadius(120)
+
+  var pie = svgpiechart.selectAll("arcpie")
+      .data(data_ready)
+      .enter().append("g")
+      .attr("class", "arc")
+      .attr("id", "arcpie")
+      .attr("stroke", "black")
+      .style("stroke-width", "1px")
+      .style("opacity", 0.7)
+
+  pie.append("path")
+      .attr("d", arcGenerator)
+      .style("fill", function(d) { return colors(d.data.key);})
+
+  pie.append("text")
+       .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+       .text(function(d){ return d.data.key + ": " + d.data.value })
+       .style("text-anchor", "middle")
+       .style("font-size", 16)
+       .on("mouseover", function(d) {
+        div.transition()
+            .duration(200)
+            .style("opacity", .9);
+        div .html(d.data.value + "<br/>")
+            .style("left", (d3v5.event.pageX + 15) + "px")
+            .style("top", (d3v5.event.pageY - 20) + "px");
+        })
+        .on("mouseout", function(d) {
+        div.transition()
+            .duration(200)
+            .style("opacity", 0);
+            });
 
 
-      var width = divsize.width
-          height = divsize.width
-          margin = 40
-
-      var radius = Math.min(width, height) / 2 - margin
-
-      var svg = d3v5.select("#containerpiechart")
-        .append("svg")
-        .attr("class", "svgpiedonut")
-        .attr("id", "pie")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-      var data = data_pie
-
-      var colors = d3v5.scaleOrdinal()
-        .domain(["male", "female"])
-        .range(["steelblue", "pink"]);
-
-    var div = d3v5.select("#containerpiechart").append("div")
-        .attr("class", "tooltipscatter")
-        .style("opacity", 0);
-
-    // //create tip
-    // var tip = d3v5.tip()
-    //     .attr('class', 'd3-tip')
-    //     .offset([-10, 0])
-    //     .html(function(d) {
-    //       return "<span style='color:orange'>" + d.data.value + "</span> <strong>%</strong>";
-    //       })
-
-      var pie = d3v5.pie()
-        .value(function(d) {return d.value; })
-      var data_ready = pie(d3v5.entries(data))
-      var arcGenerator = d3v5.arc()
-        .innerRadius(0)
-        .outerRadius(120)
-
-      console.log(data_ready)
-      var data_corrected = pie(d3v5.entries(data_donut))
-
-      var arcGenerator2 = d3v5.arc()
-        .innerRadius(125)
-        .outerRadius(radius)
-
-      // var donut = svg.selectAll("arc")
-      //   .data(data_ready)
-      //   .enter()
-      //   .append('path')
-      //     .attr('d', arcGenerator)
-      //     .attr('fill', function(d){ return(colors(d.data.key)) })
-      //     .attr("stroke", "black")
-      //     .style("stroke-width", "2px")
-      //     .style("opacity", 0.7)
-
-      var pie = svg.selectAll("arc")
-          .data(data_ready)
-          .enter().append("g")
-          .attr("class", "arc")
-          .attr("id", "arcpie")
-          .attr("stroke", "black")
-          .style("stroke-width", "1px")
-          .style("opacity", 0.7)
-
-      pie.append("path")
-          .attr("d", arcGenerator)
-          .style("fill", function(d) { return colors(d.data.key);})
-       pie.append("text")
-             .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-             .text(function(d){ return d.data.key + ": " + d.data.value })
-             .style("text-anchor", "middle")
-             .style("font-size", 16)
-             // .on("mouseover", function(d) {
-             //  pie.transition()
-             //      .duration(200)
-             //      .style("opacity", .9);
-             //  pie .html(d.data.value + "<br/>")
-             //      .style("left", (d3v5.event.pageX + 15) + "px")
-             //      .style("top", (d3v5.event.pageY - 20) + "px");
-             //  })
-             //  .on("mouseout", function(d) {
-             //  pie.transition()
-             //      .duration(500)
-             //      .style("opacity", 0);
-             //      });
-
-    var donut = svg.selectAll("arc")
-        .data(data_corrected)
-        .enter().append("g")
-        .attr("class", "arc")
-        .attr("id", "arcdonut")
-        .attr("stroke", "black")
-        .style("stroke-width", "1px")
-        .style("opacity", 0.7)
-
-    donut.append("path")
-        .attr("d", arcGenerator2)
-        .style("fill", function(d) { return colors(d.data.key);})
-   donut.append("text")
-         .attr("transform", function(d) { return "translate(" + arcGenerator2.centroid(d) + ")";  })
-         .text(function(d){ return d.data.key + ": " + d.data.value })
-         .style("text-anchor", "middle")
-         .style("font-size", 16)
-
-  // var divsize = d3v5.select("#containerpiechart").node().getBoundingClientRect();
-  // console.log(data_pie)
-  // console.log(data_donut)
-  // var width = divsize.height
-  // var height = divsize.width
-  // var margin = 40
-  //
-  // var radius = Math.min(width, height) / 2 - margin
   //
   // var pie_chart = d3v5.select("#containerpiechart").append("svg")
   //   .attr("class", "pie")
@@ -400,8 +351,12 @@ function newpiechart(data_pie, data_donut){
   };
 
 function newdonut(data_donut){
-    var width = 450
-        height = 450
+
+  var divsize = d3v5.select("#containerpiechart").node().getBoundingClientRect();
+
+
+    var width = divsize.width
+        height = divsize.width
         margin = 40
 
     var radius = Math.min(width, height) / 2 - margin
@@ -414,14 +369,14 @@ function newdonut(data_donut){
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-    var data = data_pie
+    var data = data_donut
 
     var colors = d3v5.scaleOrdinal()
       .domain(["male", "female"])
       .range(["steelblue", "pink"]);
 
   var div = d3v5.select("#containerpiechart").append("div")
-      .attr("class", "tooltipscatter")
+      .attr("class", "tooltippiechart")
       .style("opacity", 0);
 
   // //create tip
@@ -436,7 +391,7 @@ function newdonut(data_donut){
       .value(function(d) {return d.value; })
     var data_corrected = pie(d3v5.entries(data_donut))
     console.log(data_corrected)
-    var arcGenerator = d3v5.arc()
+    var arcGenerator2 = d3v5.arc()
       .innerRadius(125)
       .outerRadius(radius)
 
@@ -450,10 +405,10 @@ function newdonut(data_donut){
 
     donut.append("path")
         .attr("class", "tiloburg")
-        .attr("d", arcGenerator)
+        .attr("d", arcGenerator2)
         .style("fill", function(d) { return colors(d.data.key);})
    donut.append("text")
-         .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+         .attr("transform", function(d) { return "translate(" + arcGenerator2.centroid(d) + ")";  })
          .text(function(d){ return d.data.key + ": " + d.data.value })
          .style("text-anchor", "middle")
          .style("font-size", 16)
