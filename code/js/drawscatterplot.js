@@ -200,40 +200,10 @@ function updatescatterplot(json, year, sex, age){
    svgscatterplot.select("#xaxis")
        .call(d3v5.axisBottom(scalex));
 
-   // // write xaxis label
-   // svgscatterplot.append("text")
-   //     .attr("transform",
-   //     "translate(" + (width) + " ," +
-   //                    (height + 30) + ")")
-   //     .style("text-anchor", "end")
-   //     .text("No of suicides");
-
    // draw yaxis
    svgscatterplot.select("#yaxisleft")
        .call(d3v5.axisLeft(scaley));
 
-   // // write yaxis label
-   // svgscatterplot.append("text")
-   //     .attr("transform", "rotate(-90)")
-   //     .attr("y", -50)
-   //     // .attr("y", 6)
-   //     .attr("dy", "1.5em")
-   //     .style("text-anchor", "end")
-   //     // .attr("font-size", "15px")
-   //     .text("No of suicides per 100K");
-
-  // svgscatterplot.append("text")
-  //     .attr("id", "title")
-  //     .attr("x", (width / 2))
-  //     .attr("y", (margin.bottom / 2))
-  //     .attr("text-anchor", "middle")
-  //     .style("font-size", "18px")
-  //     .style('fill', 'darkOrange')
-  //     .text("Scatterplot: no. of suicides of men and woman per country");
-
-   // var div = d3v5.select("#container7").append("div")
-   //     .attr("class", "tooltipscatter")
-   //     .style("opacity", 0);
    var paletteScale = d3.scale.linear()
            .domain([d3v5.min(datascatter, function(d) { return d.no; }), d3v5.max(datascatter, function(d) { return d.no; })])
            .range(["#99ccff", "#000099"]);

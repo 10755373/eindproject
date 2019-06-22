@@ -30,7 +30,7 @@ function selectedsecondoption(json, country, year){
   if (value == "no"){
     var data_pie = datapienumber(json, country, year, secondgroup)
     var data_donut = datadonutnumber(json, country, year, secondgroup)
-    drawpiechart(data_pie, data_donut, country, value, age)
+    drawpiechart(data_pie, data_donut, country, value, secondgroup)
     var line_no_male = obtaincountrydatamaletotal(json, country, secondgroup)
     var line_no_female = obtaincountrydatafemaletotal(json, country, secondgroup)
     drawlinegraph(line_no_male, line_no_female, country, value, secondgroup)
@@ -38,7 +38,7 @@ function selectedsecondoption(json, country, year){
   else{
     var data_pie = datapieratio(json, country, year, secondgroup)
     var data_donut = datadonutratio(json, country, year, secondgroup)
-    drawpiechart(data_pie, data_donut, country, value, age)
+    drawpiechart(data_pie, data_donut, country, value, secondgroup)
     var line_male_ratio = obtaincountrydatamale100k(json, country, secondgroup)
     var line_female_ratio = obtaincountrydatafemale100k(json, country, secondgroup)
     drawlinegraph(line_male_ratio, line_female_ratio, country, value, secondgroup)

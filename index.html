@@ -19,39 +19,28 @@
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
 				<script src="https://unpkg.com/d3-simple-slider"></script>
 				<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script> -->
-
 				<link rel="stylesheet" href="/code/css/index.css">
 				<link rel="stylesheet" href="/code/css/d3.slider.css">
 				<!-- <link rel="stylesheet" href="d3-simple-slider.js" -->
-
         <script>
           d3v5 = d3;
           window.d3 = null;
         </script>
 				<!-- Import D3 V5 -->
 						<script src="https://d3js.org/d3.v4.min.js"></script>
-
 		        <script>
 		          d3v4 = d3;
 		          window.d3 = null;
 		        </script>
-
         <!-- Import D3 V3 and TopoJSON -->
         <script src="https://d3js.org/d3.v3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-				<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
-
+				<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script
         <script>
           d3v3 = d3;
           window.d3 = null;
         </script>
-				<!-- <link
-			  rel="stylesheet"
-			  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-			  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-			  crossorigin="anonymous"
-			/> -->
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 			crossorigin="anonymous"></link>
@@ -69,8 +58,6 @@
 				<script type="text/javascript" src="/code/js/drawlinegraph.js"></script>
 				<script type="text/javascript" src="/code/js/drawpiechart.js"></script>
 				<script type="text/javascript" src="/code/js/drawscatterplot.js"></script>
-				<!-- <script type="text/javascript" src="/code/js/initializescatter.js"></script> -->
-
 				<div class="pos-f-t">
 				  <div class="collapse" id="navbarToggleExternalContent">
 				    <div class="bg-dark p-4">
@@ -84,151 +71,66 @@
 				    </button>
 				  </nav>
 				</div>
-
 							<!-- Custom fonts for grayscale template -->
 			<!-- <link href="/bootstrap-4.3.1/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
 			<!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
 			<!-- <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'> -->
-
 			<!-- Custom stylesheet for grayscale template -->
 			<!-- <link href="/bootstrap-4.3.1/css/grayscale.css" rel="stylesheet"> -->
-
-
     </head>
-
   <body>
-
-		<div class="wrapper">
-			<form>
-			 gender:
-				<select id="gender">
-						<option value="female"> Female</option>
-						<option value="male"> Male</option>
-				</select>
-				group:
-				<select id="group">
-					<option value="5-14 years"> 5-14 years</option>
-					<option value="15-24 years"> 15-24 years</option>
-					<option value="25-34 years"> 25-34 years</option>
-					<option value="35-54 years years"> 35-54 years</option>
-					<option value="55-74 years">55-74 years</option>
-					<option value="75+ years">75+ years</option>
-				</select>
-		</form>
-	<div class="one" id="titleone"></div>
+	<div class="wrapper">
+	<div class="one" id="titleone">
+		<form>
+		 Gender:
+			<select id="gender">
+					<option value="female"> Female</option>
+					<option value="male"> Male</option>
+			</select>
+			Age between:
+			<select id="group">
+				<option value="5-14 years"> 5-14 years</option>
+				<option value="15-24 years"> 15-24 years</option>
+				<option value="25-34 years"> 25-34 years</option>
+				<option value="35-54 years"> 35-54 years</option>
+				<option value="55-74 years">55-74 years</option>
+				<option value="75+ years">75+ years</option>
+			</select>
+	</form></div>
   <div class="two" id="containermap"></div>
-
   <div class="three" id="containerscatter"></div>
-	<!-- <div class="gridtimeslider" id="gridslider"></div> -->
-
-	<div class="four" id="titletwo"></div>
+	<div class="four" id="titletwo">
+		<form>
+			Type of value:
+			 <select id="interested">
+					 <option value="no"> Number</option>
+					 <option value="ratio"> Ratio</option>
+			 </select>
+			Age between:
+			<select id="secondgroup">
+				<option value="5-14 years"> 5-14 years</option>
+				<option value="15-24 years"> 15-24 years</option>
+				<option value="25-34 years"> 25-34 years</option>
+				<option value="35-54 years"> 35-54 years</option>
+				<option value="55-74 years">55-74 years</option>
+				<option value="75+ years">75+ years</option>
+			</select>
+	</form></div>
 	<div class="align-items-center">
 		<div class="col-sm-2"><p id="value-time"></p></div>
 		<div class="col-sm"><div id="slider-time"></div></div>
 	</div>
   <div class="five" id="containerlinegraph"></div>
-	<form>
-		interested:
-		 <select id="interested">
-				 <option value="no"> Number</option>
-				 <option value="ratio"> Ratio</option>
-		 </select>
-		secondgroup:
-		<select id="secondgroup">
-			<option value="5-14 years"> 5-14 years</option>
-			<option value="15-24 years"> 15-24 years</option>
-			<option value="25-34 years"> 25-34 years</option>
-			<option value="35-54 years"> 35-54 years</option>
-			<option value="55-74 years">55-74 years</option>
-			<option value="75+ years">75+ years</option>
-		</select>
-</form>
 	<div class="six" id="containerpiechart"></div>
-
 </div>
-      <!-- Container for grid -->
 
-        <!-- Container for map -->
-	<!-- <p id="value"></p>
-	<div id="slider"></div> -->
-	<!-- <h2>Time</h2>
-	<div class="row align-items-center">
-		<div class="col-sm-2"><p id="value-time"></p></div>
-		<div class="col-sm"><div id="slider-time"></div></div>
-	</div> -->
-	<!-- <div id="slider"></div>
-	<div id="value"></div> -->
-
-	<!-- Create the radio button -->
-	<!-- <div id="genderbutton">
-	  <input type="radio" name="gender" value="female" checked> Female<br>
-	  <input type="radio" name="gender" value="male"> Male<br>
-	</div> -->
-
-	<!-- <div class="wrapper">
-  <div class="container1">Container1</div>
-  <div class="container7">Container7</div>
-  <div class="three">Three</div>
-	</div> -->
-	<!-- <form>
-	 gender:
-		<select id="gender">
-				<option value="female"> Female</option>
-				<option value="male"> Male</option>
-		</select>
-		group:
-		<select id="group">
-			<option value="5-14 years"> 5-14 years</option>
-			<option value="15-24 years"> 15-24 years</option>
-			<option value="25-34 years"> 25-34 years</option>
-			<option value="35-54 years years"> 35-54 years</option>
-			<option value="55-74 years">55-74 years</option>
-			<option value="75+ years">75+ years</option>
-		</select>
-</form> -->
-  <!-- <div id="container1" style="position: relative; width: 700px; height: 700px; top: 5px;"></div>
-	<div id="container11" style="position: relative;"></div> -->
-
-	<!-- <h2>Year</h2>
-	<div class="row align-items-center">
-		<div class="col-sm-2"><p id="value-time"></p></div>
-		<div class="col-sm"><div id="slider-time"></div></div>
-	</div> -->
-	<div id="container7" style="position: center; width: 700px; height: 700px; top: 5px;"></div>
-
-	<!-- Initialize a select button -->
-	<!-- <p id="menu" class="menuchoice">Select age: <select>
-    <option value="val1">5-14 years</option>
-     <option value="val2">15-24 years</option>
-    <option value="val3">25-34 years</option>
-     <option value="val4">35-54 years</option>
-		 <option value="val5">55-74 years</option>
-		 <option value="val6">75+ years</option>
-    </select> -->
+	<!-- <div id="container7" style="position: center; width: 700px; height: 700px; top: 5px;"></div>
 	<div id="titlelinegraph" style="position: center; width: 600px; height: 80px;"></div>
 	<div id="container2" style="position: center; width: 1000px; height: 800px; top: 5px;"></div>
-	<!-- <form>
-		interested:
-		 <select id="interested">
-				 <option value="no"> Number</option>
-				 <option value="ratio"> Ratio</option>
-		 </select>
-		secondgroup:
-		<select id="secondgroup">
-			<option value="5-14 years"> 5-14 years</option>
-			<option value="15-24 years"> 15-24 years</option>
-			<option value="25-34 years"> 25-34 years</option>
-			<option value="35-54 years"> 35-54 years</option>
-			<option value="55-74 years">55-74 years</option>
-			<option value="75+ years">75+ years</option>
-		</select>
-</form> -->
 	<div id="container3" style="position: center; width: 500px; height: 500px; top: 5px;"></div>
 	<div id="tooltip" style="opacity:0">
-
-
 	<div id="container6" style="position: relative; width: 500px; height: 500px; top: 5px;"></div>
-	<div id="container9" style="position: relative; width: 800px; height: 800px; top: 5px;"></div>
+	<div id="container9" style="position: relative; width: 800px; height: 800px; top: 5px;"></div> -->
 
 
   	<!-- <div class="clear"></div>

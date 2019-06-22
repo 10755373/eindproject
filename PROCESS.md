@@ -48,3 +48,6 @@ Vandaag ben ik voornamelijk bezig geweest met het opschonen van m'n code, het ve
 
 # Day 19
 De ogenschijnlijk kleine problemen bleken vele malen ingewikkelder dan gedacht (en gehoopt) waardoor er visueel gezien enkel de indeling van de pagina veranderd is (door gebruik makend van kolommen en basic bootstrap layout). De piechart en donut beiden vernieuwen zonder deze svg eerst te verwijderen lukt mij niet, wel wanneer ik een van beiden weghaal. Dit heb ik dan ook gedaan, maar het doel is nog steeds om beide grafieken te visualiseren. De labels van de lijnen verschijnen overigens ook nog steeds niet. Morgen een nieuwe dag...
+
+# Day 20
+Vandaag was een prima productieve dag! De lijngrafiek werkt naar behoren en de scatterplot ook. Alle grafieken zijn van een titel voorzien die zich aanpast al naar gelang de gebruiker wenst te zien. Daarnaast werkt de piechart nu (inclusief updaten), maar de donut nog niet. Dit ga ik maandag verder bekijken wanneer een TA ernaast kan zitten aangezien dit mij al veel teveel uren gekost heeft. Bootstrao begin ik nu ook door te krijgen en dit morgen ben k voornemens de gehele dag hiermee aan de slag te gaan.
