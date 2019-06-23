@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Rinus van Grunsven">
+  <meta name="description" content="Programmeerproject 2018-2019 (minor programmeren low-speed)">
+
+  <title>Suicides rate's</title>
+
+  <!-- bootstrap core CSS -->
+  <link href="/startbootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- include stylesheets -->
+  <link rel="stylesheet index" type="text/css" href="/code/css/index.css">
+  <link rel="stylesheet slider" type="text/css" href="/code/css/d3.slider.css">
+
+  <!-- Custom fonts for grayscale template -->
+  <link href="/startbootstrap/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom stylesheet for grayscale template -->
+  <link href="/startbootstrap/css/grayscale.css" rel="stylesheet">
+
+  <!-- include js scripts -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"></link>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+  <script src="https://unpkg.com/d3-simple-slider"></script>
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script> -->
+  <link rel="stylesheet" href="/code/css/index.css">
+  <link rel="stylesheet" href="/code/css/d3.slider.css">
+  <!-- <link rel="stylesheet" href="d3-simple-slider.js" -->
+  <script>
+    d3v5 = d3;
+    window.d3 = null;
+  </script>
+  <!-- Import D3 V5 -->
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+      <script>
+        d3v4 = d3;
+        window.d3 = null;
+      </script>
+  <!-- Import D3 V3 and TopoJSON -->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script
+  <script>
+    d3v3 = d3;
+    window.d3 = null;
+  </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="datamaps.js"></script>
+    <script src="d3-legend.js"></script>
+    <script src="d3-legend.min.js"></script>
+    <script src="d3.legend.js"></script>
+    <script type="text/javascript.js" src="/code/css/d3.slider.css"></script>
+    <script type="text/javascript" src="/code/js/d3.slider.js"></script>
+    <script type="text/javascript" src="/code/js/main.js"></script>
+    <script type="text/javascript" src="/code/js/helpers.js"></script>
+    <script type="text/javascript" src="/code/js/drawworldmap.js"></script>
+    <script type="text/javascript" src="/code/js/nodata.js"></script>
+    <script type="text/javascript" src="/code/js/drawlinegraph.js"></script>
+    <script type="text/javascript" src="/code/js/drawpiechart.js"></script>
+    <script type="text/javascript" src="/code/js/drawscatterplot.js"></script>
+    <script src="scroll-down.js"></script>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation bar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/home.html">Home page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/visuals.html">Visualizations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/links.html">Links to</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/background.html">Background information</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="https://github.com/10755373/eindproject" target="_blank">Link to Github</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- section regarding homepgage -->
+  <header class="masthead">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h1 class="brand-heading">Suicide rate's</h1>
+            <p class="intro-text">Visualizations of suicide rate's for countries throughout the years
+              <br class="intro2-text">Rinus van Grunsven</p>
+            <a href="#information" class="btn btn-circle js-scroll-trigger">
+              <i class="fa fa-angle-double-down animated"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- section regarding background information -->
+     <section id="backgroundinfo" class="content-section text-center">
+       <div class="container">
+         <div class="row">
+           <div class="col-lg-8 mx-auto">
+             <h2>Background information</h2>
+             <p>
+               Many scientists throughout the world have had a look a the suicide reasons, numbers, and rates amongst men and woman in countries worldwide since there are many gender differences with regard to suicides.
+               Several studies concluded that men are likely to die from suicide three times more often than woman whilst other studies found out that the number was vastly increasing for woman and rather decreasing for men. <br><br>
+               Those studies were limited in the sense that they only compared numbers of men and woman for a short period of time (mostly not even a decade) as well as not making a clear distinction in the men/woman-population ratio who're living a country.
+               Therefore, to be able to say something about developments throughout a long period of time and developments between men and woman from different stages in life, new investigation is required.
+               <br><br>
+               My idea for this investigation is a follows: in order to say something about developments throughout time, visualizations are very much needed.
+               Therefore, at the end of this project, three interactive visualizations are shown to the user to provide them with a clear overview so he/she can come to a comprehensive answer.
+               Furthermore, in this way I strive to be able to provide the user with something which enhances his/her perception of the numbers per country, age, and sex.
+             </p>
+           </div>
+         </div>
+       </div>
+     </section>
+
+
+     <!-- Footer -->
+     <footer>
+       <div class="container text-center">
+         <p> Programmeerproject<br>
+             Rinus van Grunsven (10755373)<br>
+             University of Amsterdam
+         </p>
+       </div>
+     </footer>
+
+     <!-- Bootstrap core JavaScript -->
+     <script src="/startbootstrap/vendor/jquery/jquery.min.js"></script>
+     <script src="/startbootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+     <!-- Plugin JavaScript -->
+     <script src="/startbootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+     <!-- Custom scripts for this template -->
+     <script src="/startbootstrap/js/grayscale.min.js"></script>
+
+   </body>
+
+ </html>

@@ -355,3 +355,27 @@ function updatelinegraph(data_male, data_female) {
 
 };
 };
+
+// function labelmale(yearsmale, valuesmale){
+//   var lastvaluemale = [yearsmale.slice(-1)[0], valuesmale.slice(-1)[0]];
+//   list_linegraph_male_total = []
+//   for (let i = 0; i < lastvaluemale.length; i++){
+//       dict = {}
+//       dict["x"] = lastvaluemale[i][0]
+//       dict["y"] = lastvaluemale[i][1]
+//       list_linegraph_male_total.push(dict)
+// }
+//   return list_linegraph_male_total
+//   };
+//
+// function labelfemale(yearsfemale, valuesfemale){
+//   var lastvaluefemale = [yearsfemale.slice(-1)[0], valuesfemale.slice(-1)[0]];
+//   list_linegraph_female_total = []
+//   for (let i = 0; i < lastvaluefemale.length; i++){
+//       dict = {}
+//       dict["x"] = lastvaluefemale[i][0]
+//       dict["y"] = lastvaluefemale[i][1]
+//       list_linegraph_female_total.push(dict)
+// }
+//   return list_linegraph_female_total
+//   };

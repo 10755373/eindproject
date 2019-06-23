@@ -1,3 +1,22 @@
+.masthead {
+ background-image: url(/doc/1558408198316.jpg);
+ background-attachment: fixed;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+
+.brand-heading{
+	color: white;
+}
+.intro-text{
+	color: white;
+	position: left;
+}
+/* .intro2-text{
+	color: white;
+} */
+
 /* * {box-sizing: border-box;}
 .wrapper {
   max-width: 940px;
@@ -57,7 +76,21 @@
    stroke-width: 0;
  }
 
-
+/* https://stackoverflow.com/questions/446060/css-two-divs-next-to-each-other */
+ /* #parent {
+   display: flex;
+ }
+ #container22 {
+   width: 1400px;
+   background: lightblue;
+   /* Just so it's visible */
+ }
+ /* #container33 {
+   flex: 1;
+   /* Grow to rest of container */
+   /* background: lightgreen; */
+   /* Just so it's visible */
+ } */ */
 
  /* .tooltip {
  	background: #eee;
@@ -199,4 +232,20 @@
 }
 #pie{
 	position: absolute;
+}
+
+
+.ct-btn-scroll {
+  width: 49px;
+  height: 49px;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding-top: 500px;
+  z-index: 9;
+  border-radius: 50%;
+  -webkit-transition: background-color 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
 }
