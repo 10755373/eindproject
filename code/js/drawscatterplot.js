@@ -108,36 +108,6 @@ function newscatterplot(json, year, sex, age){
             .duration(500)
             .style("opacity", 0);
             });
-       // .on("mouseover", mouseover)
-       // .on("mousemove", mousemove)
-       // .on("mouseleave", mouseleave)
-       //
-       // // create a tooltip
-       // var Tooltip = d3.select("#container7")
-       //   .append("div")
-       //   .style("opacity", 0)
-       //   .attr("class", "tooltip")
-       //   .style("background-color", "white")
-       //   .style("border", "solid")
-       //   .style("border-width", "2px")
-       //   .style("border-radius", "5px")
-       //   .style("padding", "5px")
-       //
-       //   // Three function that change the tooltip when user hover / move / leave a cell
-       //   var mouseover = function(d) {
-       //     Tooltip
-       //       .style("opacity", 1)
-       //   }
-       //   var mousemove = function(d) {
-       //     Tooltip
-       //       .html("Exact value: " + d.country)
-       //       .style("left", (d3.mouse(this)[0]+70) + "px")
-       //       .style("top", (d3.mouse(this)[1]) + "px")
-       //   }
-       //   var mouseleave = function(d) {
-       //     Tooltip
-       //       .style("opacity", 0)
-       //   }
 
        // gridlines in x axis function
        function make_x_gridlines() {
@@ -179,10 +149,8 @@ function updatescatterplot(json, year, sex, age){
   var svgscatterplot = d3v5.select("#containerscatterplot");
 
   var data = retrievedata_scatter(json, year, sex, age)
-  console.log(data)
 
   datascatter = Object.values(data)
-  console.log(datascatter)
 
    var margin = {top: 20, right: 30, bottom: 40, left: 25};
    var width = divsize.width - margin.left - margin.right;

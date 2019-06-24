@@ -33,7 +33,7 @@ function titlepiechart(country, value, age){
 
   svgtitle.append("text")
       .attr("class", "titlepiechart")
-      .attr("id", "title")
+      .attr("id", "titles")
       .attr("x", width + 40)
       .attr("y", 5)
       .attr("text-anchor", "middle")
@@ -42,7 +42,7 @@ function titlepiechart(country, value, age){
       .text("Piechart for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 }
 
-function updatetitlepiechart(country, sex, age){
+function updatetitlepiechart(country, value, age){
   var svgtitle = d3v5.select("#titlepiechart")
   svgtitle.select("text.titlepiechart")
     .text("Piechart for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
