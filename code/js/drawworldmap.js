@@ -1,6 +1,6 @@
 function drawworldmap(json, year, sex, age){
 
-  if( $('#containermap').is(':empty')){
+  if( $('#containerworldmap').is(':empty')){
     newworldmap(json, year, sex, age)
   }
   else{
@@ -11,7 +11,7 @@ function drawworldmap(json, year, sex, age){
 // draw worldmap
 function newworldmap(json, year, sex, age){
 
-  var container1 = d3v5.select("#containermap").node().getBoundingClientRect();
+  var container1 = d3v5.select("#containerworldmap").node().getBoundingClientRect();
   var width = container1.width
   var height = container1.height
   var dataset = retrievedata_map(json, year, sex, age)
@@ -58,7 +58,7 @@ function newworldmap(json, year, sex, age){
   var sdf = Object.values(dataset)
   console.log(sdf)
   var map = new Datamap({
-      element: document.getElementById('containermap'),
+      element: document.getElementById('containerworldmap'),
       projection: 'mercator', // big world map
       // countries don't listed in dataset will be painted with this color
       fills: { defaultFill: '#ffff99' },
@@ -135,8 +135,8 @@ function updateworldmap(json, year, sex, age){
 
   // var container1 = d3v5.select("#container1").node().getBoundingClientRect();
 
-  d3.select("#containermap").selectAll("*").remove();
-  var container1 = d3v5.select("#containermap").node().getBoundingClientRect();
+  d3.select("#containerworldmap").selectAll("*").remove();
+  var container1 = d3v5.select("#containerworldmap").node().getBoundingClientRect();
   var width = container1.width
   var height = container1.height
   var dataset = retrievedata_map(json, year, sex, age)
@@ -144,7 +144,7 @@ function updateworldmap(json, year, sex, age){
   console.log(dataset)
   // var map = new Datamap({dataset})
   var map = new Datamap({
-      element: document.getElementById('containermap'),
+      element: document.getElementById('containerworldmap'),
       projection: 'mercator', // big world map
       // countries don't listed in dataset will be painted with this color
       fills: { defaultFill: '#ffff99' },

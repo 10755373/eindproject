@@ -154,7 +154,7 @@ function newpiechart(data_pie, country, value, age){
 
   pie.append("text")
        .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-       .text(function(d){ return d.data.key })
+       // .text(function(d){ return d.data.key })
        .style("text-anchor", "middle")
        .style("font-size", 16)
        .on("mouseover", function(d) {
@@ -172,10 +172,10 @@ function newpiechart(data_pie, country, value, age){
             });
 
   pie.append("text")
-      .attr("class", "titlelinegraph")
+      .attr("class", "titlepiechart")
       .attr("id", "title")
       .attr("x", (width / 2))
-      .attr("y", (margin.bottom / 2))
+      .attr("y", (margin.bottom))
       .attr("text-anchor", "middle")
       .style("font-size", "15px")
       .style('fill', 'black')
@@ -388,14 +388,6 @@ function newdonut(data_donut){
       .attr("class", "tooltippiechart")
       .style("opacity", 0);
 
-  // //create tip
-  // var tip = d3v5.tip()
-  //     .attr('class', 'd3-tip')
-  //     .offset([-10, 0])
-  //     .html(function(d) {
-  //       return "<span style='color:orange'>" + d.data.value + "</span> <strong>%</strong>";
-  //       })
-
     var pie = d3v5.pie()
       .value(function(d) {return d.value; })
     var data_corrected = pie(d3v5.entries(data_donut))
@@ -437,7 +429,7 @@ function updatepiechart(data_pie, country, value, age){
 
   // path2.enter().attr("d", arc2Tween).each(function(d) {this._current = a; });
 
-  piesvg.select("text.titlelinegraph")
+  piesvg.select("text.titlepiechart")
     .text("Piechart for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 
 }

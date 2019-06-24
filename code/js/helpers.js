@@ -1,6 +1,6 @@
 function maketimeslider(json, sex, age){
 //
-  if ( $('div#slider-time').is(':empty')){
+  if ( $('#slider-time').is(':empty')){
     newtimeslider(json, sex, age)
   }
   else{
@@ -23,7 +23,7 @@ function maketimeslider(json, sex, age){
       .tickValues(dataTime)
       .default(new Date(1987, 10, 3))
       .on('onchange', val => {
-        d3v5.select('p#value-time').text(d3v5.timeFormat('%Y')(val));
+        d3v5.select('#value-time').text(d3v5.timeFormat('%Y')(val));
         currentyear = val
         d3v5.select('#value').text(d3v5.timeFormat('%Y')(currentyear));
         year = d3v5.timeFormat('%Y')(currentyear)
@@ -39,7 +39,7 @@ function maketimeslider(json, sex, age){
       });
 
     var gTime = d3v5
-      .select('div#slider-time')
+      .select('#slider-time')
       .append('svg')
       .attr('width', 1000)
       .attr('height', 100)
@@ -48,7 +48,7 @@ function maketimeslider(json, sex, age){
 
     gTime.call(sliderTime);
 
-    d3v5.select('p#value-time').text(d3v5.timeFormat('%Y')(sliderTime.value()));
+    d3v5.select('#value-time').text(d3v5.timeFormat('%Y')(sliderTime.value()));
   }
 
   function updatetimeslider(json, sex, age){

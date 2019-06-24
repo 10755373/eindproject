@@ -1,6 +1,6 @@
 function drawscatterplot(json, year, sex, age){
 
-  if( $('#containerscatter').is(':empty')){
+  if( $('#containerscatterplot').is(':empty')){
     newscatterplot(json, year, sex, age)
   }
   else{
@@ -10,7 +10,7 @@ function drawscatterplot(json, year, sex, age){
 
 function newscatterplot(json, year, sex, age){
 
-  var divsize = d3v5.select("#containerscatter").node().getBoundingClientRect();
+  var divsize = d3v5.select("#containerscatterplot").node().getBoundingClientRect();
 
   var data = retrievedata_scatter(json, year, sex, age)
 
@@ -20,7 +20,7 @@ function newscatterplot(json, year, sex, age){
    var width = divsize.width - margin.left - margin.right;
    var height = divsize.height - margin.top - margin.bottom;
 
-   var svgscatterplot = d3v5.select("#containerscatter").append("svg")
+   var svgscatterplot = d3v5.select("#containerscatterplot").append("svg")
                .attr("class", "svgscatterplot")
                .attr("id", "scatterplot")
                .attr("width", width + margin.left + margin.right)
@@ -76,7 +76,7 @@ function newscatterplot(json, year, sex, age){
       .style('fill', 'black')
       .text("Scatterplot regarding suicides amongst " + [sex] + " between " + [age]);
 
-   var div = d3v5.select("#containerscatter").append("div")
+   var div = d3v5.select("#containerscatterplot").append("div")
        .attr("class", "tooltipscatter")
        .style("opacity", 0);
 
@@ -174,9 +174,9 @@ function newscatterplot(json, year, sex, age){
 function updatescatterplot(json, year, sex, age){
   console.log(year)
 
-  var divsize = d3v5.select("#scatterplot").node().getBoundingClientRect();
+  var divsize = d3v5.select("#containerscatterplot").node().getBoundingClientRect();
 
-  var svgscatterplot = d3v5.select("#scatterplot");
+  var svgscatterplot = d3v5.select("#containerscatterplot");
 
   var data = retrievedata_scatter(json, year, sex, age)
   console.log(data)
