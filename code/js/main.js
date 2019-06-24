@@ -20,6 +20,7 @@ function optionselected(json){
   var data_pie = datapienumber(json, "Netherlands", 1987, age)
   var data_donut = datadonutnumber(json, "Netherlands", 1987, age)
   drawpiechart(data_pie, data_donut, "Netherlands", "no", "5-14 years")
+  // newdonut(data_donut)
   // titlepiechart("Netherlands", "no", "5-14 years")
   var line_no_male = obtaincountrydatamaletotal(json, "Netherlands", age)
   var line_no_female = obtaincountrydatafemaletotal(json, "Netherlands", age)
