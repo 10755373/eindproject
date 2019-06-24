@@ -57,7 +57,6 @@ function newworldmap(json, year, sex, age){
   });
   // draw legend for datamap
    map.legend({
-     legendTitle : "No. of suicides",
      defaultFillName: "No data: ",
 
    });
@@ -117,7 +116,6 @@ function updateworldmap(json, year, sex, age){
 })
 // draw legend for datamap
  map.legend({
-   legendTitle : "No. of suicides",
    defaultFillName: "No data: ",
 
  });

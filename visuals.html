@@ -75,7 +75,7 @@
    <script type="text/javascript" src="/code/js/drawpiechart.js"></script>
    <script type="text/javascript" src="/code/js/drawscatterplot.js"></script>
    <script src="scroll-down.js"></script>
-   <script type="text/javascript" src="/titles.js"></script>
+   <script type="text/javascript" src="/code/js/titles.js"></script>
 
 
 </head>
@@ -137,30 +137,19 @@
           <div class="col-lg-8 mx-auto">
             <h2>Information</h2>
             <p>
-              Information page
+              A warm welcome to the visualization page! Here you'll have the opportunity to have a look at them as well as numerous dropdowns and a hover to choose from.
+              By doing this, you're able to see the numbers you're interested in as well as seeing what differences arise when chosing for another value.
               <br><br>
-              Below are the visuals
+              The first two visualizations are meant to compare countries with eachother. The first option you can use is a dropdown which provides you with the posibility to chosse a gender and a certain age-group.
+              After doing this, the map and scatterplot will show you the numbers for the year 1987 (since this year is set as default).
             </p>
-            <!-- <a href="#visualizations" class="btn btn-circle js-scroll-trigger">
-              <i class="fa fa-angle-double-down animated"></i> -->
-<!-- <a class="ct-btn-scroll ct-js-btn-scroll" href="#section2"> -->
-           <!-- <i style="font-size:24px" class="fa">&#xf13a;</i> -->
-           <!-- <a href="#visualizations" class="btn btn-circle js-scroll-trigger">
-           <i class="fa fa-chevron-circle-down" style="font-size:24px"></i> -->
           </div>
         </div>
     </section>
 
 
  <!-- Visualization Section -->
-
  <section id="visualizations" class="download-section text-center">
-   <!-- <div class="container-fluid">
-     <div class="row" id="row1">
-        <div class="col-lg-8 mx-auto">
-          <div id="parent"> -->
-
-
   <!-- container for visualizations -->
   <div class="containervisualizations">
 
@@ -227,7 +216,6 @@
 
             <!-- row for options -->
           <div class="row" id="rowsecondoptions">
-           <div class="four" id="titletwo">
              <form>
                Type of value:
                 <select id="interested">
@@ -243,20 +231,18 @@
                  <option value="55-74 years">55-74 years</option>
                  <option value="75+ years">75+ years</option>
                </select>
-           </form></div>
+           </form>
          </div>
 
-  
+
          <!-- row and column for linegraph and piechart -->
          <div class="row">
             <div class="col">
-              <div class="title3" id="titlelinegraph"></div>
               <div class="five" id="containerlinegraph"></div>
             </div>
 
          <!-- row and column for piechart -->
             <div class="col">
-              <div class="title4" id="titlepiechart"></div>
              <div class="six" id="containerpiechart"></div>
            </div>
          </div>

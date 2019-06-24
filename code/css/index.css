@@ -139,7 +139,7 @@
 	border-radius: 4px;
 	font-size: 20px;
 }
-/* 
+/*
 #tooltip {
         position: absolute;
         width: 200px;
@@ -229,7 +229,7 @@
 #rowsliderid{
 	position: center;
 	width: 550px;
-	height: 450px;
+	height: 200px;
 	margin-top: 5%;
 }
 #rowsecondoptions{
@@ -252,8 +252,8 @@
 }
 #containerlinegraph {
   	position: relative;
-  	width: 550px;
-  	height: 450px;
+  	width: 700px;
+  	height: 600px;
   	margin-left:auto;
   	margin-right: auto;
   	margin-top: 2.5%;
@@ -263,8 +263,8 @@
 }
 #containerpiechart {
   	position: relative;
-  	width: 550px;
-  	height: 450px;
+  	width: 700px;
+  	height: 600px;
   	margin-left:auto;
   	margin-right: auto;
   	margin-top: 2.5%;

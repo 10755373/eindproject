@@ -76,7 +76,7 @@ function newscatterplot(json, year, sex, age){
       .style('fill', 'black')
       .text("Scatterplot regarding suicides amongst " + [sex] + " between " + [age]);
 
-   var div = d3v5.select("#containerscatterplot").append("div")
+   var div = d3v5.select("#gscatterplot").append("div")
        .attr("class", "tooltipscatter")
        .style("opacity", 0);
 

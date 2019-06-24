@@ -23,7 +23,6 @@ function updatetitlelinegraph(country, value, age){
 
 }
 
-
 function titlepiechart(country, value, age){
 
   var divsize = d3v5.select("#titlepiechart").node().getBoundingClientRect();
@@ -33,7 +32,7 @@ function titlepiechart(country, value, age){
 
   svgtitle.append("text")
       .attr("class", "titlepiechart")
-      .attr("id", "titles")
+      .attr("id", "title")
       .attr("x", width + 40)
       .attr("y", 5)
       .attr("text-anchor", "middle")
@@ -48,6 +47,7 @@ function updatetitlepiechart(country, value, age){
     .text("Piechart for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 
 }
+
 
 function titlescatterplot(year, sex, age){
 

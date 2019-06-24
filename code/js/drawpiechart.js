@@ -17,6 +17,17 @@ function newpiedonut(data_pie, data_donut, country, value, age){
   var width = divsize.width - margin.left - margin.right;
   var height = divsize.height - margin.top - margin.bottom;
 
+  var title = d3v5.select("#containerpiechart")
+        .append("text")
+        .attr("class", "titlepiechart")
+        .attr("id", "title")
+        .attr("x", (width / 2))
+        .attr("y", 20)
+        .attr("text-anchor", "middle")
+        .style("font-size", "10px")
+        .style('fill', 'black')
+        .text("Piechart for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
+
   // var radius = Math.min(width, height) / 2 - margin
   // append svg and g
   var svgpiechart = d3v5.select("#containerpiechart").append("svg")
@@ -137,7 +148,8 @@ function updatepiedonut(data_pie, data_donut, country, value, age){
   pathdonut.transition().delay(500).duration(1500).attrTween("d", arc2Tween);
 
 
-  piesvg.select("text.titlepiechart")
+  var title = d3v5.select("#containerpiechart")
+    title.select("text.titlepiechart")
     .text("Piechart for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 
 }
