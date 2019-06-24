@@ -41,7 +41,7 @@ function newpiedonut(data_pie, data_donut, country, value, age){
   // determine colors
   var colors = d3v5.scaleOrdinal()
           .domain(["male", "female"])
-          .range(["steelblue", "pink"]);
+          .range(["steelblue", "#ff55aa"]);
   // append div for tooltip
   var div = d3v5.select("#gpiechart").append("div")
           .attr("class", "tooltippiechart")

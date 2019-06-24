@@ -7,7 +7,9 @@
 }
 
 .brand-heading{
-	color: white;
+	/* color: white; */
+	color: #dfdfdf;
+
 }
 .intro-text{
 	color: white;
@@ -172,9 +174,19 @@
 	top: 100%;
 	left: 0;
 }
-
+#informationsection {
+    width:100%;
+		background-color: #dfdfdf;
+		/* max-width: 1700px; */
+}
 .containervisualizations {
     width:100%;
+		background-color: #dfdfdf;
+		/* max-width: 1700px; */
+}
+.overallcontainer{
+    width:100%;
+		background-color: #dfdfdf;
 		/* max-width: 1700px; */
 }
 .row{

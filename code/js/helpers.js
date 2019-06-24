@@ -43,6 +43,7 @@ function maketimeslider(json, sex, age){
       .append('svg')
       .attr('width', 1000)
       .attr('height', 100)
+      .attr("stroke", "black")
       .append('g')
       .attr('transform', 'translate(30,30)');
 
@@ -120,7 +121,8 @@ function retrievedata_map(json, currentyear, sex, age){
 
   var paletteScale = d3v5.scaleSequential()
       .domain([minValue, maxValue])
-      .interpolator(d3v5.interpolateBlues);
+      // .range(["#b3b3ff", "#000066"]);
+      .interpolator(d3v5.interpolatePuRd);
 
   var data_set = {}
   for (let i = 0; i < list_values.length; i++){
@@ -144,7 +146,7 @@ function drawlegend(dataset) {
   var minValue = Math.min(... onlyvalues),
           maxValue = Math.max(... onlyvalues);
 
-    colors = d3v5.scaleSequential(d3v5.interpolateBlues).domain([0, 500])
+    colors = d3v5.scaleSequential(d3v5.interpolatePuRd).domain([0, 500])
 
     var width = 500, height = 160;
     var svglegend = d3v5.select("#containerworldmap")

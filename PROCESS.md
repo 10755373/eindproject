@@ -54,3 +54,6 @@ Vandaag was een prima productieve dag! De lijngrafiek werkt naar behoren en de s
 
 # Day 21
 Na uren zwoegen en ploegen is het gelukt om de website visueel in te richten zoals ik het voor ogen heb. Nu dit achter de rug is ga ik morgen verder met het optimaliseren van de grafieken, update-codes en het plaatsen van legenda's en titels op de juiste plekken.
+
+# Day 22
+Het begint zowaar ergens op te lijken! De grafieken werken naar behoren (inclusief de dropdowns en hover) en nu is het zaak de labels en titels op de juiste plek te zetten inclusief aan te laten passen. Echter, de tooltips voor de scaterplot en piechart functioneren niet meer nadat ik aan de slag ben gegaan dus daar ga ik morgen aan werken. De lay-out van de website zelf ziet er overigens uit zoals ik voor ogen heb. Daarnaast heb ik vandaag een eerste begin gemaakt aan het opschonen van de code want dat bleek een grote bende te zijn. Nog twee dagen de puntjes op de i zetten en ik denk dat er dan een mooi eindresultaat uit komt!

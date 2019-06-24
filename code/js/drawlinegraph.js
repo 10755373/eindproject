@@ -155,7 +155,7 @@ function newlinegraph(data_male, data_female, country, value, age){
           .attr("class", "femaleline")
           .attr("d", valueline)
           .attr("stroke", function(d) { return d.x})
-          .attr("stroke", "pink")
+          .attr("stroke", "#ff55aa")
           .attr("stroke-width", "2px")
           .attr("fill", "none")
           .on("mouseover", function(d) {

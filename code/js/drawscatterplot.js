@@ -10,6 +10,17 @@ function drawscatterplot(json, year, sex, age){
 
 function newscatterplot(json, year, sex, age){
 
+  var title = d3v5.select("#containerscatterplot")
+        .append("text")
+        .attr("class", "titlescatterplot")
+        .attr("id", "title")
+        .attr("x", (width / 2))
+        .attr("y", 20)
+        .attr("text-anchor", "middle")
+        .style("font-size", "10px")
+        .style('fill', 'black')
+        .text("Scatterplot regarding suicides amongst " + [sex] + " between " + [age] + " in " + [year]);
+
   var divsize = d3v5.select("#containerscatterplot").node().getBoundingClientRect();
 
   var data = retrievedata_scatter(json, year, sex, age)
@@ -65,16 +76,6 @@ function newscatterplot(json, year, sex, age){
        .style("text-anchor", "end")
        // .attr("font-size", "15px")
        .text("Suicides per 100K");
-
-  svgscatterplot.append("text")
-      .attr("class", "titlescatterplot")
-      .attr("id", "title")
-      .attr("x", (width / 2))
-      .attr("y", (margin.bottom / 2))
-      .attr("text-anchor", "middle")
-      .style("font-size", "15px")
-      .style('fill', 'black')
-      .text("Scatterplot regarding suicides amongst " + [sex] + " between " + [age]);
 
    var div = d3v5.select("#gscatterplot").append("div")
        .attr("class", "tooltipscatter")
@@ -188,7 +189,8 @@ function updatescatterplot(json, year, sex, age){
        .attr('stroke','black')
        .attr('stroke-width',1)
 
- svgscatterplot.select("text.titlescatterplot")
-     .text("Scatterplot regarding suicides amongst " + [sex] + " between " + [age]);
+ var title = d3v5.select("#containerscatterplot")
+   title.select("text.titlescatterplot")
+   .text("Scatterplot regarding suicides amongst " + [sex] + " between " + [age] + " in " + [year]);
 
 };
