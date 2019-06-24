@@ -76,6 +76,7 @@ function maketimeslider(json, sex, age){
         year = d3v5.timeFormat('%Y')(currentyear)
         updateworldmap(json, year, sex, age)
         drawscatterplot(json, year, sex, age)
+        updatetitlescatterplot(year, sex, age)
         // var datamale = scattermaletest(json)
         // var datafemale = scatterfemaletest(json)
         // var merged = mergetest(datamale, datafemale)
@@ -196,7 +197,7 @@ function drawlegend(dataset) {
     colors = d3v5.scaleSequential(d3v5.interpolateBlues).domain([0, 500])
 
     var width = 500, height = 160;
-    var svglegend = d3v5.select("#containermap")
+    var svglegend = d3v5.select("#containerworldmap")
       .append("svg")
       .attr("id", "gradientlegend")
       .attr("width", width)

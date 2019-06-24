@@ -116,14 +116,14 @@ function newworldmap(json, year, sex, age){
 
    });
    // add title
-  map.svg.append('text')
-         .attr("x", (width / 2))
-         .attr("y", 50)
-         .attr("text-anchor", "middle")
-         .style("font-size", "20px")
-         .style("fill", "black")
-         // .style("font-family", "Palatino")
-         .text("No of suicides per country in year: " + year);
+  // map.svg.append('text')
+  //        .attr("x", (width / 2))
+  //        .attr("y", 50)
+  //        .attr("text-anchor", "middle")
+  //        .style("font-size", "10px")
+  //        .style("fill", "black")
+  //        // .style("font-family", "Palatino")
+  //        .text("No of suicides per country in year: " + year);
    // makelegend(dataset)
    drawlegend(dataset)
 
@@ -213,14 +213,14 @@ function updateworldmap(json, year, sex, age){
 
  });
  // add title
-map.svg.append('text')
-       .attr("x", (width / 2))
-       .attr("y", 50)
-       .attr("text-anchor", "middle")
-       .style("font-size", "20px")
-       .style("fill", "black")
-       // .style("font-family", "Palatino")
-       .text("No of suicides per country in year: " + year);
+// map.svg.append('text')
+//        .attr("x", (width / 2))
+//        .attr("y", 50)
+//        .attr("text-anchor", "middle")
+//        .style("font-size", "10px")
+//        .style("fill", "black")
+//        // .style("font-family", "Palatino")
+//        .text("No of suicides per country in year: " + year);
    // makelegend(dataset)
    drawlegend(dataset)
 };

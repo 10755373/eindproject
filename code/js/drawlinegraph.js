@@ -24,7 +24,7 @@ function newlinegraph(data_male, data_female, country, value, age){
 
     console.log(data_male)
 
-    var margin = {top: 30, right: 20, bottom: 30, left: 20};
+    var margin = {top: 20, right: 10, bottom: 20, left: 30};
 
     var divsize = d3v5.select("#containerlinegraph").node().getBoundingClientRect();
 
@@ -175,49 +175,6 @@ function newlinegraph(data_male, data_female, country, value, age){
                 .style("cursor", "none");
               });
 
-
-    // svg_linegraph_container.selectAll("circle-male")
-    //         .data([data_male]).enter()
-    //         .append("g")
-    //         .style("fill", "steelblue")
-    //         .selectAll("circle")
-    //         .data([data_male]).enter()
-    //         .append("g")
-    //         .attr("class", "circle")
-    //         .on("mouseover", function(d) {
-    //             d3v5.select(this)
-    //               .style("cursor", "pointer")
-    //               .append("text")
-    //               .attr("class", "text")
-    //               // .text(`${d.price}`)
-    //               .attr("x", d => x(d.x) + 5)
-    //               .attr("y", d => y(d.y) - 10);
-    //           })
-    //         .on("mouseout", function(d) {
-    //             d3v5.select(this)
-    //               .style("cursor", "none")
-    //               .transition()
-    //               .duration(duration)
-    //               .selectAll(".text").remove();
-    //           })
-    //         .append("circle")
-    //         .attr("cx", d => x(d.x))
-    //         .attr("cy", d => y(d.y))
-    //         .attr("r", circleRadius)
-    //         .style('opacity', circleOpacity)
-    //         .on("mouseover", function(d) {
-    //               d3v5.select(this)
-    //                 .transition()
-    //                 .duration(duration)
-    //                 .attr("r", circleRadiusHover);
-    //             })
-    //           .on("mouseout", function(d) {
-    //               d3v5.select(this)
-    //                 .transition()
-    //                 .duration(duration)
-    //                 .attr("r", circleRadius);
-    //             });
-
     // draw xaxis
     svg_linegraph_container.append("g")
         .attr("id", "xaxis")
@@ -237,11 +194,11 @@ function newlinegraph(data_male, data_female, country, value, age){
     // write yaxis label
     svg_linegraph_container.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
+        .attr("y", 5)
         // .attr("y", 6)
         .attr("dy", "1.5em")
         .style("text-anchor", "end")
-        // .attr("font-size", "15px")
+        .attr("font-size", "10px")
         .text("No of suicides");
 
     // gridlines in x axis function
@@ -277,9 +234,9 @@ function newlinegraph(data_male, data_female, country, value, age){
       .attr("class", "titlelinegraph")
       .attr("id", "title")
       .attr("x", (width / 2))
-      .attr("y", (margin.bottom / 2))
+      .attr("y", 5)
       .attr("text-anchor", "middle")
-      .style("font-size", "15px")
+      .style("font-size", "10px")
       .style('fill', 'black')
       .text("Linegraph for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 
