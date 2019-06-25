@@ -19,6 +19,7 @@ function newscatterplot(json, year, sex, age){
         .attr("text-anchor", "middle")
         .style("font-size", "10px")
         .style('fill', 'black')
+        .style("text-decoration", "underline")
         .text("Scatterplot regarding suicides amongst " + [sex] + " between " + [age] + " in " + [year]);
 
   var divsize = d3v5.select("#containerscatterplot").node().getBoundingClientRect();
@@ -27,7 +28,7 @@ function newscatterplot(json, year, sex, age){
 
   datascatter = Object.values(data)
 
-   var margin = {top: 20, right: 30, bottom: 40, left: 25};
+   var margin = {top: 20, right: 10, bottom: 40, left: 25};
    var width = divsize.width - margin.left - margin.right;
    var height = divsize.height - margin.top - margin.bottom;
 
@@ -61,6 +62,7 @@ function newscatterplot(json, year, sex, age){
        "translate(" + (width - 10) + " ," +
                       (height) + ")")
        .style("text-anchor", "end")
+       .attr("font-size", "10px")
        .text("Suicides no");
 
    // draw yaxis
@@ -74,16 +76,30 @@ function newscatterplot(json, year, sex, age){
        // .attr("y", 6)
        .attr("dy", "1.5em")
        .style("text-anchor", "end")
-       // .attr("font-size", "15px")
+       .attr("font-size", "10px")
        .text("Suicides per 100K");
 
-   var div = d3v5.select("#gscatterplot").append("div")
+   var div = d3v5.select("#gscatterplot").append("text")
        .attr("class", "tooltipscatter")
        .style("opacity", 0);
 
-   var paletteScale = d3.scale.linear()
-           .domain([d3v5.min(datascatter, function(d) { return d.no; }), d3v5.max(datascatter, function(d) { return d.no; })])
-           .range(["#99ccff", "#000099"]);
+    if (sex == "female"){
+    var paletteScale = d3v5.scaleSequential()
+        // .domain([minValue, maxValue])
+        // .range(["#b3b3ff", "#000066"]);
+        .interpolator(d3v5.interpolatePuRd);
+    }
+    else{
+      var paletteScale = d3v5.scaleSequential()
+          // .domain([minValue, maxValue])
+          // .range(["#b3b3ff", "#000066"]);
+          .interpolator(d3v5.interpolateBlues);
+    }
+    var paletteScale = paletteScale.domain([d3v5.min(datascatter, function(d) { return d.ratio; }), d3v5.max(datascatter, function(d) { return d.ratio; })])
+
+   // var paletteScale = d3.scale.linear()
+   //         .domain([d3v5.min(datascatter, function(d) { return d.no; }), d3v5.max(datascatter, function(d) { return d.no; })])
+   //         .range(["#99ccff", "#000099"]);
 
  // Circles
    var circles = svgscatterplot.selectAll('circle')
@@ -93,7 +109,7 @@ function newscatterplot(json, year, sex, age){
        .attr('cx',function (d) { return scalex(d.no) })
        .attr('cy',function (d) { return scaley(d.ratio) })
        .attr('r','3')
-       .style("fill", function (d) { return paletteScale(d.no) })
+       .style("fill", function (d) { return paletteScale(d.ratio) })
        .attr('stroke','black')
        .attr('stroke-width',1)
        .on("mouseover", function(d) {
@@ -101,8 +117,10 @@ function newscatterplot(json, year, sex, age){
             .duration(200)
             .style("opacity", .9);
         div .html(d.country + "<br/>")
-            .style("left", (d3v5.event.pageX + 15) + "px")
-            .style("top", (d3v5.event.pageY - 20) + "px");
+          .attr("x", function () { return scalex(d.no + 1)})
+          .attr("y", function () { return scaley(d.ratio) - 10});
+            // .style("left", (d3v5.event.pageX + 15) + "px")
+            // .style("top", (d3v5.event.pageY - 20) + "px");
         })
         .on("mouseout", function(d) {
         div.transition()
@@ -143,7 +161,6 @@ function newscatterplot(json, year, sex, age){
 };
 
 function updatescatterplot(json, year, sex, age){
-  console.log(year)
 
   var divsize = d3v5.select("#containerscatterplot").node().getBoundingClientRect();
 
@@ -167,24 +184,38 @@ function updatescatterplot(json, year, sex, age){
 
    // draw xaxis
    svgscatterplot.select("#xaxis")
+      .transition().duration(300)
        .call(d3v5.axisBottom(scalex));
 
    // draw yaxis
    svgscatterplot.select("#yaxisleft")
+      .transition().duration(300)
        .call(d3v5.axisLeft(scaley));
 
-   var paletteScale = d3.scale.linear()
-           .domain([d3v5.min(datascatter, function(d) { return d.no; }), d3v5.max(datascatter, function(d) { return d.no; })])
-           .range(["#99ccff", "#000099"]);
-
+   // var paletteScale = d3.scale.linear()
+   //         .domain([d3v5.min(datascatter, function(d) { return d.no; }), d3v5.max(datascatter, function(d) { return d.no; })])
+   //         .range(["#99ccff", "#000099"]);
+   if (sex == "female"){
+   var paletteScale = d3v5.scaleSequential()
+       // .domain([minValue, maxValue])
+       // .range(["#b3b3ff", "#000066"]);
+       .interpolator(d3v5.interpolatePuRd);
+   }
+   else{
+     var paletteScale = d3v5.scaleSequential()
+         // .domain([minValue, maxValue])
+         // .range(["#b3b3ff", "#000066"]);
+         .interpolator(d3v5.interpolateBlues);
+   }
+   var paletteScale = paletteScale.domain([d3v5.min(datascatter, function(d) { return d.ratio; }), d3v5.max(datascatter, function(d) { return d.ratio; })])
  // Circles
    var circles = svgscatterplot.selectAll('circle')
        .data(datascatter)
        .transition()
-       .duration(200)
+       .duration(300)
        .attr('cx',function (d) { return scalex(d.no) })
        .attr('cy',function (d) { return scaley(d.ratio) })
-       .style("fill", function (d) { return paletteScale(d.no) })
+       .style("fill", function (d) { return paletteScale(d.ratio) })
        .attr('r','3')
        .attr('stroke','black')
        .attr('stroke-width',1)

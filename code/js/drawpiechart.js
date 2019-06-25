@@ -26,6 +26,7 @@ function newpiedonut(data_pie, data_donut, country, value, age){
         .attr("text-anchor", "middle")
         .style("font-size", "10px")
         .style('fill', 'black')
+        .style("text-decoration", "underline")
         .text("Piechart for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 
   // var radius = Math.min(width, height) / 2 - margin
@@ -42,10 +43,27 @@ function newpiedonut(data_pie, data_donut, country, value, age){
   var colors = d3v5.scaleOrdinal()
           .domain(["male", "female"])
           .range(["steelblue", "#ff55aa"]);
+
   // append div for tooltip
-  var div = d3v5.select("#gpiechart").append("div")
+  var div = d3v5.select("body").append("div")
           .attr("class", "tooltippiechart")
           .style("opacity", 0);
+
+// var tooltip = d3.tip()
+//                 .attr("class", "d3-tip")
+//                 .html(function(d){
+//                   key = d.data.key
+//                   value = d.data.value
+//                   return key + "; " + value
+//                 })
+//   svgpiechart.call(tooltip)
+
+  // var tool_tip = d3.tip()
+  // .attr("class", "d3-tip")
+  // .offset([-8, 0])
+  // .html(function(d) { return "Radius: " + d; });
+  // svgpiechart.call(tool_tip);
+
   // determine values
   var pie = d3v5.pie()
           .value(function(d) {return d.value; })
@@ -80,6 +98,22 @@ function newpiedonut(data_pie, data_donut, country, value, age){
       .attr("class", "classpath")
      .attr("d", arcGenerator)
      .style("fill", function(d) { return colors(d.data.key);})
+     .on("mouseover", function(d) {
+       console.log("hi")
+      div.transition()
+          .duration(200)
+          .style("opacity", .9);
+      div .html(d.data.value + "<br/>")
+          // .attr("x", function () { return scalex(d.no + 1)})
+          // .attr("y", function () { return scaley(d.ratio) - 10});
+          .style("left", (d3v5.event.pageX + 15) + "px")
+          .style("top", (d3v5.event.pageY - 20) + "px");
+      })
+      .on("mouseout", function(d) {
+      div.transition()
+          .duration(200)
+          .style("opacity", 0);
+          });
 // append tooltip to piechart
  pie.append("text")
       .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
@@ -91,8 +125,10 @@ function newpiedonut(data_pie, data_donut, country, value, age){
            .duration(200)
            .style("opacity", .9);
        div .html(d.data.value + "<br/>")
-           .style("left", (d3v5.event.pageX + 15) + "px")
-           .style("top", (d3v5.event.pageY - 20) + "px");
+           // .attr("x", function () { return scalex(d.no + 1)})
+           // .attr("y", function () { return scaley(d.ratio) - 10});
+           .attr("x", (d3v5.event.pageX + 15) + "px")
+           .attr("y", (d3v5.event.pageY - 20) + "px");
        })
        .on("mouseout", function(d) {
        div.transition()

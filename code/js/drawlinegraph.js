@@ -31,9 +31,10 @@ function newlinegraph(data_male, data_female, country, value, age){
           .attr("text-anchor", "middle")
           .style("font-size", "10px")
           .style('fill', 'black')
+          .style("text-decoration", "underline")
           .text("Linegraph for " + [country] + " which shows " + [value] + " of suicides between " + [age]);
 
-    var margin = {top: 20, right: 10, bottom: 60, left: 40};
+    var margin = {top: 30, right: 20, bottom: 30, left: 60};
 
     var divsize = d3v5.select("#containerlinegraph").node().getBoundingClientRect();
 
@@ -142,7 +143,7 @@ function newlinegraph(data_male, data_female, country, value, age){
           .on("mouseover", function(i) {
           svg_linegraph_container.append("text")
           .attr("class", "title-text")
-          .style("fill", "pink")
+          .style("fill", "#ff55aa")
           .text("Female")
           .attr("text-anchor", "middle")
           .attr("x", width/2)
@@ -198,14 +199,14 @@ function newlinegraph(data_male, data_female, country, value, age){
     // write yaxis label
     svg_linegraph_container.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 5)
+        .attr("y", -5)
         // .attr("y", 6)
         .attr("dy", "1.5em")
         .attr("id", "labelyaxis")
         .style("text-anchor", "end")
         .attr("font-size", "10px")
         .text([value] + " of suicides");
-
+console.log(d3.select("#xaxis"));
     // gridlines in x axis function
     function make_x_gridlines() {
         return d3v5.axisBottom(x)
@@ -239,9 +240,9 @@ function newlinegraph(data_male, data_female, country, value, age){
 
 function updatelinegraph(data_male, data_female) {
 
-    var margin = {top: 30, right: 20, bottom: 30, left: 20};
+    var margin = {top: 30, right: 20, bottom: 30, left: 60};
 
-    var divsize = d3v5.select("#svglinegraph").node().getBoundingClientRect();
+    var divsize = d3v5.select("#containerlinegraph").node().getBoundingClientRect();
 
     var parseTime = d3v5.timeParse("%Y")
 
@@ -283,23 +284,21 @@ function updatelinegraph(data_male, data_female) {
       y.domain([0, d3v5.max(data_female, function(d) { return d.y; })]);
     }
 
-    var svg_linegraph_container = d3v5.select("#svglinegraph");
+    var svg_linegraph_container = d3v5.select("#svg_linegraph_container");
 
-    var lastvaluemale = [yearsmale.slice(-1)[0], valuesmale.slice(-1)[0]];
-
-    svg_linegraph_container.select(".maleline")
+    svg_linegraph_container.select(".maleline").transition().duration(1000)
         .attr("d", valueline(data_male))
 
-    svg_linegraph_container.select(".femaleline")
+    svg_linegraph_container.select(".femaleline").transition().duration(1000)
         .attr("d", valueline(data_female))
-
+        console.log(d3.select("#xaxis"));
     svg_linegraph_container.select("#xaxis")
         .call(d3v5.axisBottom(x));
 
-    svg_linegraph_container.select("#yaxisleft")
+    svg_linegraph_container.select("#yaxisleft").transition().duration(1000)
         .call(d3v5.axisLeft(y));
 
-    svg_linegraph_container.select("#labelyaxis")
+    svg_linegraph_container.select("#labelyaxis").transition().duration(1000)
         .text([value] + " of suicides")
 
   var title = d3v5.select("#containerlinegraph")

@@ -133,14 +133,34 @@
 
 
 
-.d3-tip {
+/* .d3-tip {
 	line-height: 1;
 	padding: 6px;
-	background: rgb(0, 0, 0);
+	background: rgba(0, 0, 0, 0.8);
 	color: #fff;
 	border-radius: 4px;
-	font-size: 20px;
-}
+	font-size: 12px;
+} */
+
+/* Creates a small triangle extender for the tooltip */
+/* .d3-tip:after {
+	box-sizing: border-box;
+	display: inline;
+	font-size: 10px;
+	width: 100%;
+	line-height: 1;
+	color: rgba(0, 0, 0, 0.8);
+	content: "\25BC";
+	position: absolute;
+	text-align: center;
+} */
+
+/* Style northward tooltips specifically */
+/* .d3-tip.n:after {
+	margin: -2px 0 0 0;
+	top: 100%;
+	left: 0;
+} */
 /*
 #tooltip {
         position: absolute;
@@ -174,20 +194,14 @@
 	top: 100%;
 	left: 0;
 }
-#informationsection {
-    width:100%;
-		background-color: #dfdfdf;
-		/* max-width: 1700px; */
-}
-.containervisualizations {
-    width:100%;
-		background-color: #dfdfdf;
-		/* max-width: 1700px; */
-}
-.overallcontainer{
-    width:100%;
-		background-color: #dfdfdf;
-		/* max-width: 1700px; */
+
+.overallcontainer
+{width:100%;
+background-color: #dfdfdf;}
+
+.mainNav{
+	width:100%;
+	background-color: #dfdfdf;
 }
 .row{
     width:100%;
@@ -216,8 +230,8 @@
 }
 #containerworldmap {
   	position: relative;
-  	width: 550px;
-  	height: 450px;
+  	width: 700px;
+  	height: 600px;
   	margin-left: auto;
   	margin-right: auto;
   	margin-top: 2.5%;
@@ -228,8 +242,8 @@
 
 #containerscatterplot {
   	position: relative;
-  	width: 550px;
-  	height: 450px;
+  	width: 700px;
+  	height: 600px;
   	margin-left: 10px;
   	margin-right: auto;
   	margin-top: 2.5%;
@@ -240,12 +254,14 @@
 }
 #rowsliderid{
 	position: center;
+	text-align:center;
 	width: 550px;
-	height: 200px;
-	margin-top: 5%;
+	height: 80px;
+	margin-top: 15%;
 }
 #rowsecondoptions{
 	position: center;
+	text-align:center;
 	width: 550px;
 	height: 50px;
 	margin-top: 5%;
@@ -264,7 +280,7 @@
 }
 #containerlinegraph {
   	position: relative;
-  	width: 700px;
+  	width: 900px;
   	height: 600px;
   	margin-left:auto;
   	margin-right: auto;

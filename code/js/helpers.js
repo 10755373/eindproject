@@ -43,7 +43,8 @@ function maketimeslider(json, sex, age){
       .append('svg')
       .attr('width', 1000)
       .attr('height', 100)
-      .attr("stroke", "black")
+      // .style("font-size", "12px")
+      // .style('fill', 'black')
       .append('g')
       .attr('transform', 'translate(30,30)');
 
@@ -99,6 +100,7 @@ function maketimeslider(json, sex, age){
 function retrievedata_map(json, currentyear, sex, age){
   data = Object.values(json)
   list_values = []
+  if (sex == "female"){
   for (let i = 0; i < data.length; i++){
     if (data[i].year == currentyear && data[i].sex == sex && data[i].age == age){
       list = []
@@ -106,7 +108,6 @@ function retrievedata_map(json, currentyear, sex, age){
       list_values.push(list)
     }
   }
-
   var onlyValues = []
   for (let i = 0; i < list_values.length; i++){
     onlyValues.push(list_values[i][1])
@@ -114,10 +115,6 @@ function retrievedata_map(json, currentyear, sex, age){
 
   var minValue = Math.min(... onlyValues),
           maxValue = Math.max(... onlyValues);
-
-  // var paletteScale = d3v5.scaleLinear()
-  //         .domain([minValue,maxValue])
-  //         .range(["#99ccff", "#000099"]); // blue color
 
   var paletteScale = d3v5.scaleSequential()
       .domain([minValue, maxValue])
@@ -133,9 +130,42 @@ function retrievedata_map(json, currentyear, sex, age){
     data_set[land] = dict
   }
   return data_set
+}
+else{
+  for (let i = 0; i < data.length; i++){
+    if (data[i].year == currentyear && data[i].sex == sex && data[i].age == age){
+      list = []
+      list.push(data[i].alpha_code, data[i].suicides_no)
+      list_values.push(list)
+    }
+  }
+  var onlyValues = []
+  for (let i = 0; i < list_values.length; i++){
+    onlyValues.push(list_values[i][1])
+  }
+
+  var minValue = Math.min(... onlyValues),
+          maxValue = Math.max(... onlyValues);
+
+  var paletteScale = d3v5.scaleSequential()
+      .domain([minValue, maxValue])
+      // .range(["#b3b3ff", "#000066"]);
+      .interpolator(d3v5.interpolateBlues);
+
+  var data_set = {}
+  for (let i = 0; i < list_values.length; i++){
+    dict = {}
+    dict["numberOfThings"] = list_values[i][1]
+    dict["fillColor"] = paletteScale(list_values[i][1])
+    land = list_values[i][0]
+    data_set[land] = dict
+  }
+  return data_set
+}
+
 };
 
-function drawlegend(dataset) {
+function drawlegend(dataset, sex) {
 
   var data = Object.values(dataset)
   onlyvalues = []
@@ -146,39 +176,40 @@ function drawlegend(dataset) {
   var minValue = Math.min(... onlyvalues),
           maxValue = Math.max(... onlyvalues);
 
-    colors = d3v5.scaleSequential(d3v5.interpolatePuRd).domain([0, 500])
 
-    var width = 500, height = 160;
+    var width = 500, height = 100;
     var svglegend = d3v5.select("#containerworldmap")
       .append("svg")
       .attr("id", "gradientlegend")
       .attr("width", width)
       .attr("height", height);
-      //
-      // key.append("text")
-      //         .attr("x", (w / 2))
-      //         .attr("y", h / 2.5 )
-      //         .attr("text-anchor", "middle")
-      //         .style("font-size", "20px")
-      //         //.style("text-decoration", "underline")
-      //         .style("font-style", "bold")
-      //         .text("No of suicides");
 
     var legend = svglegend.append("defs")
       .append("svg:linearGradient")
       .attr("id", "gradient");
 
+    if (sex == "female"){
+    colors = d3v5.scaleSequential(d3v5.interpolatePuRd).domain([0, 500])
     legend.selectAll("stop")
         .data(colors.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: colors(t) })))
         .enter().append("stop")
         .attr("offset", d => d.offset)
         .attr("stop-color", d => d.color);
+      }
+    else{
+      colors = d3v5.scaleSequential(d3v5.interpolateBlues).domain([0, 500])
 
+      legend.selectAll("stop")
+          .data(colors.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: colors(t) })))
+          .enter().append("stop")
+          .attr("offset", d => d.offset)
+          .attr("stop-color", d => d.color);
+    }
     svglegend.append("rect")
       .attr("width", width)
-      .attr("height", height - 130)
+      .attr("height", (height + 20))
       .style("fill", "url(#gradient)")
-      .attr("transform", "translate(0,100)");
+      .attr("transform", "translate(30,40)");
 
     var y = d3v5.scaleLinear()
       .range([500, 0])
@@ -188,7 +219,7 @@ function drawlegend(dataset) {
       .ticks(10);
     svglegend.append("g")
       .attr("class", "y axis")
-      .attr("transform", "translate(0,130)")
+      .attr("transform", "translate(10,70)")
       .call(axisy)
       .append("text")
       .attr("transform", "rotate(-90)")
@@ -196,6 +227,15 @@ function drawlegend(dataset) {
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("axis title");
+
+  svglegend.append("text")
+          .attr("x", (width / 2))
+          .attr("y", (height / 3) )
+          .attr("text-anchor", "middle")
+          .style("font-size", "15px")
+          .style("text-decoration", "underline")
+          .style("font-style", "bold")
+          .text("Color gradient legend based on the no of suicides");
 }
 
 

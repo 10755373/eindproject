@@ -75,7 +75,7 @@
    <script type="text/javascript" src="/code/js/drawpiechart.js"></script>
    <script type="text/javascript" src="/code/js/drawscatterplot.js"></script>
    <script src="scroll-down.js"></script>
-   <script type="text/javascript" src="/code/js/titles.js"></script>
+   <script type="text/javascript" src="/d3-tip.js"></script>
 
 
 </head>
@@ -155,7 +155,7 @@
   <div class="containervisualizations">
 
             <!-- row for options -->
-           <div class="row" id="rowfirstoptions">
+           <div class="col-6 col-md-4" id="rowfirstoptions">
                <div class="one" id="titleone">
                  <form>
                   Gender:
@@ -188,12 +188,11 @@
             </div>
 
           <!-- row for slider -->
-          <div class="row">
-              <div class="align-items-center" id="rowsliderid">
-                <div class="col-sm-2"><p id="value-time"></p></div>
-                <div class="col-sm"><div id="slider-time"></div></div>
+          <div class="row justify-content-end" id="rowsliderid">
+                <div class="col-2"><p id="value-time"></p></div>
+                <div class="col-4"><div id="slider-time"></div></div>
               </div>
-          </div>
+
 
              <!-- Button with pop up text -->
              <!-- <button type="button" id="infoButton" class="btn btn-secondary">Extra Information</button>
