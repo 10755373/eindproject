@@ -141,7 +141,7 @@
               A warm welcome to the visualization page! Here you'll have the opportunity to have a look at them as well as numerous dropdowns and a hover to choose from.
               By doing this, you're able to see the numbers you're interested in as well as seeing what differences arise when chosing for another value.
               <br><br>
-              The first two visualizations are meant to compare countries with eachother. The first option you can use is a dropdown which provides you with the posibility to chosse a gender and a certain age-group.
+              The first two visualizations are meant to compare countries with eachother based on the values you choose with the two dropdowns above those visuals. The first one is regarding the gender and the second one regarding a certain age group.
               After doing this, the map and scatterplot will show you the numbers for the year 1987 (since this year is set as default).
             </p>
           </div>
@@ -213,7 +213,7 @@
              </div> -->
 
             <!-- row for options -->
-          <div class="row" id="rowsecondoptions">
+            <div class="col-6 col-md-4" id="rowfirstoptions">
              <form>
                Type of value:
                 <select id="interested">
@@ -260,11 +260,18 @@
               <div class="row" id="infoRow">
                 <div class="col" id="infoCol">
                   <h5> Linegraph </h5>
-                  <p>Write extra information regarding linegraph</p>
+                  <p>
+                    The linegraph visualizes either the absolute number of suicides or the ratio (suicides per 100.000 people) in the age group you chose.
+                    The numbers are only for the country you clicked on in the worldmap and are visualized over the time-frame for which there was data.
+                    The pink line is the one regarding the females and the blue one for the males.
+                  </p>
                 </div>
                 <div class="col" id="infoCol">
                   <h5> Piechart and donutgraph </h5>
-                  <p> Write extra information regarding pie and donut <p>
+                  <p>
+                    The options you chose in the dropdowns regarding the numbers for the linegraph, are also being used for the piechart and donut.
+                    Namely, the piechart (the inner visual) is showing either the absolute or the ratio of suicides and the donut (the outer one) is visualizing the amount of people in the age group.
+                  <p>
                 </div>
             </div>
           </div>

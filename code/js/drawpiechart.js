@@ -133,6 +133,7 @@ function newpiedonut(data_pie, data_donut, country, value, age){
    donut.append("path")
         .attr("class", "classpath2")
        .attr("d", generatorarc)
+       .attr("data-legend", function(d){return d.data.key})
        .style("fill", function(d) { return colors(d.data.key);})
        .on("mouseover", function(d) {
         div.transition()
@@ -149,6 +150,12 @@ function newpiedonut(data_pie, data_donut, country, value, age){
             .duration(200)
             .style("opacity", 0);
             });
+
+  legend = svgpiechart.append("g")
+            .attr("class", "legend")
+            .attr("transform", "translate(200,30)")
+            .style("font-size", "12px")
+            .call(d3.legend)
   // // append tooltip for donut
   //  donut.append("text")
   //       .attr("transform", function(d) { return "translate(" + generatorarc.centroid(d) + ")";  })
