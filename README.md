@@ -20,8 +20,8 @@ The data is retrieved from www.kaggle.com as a csv-file.
 ## Similar Visualizations
 
 See below for other visualizations:
-![screemshot](assets/README-02579942.png)
-![screenshot](assets/README-9f9ae507.png)
+![screemshot](code/README-02579942.png)
+![screenshot](code/README-9f9ae507.png)
 
 
 ## External components
