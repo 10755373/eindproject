@@ -78,7 +78,6 @@ function maketimeslider(json, sex, age){
         year = d3v5.timeFormat('%Y')(currentyear)
         updateworldmap(json, year, sex, age)
         drawscatterplot(json, year, sex, age)
-        updatetitlescatterplot(year, sex, age)
       });
 
     var gTime = d3v5
@@ -207,9 +206,9 @@ function drawlegend(dataset, sex) {
     }
     svglegend.append("rect")
       .attr("width", width)
-      .attr("height", (height + 20))
+      .attr("height", height)
       .style("fill", "url(#gradient)")
-      .attr("transform", "translate(30,40)");
+      .attr("transform", "translate(10,70)");
 
     var y = d3v5.scaleLinear()
       .range([500, 0])
@@ -219,7 +218,7 @@ function drawlegend(dataset, sex) {
       .ticks(10);
     svglegend.append("g")
       .attr("class", "y axis")
-      .attr("transform", "translate(10,70)")
+      .attr("transform", "translate(10,60)")
       .call(axisy)
       .append("text")
       .attr("transform", "rotate(-90)")

@@ -16,6 +16,7 @@ function newpiedonut(data_pie, data_donut, country, value, age){
   var margin = {top: 20, right: 30, bottom: 20, left: 20};
   var width = divsize.width - margin.left - margin.right;
   var height = divsize.height - margin.top - margin.bottom;
+  radius = Math.min(width, height) / 2;
 
   var title = d3v5.select("#containerpiechart")
         .append("text")
@@ -99,7 +100,6 @@ function newpiedonut(data_pie, data_donut, country, value, age){
      .attr("d", arcGenerator)
      .style("fill", function(d) { return colors(d.data.key);})
      .on("mouseover", function(d) {
-       console.log("hi")
       div.transition()
           .duration(200)
           .style("opacity", .9);
@@ -114,27 +114,12 @@ function newpiedonut(data_pie, data_donut, country, value, age){
           .duration(200)
           .style("opacity", 0);
           });
-// append tooltip to piechart
- pie.append("text")
+   pie.append("text")
       .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
       // .text(function(d){ return d.data.key })
       .style("text-anchor", "middle")
       .style("font-size", 16)
-      .on("mouseover", function(d) {
-       div.transition()
-           .duration(200)
-           .style("opacity", .9);
-       div .html(d.data.value + "<br/>")
-           // .attr("x", function () { return scalex(d.no + 1)})
-           // .attr("y", function () { return scaley(d.ratio) - 10});
-           .attr("x", (d3v5.event.pageX + 15) + "px")
-           .attr("y", (d3v5.event.pageY - 20) + "px");
-       })
-       .on("mouseout", function(d) {
-       div.transition()
-           .duration(200)
-           .style("opacity", 0);
-           });
+
     // append g with right data for donut
    var donut = svgpiechart.selectAll("arcpie2")
        .data(data_ready_donut)
@@ -149,25 +134,87 @@ function newpiedonut(data_pie, data_donut, country, value, age){
         .attr("class", "classpath2")
        .attr("d", generatorarc)
        .style("fill", function(d) { return colors(d.data.key);})
-  // append tooltip for donut
-   donut.append("text")
-        .attr("transform", function(d) { return "translate(" + generatorarc.centroid(d) + ")";  })
-        // .text(function(d){ return d.data.key })
-        .style("text-anchor", "middle")
-        .style("font-size", 16)
-        .on("mouseover", function(d) {
-         div.transition()
-             .duration(200)
-             .style("opacity", .9);
-         div .html(d.data.value + "<br/>")
-             .style("left", (d3v5.event.pageX + 15) + "px")
-             .style("top", (d3v5.event.pageY - 20) + "px");
-         })
-         .on("mouseout", function(d) {
-         div.transition()
-             .duration(200)
-             .style("opacity", 0);
-             });
+       .on("mouseover", function(d) {
+        div.transition()
+            .duration(200)
+            .style("opacity", .9);
+        div .html(d.data.value + "<br/>")
+            // .attr("x", function () { return scalex(d.no + 1)})
+            // .attr("y", function () { return scaley(d.ratio) - 10});
+            .style("left", (d3v5.event.pageX + 15) + "px")
+            .style("top", (d3v5.event.pageY - 20) + "px");
+        })
+        .on("mouseout", function(d) {
+        div.transition()
+            .duration(200)
+            .style("opacity", 0);
+            });
+  // // append tooltip for donut
+  //  donut.append("text")
+  //       .attr("transform", function(d) { return "translate(" + generatorarc.centroid(d) + ")";  })
+  //       // .text(function(d){ return d.data.key })
+  //       .style("text-anchor", "middle")
+  //       .style("font-size", 16)
+
+  var polyline = d3v5.select("#gpiechart").selectAll("polyline")
+      .data(data_ready_donut, function(d){ return d.data.key });
+console.log(data_ready_donut)
+  polyline.enter()
+      .append("polyline");
+
+  // polyline.transition().duration(1000)
+  //     .attrTween("points", function(d){
+  //         this._current = this._current || d;
+  //         var interpolate = d3v5.interpolate(this._current, d);
+  //         this._current = interpolate(0);
+  //         return function(t) {
+  //             var d2 = interpolate(t);
+  //             var pos = generatorarc.centroid(d2);
+  //             pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+  //             return [innerRadius.centroid(d2), outerRadius.centroid(d2), pos];
+  //         };
+  //     });
+
+      polyline.transition().duration(1000)
+  		.attrTween("points", function(d){
+  			this._current = this._current || d;
+  			var interpolate = d3.interpolate(this._current, d);
+  			this._current = interpolate(0);
+  			return function(t) {
+  				var d2 = interpolate(t);
+  				var pos = generatorarc.centroid(d2);
+  				pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+  				return [arcGenerator.centroid(d2), generatorarc.centroid(d2), pos];
+  			};
+  		});
+
+  polyline.exit()
+      .remove();
+
+  // // again rebind for legend
+  // var legendG = svgpiechart.selectAll(".legend") // note appending it to mySvg and not svg to make positioning easier
+  //   .data([data_ready_pie])
+  //   .enter().append("g")
+  //   .attr("transform", function(d,i){
+  //     return "translate(" + (width - 110) + "," + (i * 15 + 20) + ")"; // place each legend on the right and bump each one down 15 pixels
+  //   })
+  //   .attr("class", "legend");
+  //
+  // legendG.append("rect") // make a matching color rect
+  //   .attr("width", 10)
+  //   .attr("height", 10)
+  //   .attr("fill", function(d, i) {
+  //     return colors(i);
+  //   });
+  //   console.log(typeof(data_ready_pie))
+  //
+  // legendG.append("text") // add the text
+  //   .text(function(d){
+  //     return d.key;
+  //   })
+  //   .style("font-size", 12)
+  //   .attr("y", 10)
+  //   .attr("x", 11);
   };
 
 // update function for piechart as well as donut

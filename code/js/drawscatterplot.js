@@ -83,6 +83,7 @@ function newscatterplot(json, year, sex, age){
        .attr("class", "tooltipscatter")
        .style("opacity", 0);
 
+
     if (sex == "female"){
     var paletteScale = d3v5.scaleSequential()
         // .domain([minValue, maxValue])

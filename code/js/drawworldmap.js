@@ -48,10 +48,7 @@ function newworldmap(json, year, sex, age){
         highlightBorderColor: '#2ECC71',
         popupTemplate: function(geography, data) {
           if (!data) {
-        return ['<div class="hoverinfo">',
-            '<br>Sorry! Unfortunately, there is no data available for ',
-            geo.properties.name,,
-            '</div>'].join('');
+        return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'Sorry! Unfortunately, there is no data vailable'
           }
       else{
        return '<div class="hoverinfo">' + geography.properties.name + '<br />' + 'Suicides no: ' +  data.numberOfThings
