@@ -1,39 +1,155 @@
-<head>
-  <title>Rinus van Grunsven (10755373) - Programmeerproject </title>
-</head>
-<body>
-  <b> Final project minor programming </b>
-  <ul>
-    <li>
-      <a href="https://10755373.github.io/eindproject/home.html"> click for link to the website </a>
-    </li>
-    <li>
-        <a href="https://10755373.github.io/dataprocesssing/homework/week6/linked.html"> Week 6: Linked views </a>
-    </li>
-    <li>
-        <a href="https://10755373.github.io/dataprocesssing/homework/week3/knmi.html"> Week 3: Linegraph </a>
-    </li>
-  </ul>
-</body>
+<!DOCTYPE html>
+<html lang="en">
 
+  <head>
 
-<head>
-  <title>Rinus van Grunsven (10755373) - Dataprocessing</title>
-</head>
-<body>
-  <b> Homework assignments </b>
-  <ul>
-    <li>
-      <a href="https://10755373.github.io/dataprocesssing/homework/week3/knmi.html"> Week 3: Linegraph </a>
-    </li>
-    <li>
-      <a href="https://10755373.github.io/dataprocesssing/homework/week4/index.html"> Week 4: Barchart </a>
-    </li>
-    <li>
-      <a href="https://10755373.github.io/dataprocesssing/homework/week5/scatter.html"> Week 5: Scatterplot </a>
-    </li>
-    <li>
-      <a href="https://10755373.github.io/dataprocesssing/homework/week6/linked.html"> Week 6: Linked views </a>
-    </li>
-  </ul>
-</body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Rinus van Grunsven">
+    <meta name="description" content="Programmeerproject 2018-2019 (minor programmeren low-speed)">
+
+    <title>Suicides rate's</title>
+
+    <!-- bootstrap core CSS -->
+    <link href="/startbootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- include stylesheets -->
+    <link rel="stylesheet index" type="text/css" href="/code/css/index.css">
+    <link rel="stylesheet slider" type="text/css" href="/code/css/d3.slider.css">
+
+    <!-- Custom fonts for grayscale template -->
+    <link href="/startbootstrap/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom stylesheet for grayscale template -->
+    <link href="/startbootstrap/css/grayscale.css" rel="stylesheet">
+
+    <!-- include js scripts -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"></link>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script> -->
+    <link rel="stylesheet" href="/code/css/index.css">
+    <link rel="stylesheet" href="/code/css/d3.slider.css">
+    <!-- <link rel="stylesheet" href="d3-simple-slider.js" -->
+    <script>
+      d3v5 = d3;
+      window.d3 = null;
+    </script>
+    <!-- Import D3 V5 -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+          d3v4 = d3;
+          window.d3 = null;
+        </script>
+    <!-- Import D3 V3 and TopoJSON -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
+    <script>
+      d3v3 = d3;
+      window.d3 = null;
+    </script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/index.html">Home page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/code/html/visuals.html">Visualizations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/code/html/links.html">Links to</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/code/html/background.html">Background information</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="https://github.com/10755373/eindproject" target="_blank">Link to Github</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- section regarding homepgage -->
+    <header class="masthead">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h1 class="brand-heading">Suicide rate's</h1>
+              <p class="intro-text">Visualizations of suicide rate's for countries throughout the years
+                <br class="intro2-text">Rinus van Grunsven</p>
+              <a href="#information" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+<div class="overallcontainer">
+    <!-- section regarding general information -->
+       <section id="information" class="content-section text-center">
+         <div class="container">
+           <div class="row">
+             <div class="col-lg-8 mx-auto">
+               <h2>Information</h2>
+               <p>
+                 Several studies have been conducted to get an idea of the suicide numbers and ratio's for countries wordlwide. However, they are limited in the sence that only country specific cases where looked in with a relative short period of time.
+                 Therefore, this project strives to give insights in numbers between countries as well as covering several decades regarding country specific numbers.
+                 <br><br>
+                 In order to achieve this, the user is provided with four visualizations so he/she can have a look at the numbers itself. The first two are a worldmap and a scatterplot. The user is able to make us of two option-buttons as well as a timeslider.
+                 Those visualizations are meant to compare countries with eachother. In order to have a closer look at the numbers for only one country, the user has to click on a country in the worldmap. After doing this, a linegraph and a piechart will appear.
+                 Again, the user is provided with two option-buttons which affect the numbers for both visuals.
+               </p>
+               <p> <a href="/code/html/visuals.html">Continue to have a look at the visualizations</a></p>
+             </div>
+           </div>
+         </div>
+       </section>
+
+       <!-- Footer -->
+       <footer>
+         <div class="container text-center">
+           <p> Programmeerproject<br>
+               Rinus van Grunsven (10755373)<br>
+               University of Amsterdam
+           </p>
+         </div>
+       </footer>
+</div>
+       <!-- Bootstrap core JavaScript -->
+       <script src="/startbootstrap/vendor/jquery/jquery.min.js"></script>
+       <script src="/startbootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+       <!-- Plugin JavaScript -->
+       <script src="/startbootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+       <!-- Custom scripts for this template -->
+       <script src="/startbootstrap/js/grayscale.min.js"></script>
+
+     </body>
+
+   </html>
