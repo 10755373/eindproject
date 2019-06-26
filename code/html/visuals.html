@@ -56,7 +56,10 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
  <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
+ <script>
+   d3v3 = d3;
+   window.d3 = null;
+ </script>
    <!-- d3v3 = d3;
    window.d3 = null; -->
  <!-- </script> -->
@@ -99,10 +102,10 @@
            <a class="nav-link js-scroll-trigger" href="/code/html/visuals.html">Visualizations</a>
          </li>
          <li class="nav-item">
-           <a class="nav-link js-scroll-trigger" href="/links.html">Links to</a>
+           <a class="nav-link js-scroll-trigger" href="/code/html/links.html">Links to</a>
          </li>
          <li class="nav-item">
-           <a class="nav-link js-scroll-trigger" href="/background.html">Background information</a>
+           <a class="nav-link js-scroll-trigger" href="/code/html/background.html">Background information</a>
          </li>
          <li class="nav-item">
          <a class="nav-link" href="https://github.com/10755373/eindproject" target="_blank">Link to Github</a>
@@ -140,6 +143,7 @@
             <p>
               A warm welcome to the visualization page! Here you'll have the opportunity to have a look at them as well as numerous dropdowns and a hover to choose from.
               By doing this, you're able to see the numbers you're interested in as well as seeing what differences arise when chosing for another value.
+              The country-colors in both the worldmap (country filled color) and scatterplot (color in the dots) as well as the color gradient legend below the worldmap are all based on the absolute number of suicides.
               <br><br>
               The first two visualizations are meant to compare countries with eachother based on the values you choose with the two dropdowns above those visuals. The first one is regarding the gender and the second one regarding a certain age group.
               After doing this, the map and scatterplot will show you the numbers for the year 1987 (since this year is set as default).
@@ -213,7 +217,7 @@
              </div> -->
 
             <!-- row for options -->
-            <div class="col-6 col-md-4" id="rowfirstoptions">
+            <div class="col-6 col-md-4" id="rowsecondoptions">
              <form>
                Type of value:
                 <select id="interested">

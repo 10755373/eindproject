@@ -97,8 +97,7 @@ function maketimeslider(json, sex, age){
   }
 
 
-// retrieve right data
-// Based on: // https://github.com/markmarkoh/datamaps/blob/master/src/examples/highmaps_world.html
+// retrieve data for the worldmap
 function retrievedata_map(json, currentyear, sex, age){
   data = Object.values(json)
   // gather data if gender in dropdown is female
@@ -136,6 +135,7 @@ function retrievedata_map(json, currentyear, sex, age){
     land = list_values[i][0]
     data_set[land] = dict
   }
+  // return dict
   return data_set
 }
 
@@ -174,6 +174,7 @@ else{
     land = list_values[i][0]
     data_set[land] = dict
   }
+  // return dict
   return data_set
 }
 
@@ -278,6 +279,7 @@ function retrievedata_scatter(json, currentyear, sex, age){
         countries[data[i].country] = {country: data[i].country, no: data[i].suicides_no, ratio: data[i].suicides_100k}
       }
     }
+    // return dict
     return countries
   };
 
@@ -304,6 +306,7 @@ function datadonutnumber(json, country, year, secondgroup){
       data_donut[data[i].sex] = data[i].population
     }
   }
+  // return dict
   return data_donut
 };
 
@@ -317,6 +320,7 @@ function datapieratio(json, country, year, secondgroup){
       data_pie[data[i].sex] = data[i].suicides_100k
     }
   }
+  // retrun dict
   return data_pie
 };
 
@@ -330,10 +334,11 @@ function datadonutratio(json, country, year, secondgroup){
       data_donut[data[i].sex] = data[i].population
     }
   }
+  // return dict
   return data_donut
 };
 
-// function to retrieve data for the linegraph ragarding males in case user would like to see the absulote number of suicides
+// function to retrieve data for the linegraph ragarding males in case user would like to see the absolute number of suicides
 function obtaincountrydatamaletotal(json, country, secondgroup){
   data = Object.values(json)
   // make a dict so data is usable for the linegraph
@@ -351,6 +356,7 @@ function obtaincountrydatamaletotal(json, country, secondgroup){
   return list_linegraph_male_total
   };
 
+// function to retrieve data for the linegraph ragarding males in case user would like to see the ratio of suicides
 function obtaincountrydatamale100k(json, country, secondgroup){
   data = Object.values(json)
   // make a dict so data is usable for the linegraph
@@ -368,7 +374,7 @@ function obtaincountrydatamale100k(json, country, secondgroup){
   return list_linegraph_male_100k
   };
 
-  // function to retrieve data for the linegraph ragarding females in case user would like to see the absulote number of suicides
+// function to retrieve data for the linegraph ragarding females in case user would like to see the absolute number of suicides
 function obtaincountrydatafemaletotal(json, country, secondgroup){
   data = Object.values(json)
   // make a dict so data is usable for the linegraph
