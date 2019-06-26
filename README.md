@@ -35,11 +35,11 @@ The data is retrieved from www.kaggle.com as a csv-file (source: https://www.kag
 ## Visualizations
 
 Here's a link to the website:
-[Visualizations](https://github.com/10755373/eindproject/tree/master)
+[Visualizations](https://github.com/10755373/eindproject/tree/master/home/html)
 
 https://github.com/10755373/eindproject.git
 
-[Visualizations](https://github.com/10755373/eindproject.git)
+[Visualizations](https://github.com/10755373/eindproject.git/home.html)
 
 See below for other visualizations:
 When opening the website, you'll first be redirected to the homepage (see below). Here you'll get some informaiton about the topic, why I decided to visualize it and how it has been done by me. See below for a screenshot:
