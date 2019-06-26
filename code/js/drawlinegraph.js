@@ -23,6 +23,10 @@ function newlinegraph(data_male, data_female, country, value, age){
   var otherLinesOpacityHover = "0.1";
   var lineStroke = "1.5px";
   var lineStrokeHover = "3.5px";
+  var circleOpacity = '0.85';
+  var circleOpacityOnLineHover = "0.25"
+  var circleRadius = 3;
+  var circleRadiusHover = 6;
 
   // append a svg to the linegraph-container which shows a title above the linegraph
   var title = d3v5.select("#containerlinegraph")
@@ -129,10 +133,10 @@ function newlinegraph(data_male, data_female, country, value, age){
       .text("Male")
       .attr("text-anchor", "middle")
       .attr("x", width/2)
-      .attr("y", 40);
+      .attr("y", 40)
         })
       .on("mouseout", function() {
-      svg_linegraph_container.select(".title-text").remove();
+      svg_linegraph_container.select(".title-text").remove()
       })
       .append("path")
       .attr("class", "maleline")
@@ -143,22 +147,22 @@ function newlinegraph(data_male, data_female, country, value, age){
       .attr("fill", "none")
       .on("mouseover", function(d) {
           d3.selectAll('.line_male')
-              .style('opacity', otherLinesOpacityHover);
+              .style('opacity', otherLinesOpacityHover)
           d3.selectAll('.circle')
-              .style('opacity', circleOpacityOnLineHover);
+              .style('opacity', circleOpacityOnLineHover)
           d3.select(this)
             .style('opacity', lineOpacityHover)
             .style("stroke-width", lineStrokeHover)
-            .style("cursor", "pointer");
+            .style("cursor", "pointer")
         })
       .on("mouseout", function(d) {
           d3.selectAll(".line_male")
-              .style('opacity', lineOpacity);
+              .style('opacity', lineOpacity)
           d3.selectAll('.circle')
-              .style('opacity', circleOpacity);
+              .style('opacity', circleOpacity)
           d3.select(this)
             .style("stroke-width", lineStroke)
-            .style("cursor", "none");
+            .style("cursor", "none")
           });
 
   // draw line males including an option for opacity and text "Males" above the linegraph when mouse is being hold on the line
@@ -174,10 +178,10 @@ function newlinegraph(data_male, data_female, country, value, age){
       .text("Female")
       .attr("text-anchor", "middle")
       .attr("x", width/2)
-      .attr("y", 40);
+      .attr("y", 40)
         })
       .on("mouseout", function() {
-      svg_linegraph_container.select(".title-text").remove();
+      svg_linegraph_container.select(".title-text").remove()
       })
       .append("path")
       .attr("class", "femaleline")
@@ -188,22 +192,22 @@ function newlinegraph(data_male, data_female, country, value, age){
       .attr("fill", "none")
       .on("mouseover", function(d) {
           d3.selectAll('.line_female')
-              .style('opacity', otherLinesOpacityHover);
+              .style('opacity', otherLinesOpacityHover)
           d3.selectAll('.circle')
-              .style('opacity', circleOpacityOnLineHover);
+              .style('opacity', circleOpacityOnLineHover)
           d3.select(this)
             .style('opacity', lineOpacityHover)
             .style("stroke-width", lineStrokeHover)
-            .style("cursor", "pointer");
+            .style("cursor", "pointer")
         })
       .on("mouseout", function(d) {
           d3.selectAll(".line_female")
-              .style('opacity', lineOpacity);
+              .style('opacity', lineOpacity)
           d3.selectAll('.circle')
-              .style('opacity', circleOpacity);
+              .style('opacity', circleOpacity)
           d3.select(this)
             .style("stroke-width", lineStroke)
-            .style("cursor", "none");
+            .style("cursor", "none")
           });
 
   // draw x axis
@@ -239,14 +243,14 @@ function newlinegraph(data_male, data_female, country, value, age){
   // determine veritcal gridlines
   function make_x_gridlines() {
       return d3v5.axisBottom(x)
-          .ticks(7);
-  }
+          .ticks(7)
+  };
 
   // determine horizontal gridlines
   function make_y_gridlines() {
       return d3v5.axisLeft(y)
-          .ticks(7);
-  }
+          .ticks(7)
+  };
 
   // add the vertical gridlines
   svg_linegraph_container.append("g")
@@ -254,16 +258,16 @@ function newlinegraph(data_male, data_female, country, value, age){
       .attr("transform", "translate(0," + height + ")")
       .call(make_x_gridlines()
           .tickSize(-height)
-          .tickFormat("");
-      )
+          .tickFormat("")
+      );
 
   // add the horizontal gridlines
   svg_linegraph_container.append("g")
       .attr("class", "grid")
       .call(make_y_gridlines()
           .tickSize((-width + margin.right))
-          .tickFormat("");
-      )
+          .tickFormat("")
+      );
 };
 
 // update existing linegraph
