@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <meta name="author" content="Rinus van Grunsven">
+ <meta name="description" content="Programmeerproject 2018-2019 (minor programmeren low-speed)">
+
+ <title>Suicides rate's</title>
+
+ <!-- bootstrap core CSS -->
+ <link href="/startbootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+ <!-- include stylesheets -->
+ <link rel="stylesheet index" type="text/css" href="/code/css/index.css">
+ <link rel="stylesheet slider" type="text/css" href="/code/css/d3.slider.css">
+
+ <!-- Custom fonts for grayscale template -->
+ <link href="/startbootstrap/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+ <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+ <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+ <!-- Custom stylesheet for grayscale template -->
+ <link href="/startbootstrap/css/grayscale.css" rel="stylesheet">
+
+ <!-- include js scripts -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+ crossorigin="anonymous"></link>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ <script src="https://d3js.org/d3.v5.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+ <script src="https://unpkg.com/d3-simple-slider"></script>
+ <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script> -->
+ <link rel="stylesheet" href="/code/css/index.css">
+ <link rel="stylesheet" href="/code/css/d3.slider.css">
+ <!-- <link rel="stylesheet" href="d3-simple-slider.js" -->
+ <script>
+   d3v5 = d3;
+   window.d3 = null;
+ </script>
+ <!-- Import D3 V5 -->
+     <script src="https://d3js.org/d3.v4.min.js"></script>
+     <script>
+       d3v4 = d3;
+       window.d3 = null;
+     </script>
+ <!-- Import D3 V3 and TopoJSON -->
+ <script src="https://d3js.org/d3.v3.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+ <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+   <!-- d3v3 = d3;
+   window.d3 = null; -->
+ <!-- </script> -->
+   <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+   <script src="/code/js/datamaps.world.min.js"></script>
+   <!-- <script src="d3-legend.js"></script>
+   <script src="d3-legend.min.js"></script> -->
+   <script src="/code/js/d3.legend.js"></script>
+   <script type="text/javascript.js" src="/code/css/d3.slider.css"></script>
+   <script type="text/javascript" src="/code/js/d3.slider.js"></script>
+   <script type="text/javascript" src="/code/js/main.js"></script>
+   <script type="text/javascript" src="/code/js/helpers.js"></script>
+   <script type="text/javascript" src="/code/js/drawworldmap.js"></script>
+   <script type="text/javascript" src="/code/js/nodata.js"></script>
+   <script type="text/javascript" src="/code/js/drawlinegraph.js"></script>
+   <script type="text/javascript" src="/code/js/drawpiechart.js"></script>
+   <script type="text/javascript" src="/code/js/drawscatterplot.js"></script>
+   <!-- <script src="scroll-down.js"></script> -->
+   <!-- <script type="text/javascript" src="/d3-tip.js"></script> -->
+
+
+</head>
+
+<body id="page-top">
+
+ <!-- Navigation bar -->
+ <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+   <div class="container">
+     <a class="navbar-brand js-scroll-trigger" href="#page-top">Start</a>
+     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+       Menu
+       <i class="fa fa-bars"></i>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarResponsive">
+       <ul class="navbar-nav ml-auto">
+         <li class="nav-item">
+           <a class="nav-link js-scroll-trigger" href="/home.html">Home page</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link js-scroll-trigger" href="/code/html/visuals.html">Visualizations</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link js-scroll-trigger" href="/links.html">Links to</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link js-scroll-trigger" href="/background.html">Background information</a>
+         </li>
+         <li class="nav-item">
+         <a class="nav-link" href="https://github.com/10755373/eindproject" target="_blank">Link to Github</a>
+         </li>
+       </ul>
+     </div>
+   </div>
+ </nav>
+
+
+ <!-- section regarding homepgage -->
+ <header class="masthead">
+   <div class="intro-body">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-8 mx-auto">
+           <h1 class="brand-heading">Suicide rate's</h1>
+           <p class="intro-text">Visualizations of suicide rate's for countries throughout the years
+             <br class="intro2-text">Rinus van Grunsven</p>
+           <a href="#information" class="btn btn-circle js-scroll-trigger">
+             <i class="fa fa-angle-double-down animated"></i>
+           </a>
+         </div>
+       </div>
+     </div>
+   </div>
+ </header>
+
+<div class="overallcontainer">
+ <!-- section regarding general information -->
+    <section id="informationsection" class="content-section text-center">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Visualization page</h2>
+            <p>
+              A warm welcome to the visualization page! Here you'll have the opportunity to have a look at them as well as numerous dropdowns and a hover to choose from.
+              By doing this, you're able to see the numbers you're interested in as well as seeing what differences arise when chosing for another value.
+              <br><br>
+              The first two visualizations are meant to compare countries with eachother based on the values you choose with the two dropdowns above those visuals. The first one is regarding the gender and the second one regarding a certain age group.
+              After doing this, the map and scatterplot will show you the numbers for the year 1987 (since this year is set as default).
+            </p>
+          </div>
+        </div>
+    </section>
+
+
+ <!-- Visualization Section -->
+ <section id="visualizations" class="download-section text-center">
+  <!-- container for visualizations -->
+  <div class="containervisualizations">
+
+            <!-- row for options -->
+           <div class="col-6 col-md-4" id="rowfirstoptions">
+               <div class="one" id="titleone">
+                 <form>
+                  Gender:
+                   <select id="gender">
+                       <option value="female"> Female</option>
+                       <option value="male"> Male</option>
+                   </select>
+                   Age between:
+                   <select id="group">
+                     <option value="5-14 years"> 5-14 years</option>
+                     <option value="15-24 years"> 15-24 years</option>
+                     <option value="25-34 years"> 25-34 years</option>
+                     <option value="35-54 years"> 35-54 years</option>
+                     <option value="55-74 years">55-74 years</option>
+                     <option value="75+ years">75+ years</option>
+                   </select>
+               </form></div>
+       </div>
+
+           <!-- row and column for worldmap -->
+           <div class="row">
+              <div class="col">
+                  <div class="two" id="containerworldmap"></div>
+            </div>
+
+            <!-- row and column for scatterplot -->
+               <div class="col">
+                  <div class="three" id="containerscatterplot"></div>
+              </div>
+            </div>
+
+          <!-- row for slider -->
+          <div class="row justify-content-end" id="rowsliderid">
+                <div class="col-2"><p id="value-time"></p></div>
+                <div class="col-4"><div id="slider-time"></div></div>
+              </div>
+
+
+             <!-- Button with pop up text -->
+             <!-- <button type="button" id="infoButton" class="btn btn-secondary">Extra Information</button>
+               <div id="myModal" class="modal">
+                 <div class="modal-content">
+                   <span class="close">&times;</span>
+                   <div class="row" id="infoRow">
+                     <div class="col" id="infoCol">
+                       <h5> Worldmap </h5>
+                       <p>Insert extra information over worldmap here</p>
+                     </div>
+                     <div class="col" id="infoCol">
+                       <h5> Scatterplot </h5>
+                       <p> Insert extra info over scatterplot here <p>
+                     </div>
+                  </div>
+               </div>
+             </div> -->
+
+            <!-- row for options -->
+            <div class="col-6 col-md-4" id="rowfirstoptions">
+             <form>
+               Type of value:
+                <select id="interested">
+                    <option value="no"> Number</option>
+                    <option value="ratio"> Ratio</option>
+                </select>
+               Age between:
+               <select id="secondgroup">
+                 <option value="5-14 years"> 5-14 years</option>
+                 <option value="15-24 years"> 15-24 years</option>
+                 <option value="25-34 years"> 25-34 years</option>
+                 <option value="35-54 years"> 35-54 years</option>
+                 <option value="55-74 years">55-74 years</option>
+                 <option value="75+ years">75+ years</option>
+               </select>
+           </form>
+         </div>
+
+
+         <!-- row and column for linegraph and piechart -->
+         <div class="row">
+            <div class="col" id="containerlinegraph"></div>
+
+
+         <!-- row and column for piechart -->
+            <div class="col" id="containerpiechart"></div>
+         </div>
+
+         <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Click for extra information
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Information about linegraph and piechart</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row" id="infoRow">
+                <div class="col" id="infoCol">
+                  <h5> Linegraph </h5>
+                  <p>
+                    The linegraph visualizes either the absolute number of suicides or the ratio (suicides per 100.000 people) in the age group you chose.
+                    The numbers are only for the country you clicked on in the worldmap and are visualized over the time-frame for which there was data.
+                    The pink line is the one regarding the females and the blue one for the males.
+                  </p>
+                </div>
+                <div class="col" id="infoCol">
+                  <h5> Piechart and donutgraph </h5>
+                  <p>
+                    The options you chose in the dropdowns regarding the numbers for the linegraph, are also being used for the piechart and donut.
+                    Namely, the piechart (the inner visual) is showing either the absolute or the ratio of suicides and the donut (the outer one) is visualizing the amount of people in the age group.
+                  <p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+</div>
+
+   <div class="clear"></div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p> Programmeerproject<br>
+            Rinus van Grunsven (10755373)<br>
+            University of Amsterdam
+        </p>
+      </div>
+    </footer>
+</div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="/startbootstrap/vendor/jquery/jquery.min.js"></script>
+    <script src="/startbootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/startbootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/startbootstrap/js/grayscale.min.js"></script>
+
+  </body>
+
+</html>

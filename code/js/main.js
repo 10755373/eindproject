@@ -1,47 +1,51 @@
+// unload data
 window.onload = function() {
     fetch("/data/dataproject.json")
       .then(response => response.json())
       .then(json => {
-        // makeverticallegend();
+        // call function
         optionselected(json);
+        // make adjustments if value in dropdown changes
         d3.select("#gender").on("change",function(d){optionselected(json)})
         d3.select("#group").on("change",function(d){optionselected(json)})
 })};
 
-
+// function regarding first two visualizations
 function optionselected(json){
+  // retrieve values from dropdowns
   var sex = document.getElementById("gender").value
   var age = document.getElementById("group").value
-  var dataslider = Object.values(json)
+  // gather data from json
+  var dataslider = Object.values(json);
+  // call function to draw the worldmap
   drawworldmap(json, 1987, sex, age);
+  // call function to draw the scatterplot
   drawscatterplot(json, 1987, sex, age);
+  // call function to draw slider
   maketimeslider(dataslider, sex, age);
-  var data_pie = datapienumber(json, "Netherlands", 1987, age)
-  var data_donut = datadonutnumber(json, "Netherlands", 1987, age)
-  drawpiechart(data_pie, data_donut, "Netherlands", "no", "5-14 years")
-  // newdonut(data_donut)
-  var line_no_male = obtaincountrydatamaletotal(json, "Netherlands", age)
-  var line_no_female = obtaincountrydatafemaletotal(json, "Netherlands", age)
-  drawlinegraph(line_no_male, line_no_female, "Netherlands", "no", "5-14 years")
+  // initialize a piechart and donut with The Netherlands in 1987 as default
+  drawpiechart(datapienumber(json, "Netherlands", 1987, age), datadonutnumber(json, "Netherlands", 1987, age), "Netherlands", "no", "5-14 years");
+  // initialize a linegraph with The Netherlands in 1987 as default
+  drawlinegraph(obtaincountrydatamaletotal(json, "Netherlands", age), obtaincountrydatafemaletotal(json, "Netherlands", age), "Netherlands", "no", "5-14 years");
 }
 
+// function regarding the last two visualizations
 function selectedsecondoption(json, country, year){
+  // retrieve values form dropdowns
   var value = document.getElementById("interested").value
   var secondgroup = document.getElementById("secondgroup").value
+  // in case value is number
   if (value == "no"){
-    var data_pie = datapienumber(json, country, year, secondgroup)
-    var data_donut = datadonutnumber(json, country, year, secondgroup)
-    drawpiechart(data_pie, data_donut, country, value, secondgroup)
-    var line_no_male = obtaincountrydatamaletotal(json, country, secondgroup)
-    var line_no_female = obtaincountrydatafemaletotal(json, country, secondgroup)
-    drawlinegraph(line_no_male, line_no_female, country, value, secondgroup)
+    // draw piechart and donut
+    drawpiechart(datapienumber(json, country, year, secondgroup), datadonutnumber(json, country, year, secondgroup), country, value, secondgroup);
+    // draw a linegraph
+    drawlinegraph(obtaincountrydatamaletotal(json, country, secondgroup), obtaincountrydatafemaletotal(json, country, secondgroup), country, value, secondgroup);
   }
+  // in case value is ratio
   else{
-    var data_pie = datapieratio(json, country, year, secondgroup)
-    var data_donut = datadonutratio(json, country, year, secondgroup)
-    drawpiechart(data_pie, data_donut, country, value, secondgroup)
-    var line_male_ratio = obtaincountrydatamale100k(json, country, secondgroup)
-    var line_female_ratio = obtaincountrydatafemale100k(json, country, secondgroup)
-    drawlinegraph(line_male_ratio, line_female_ratio, country, value, secondgroup)
+    // draw a piechart and donut
+    drawpiechart(datapieratio(json, country, year, secondgroup), datadonutratio(json, country, year, secondgroup), country, value, secondgroup);
+    // draw a linegraph
+    drawlinegraph(obtaincountrydatamale100k(json, country, secondgroup), obtaincountrydatafemale100k(json, country, secondgroup), country, value, secondgroup);
   }
 }

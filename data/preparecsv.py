@@ -1,23 +1,25 @@
 import json
 import csv
 import pandas
+import pycountry
 
 
 def csv_to_json(file):
     '''
-    Converts data from a csv file to a json file
+    Matches an Alpha-3 code to a country
     '''
-
+    # read csv file with pandas
     reader = pandas.read_csv(file, delimiter=';')
-    df = pandas.read_csv('countries_codes_and_coordinates.csv', delimiter=';')
-    # df = df.Alpha.strip(0, 3)
+    df = pandas.DataFrame(data=reader)
+    # loop through csv
+    for index, row in df.iterrows():
+        # for every row, find alpha-3 code that matches country's name
+        code = pycountry.countries.get(name=row["country"]).alpha_3
+        # add alpha-3 code to that specific row
+        df.iloc[index,0] = code
+    # make new csv file which is used during the project
+    df.to_csv("output.csv")
 
-    for index, row in reader.iterrows():
-        for indexes, rows in df.iterrows():
-            if row.country == rows.Country:
-                row.alpha_code = df.Alpha
-
-    df.to_csv('dataprepared.csv')
 
 if __name__ == '__main__':
     csv_to_json('data.csv')

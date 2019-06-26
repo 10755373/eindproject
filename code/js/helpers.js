@@ -1,3 +1,4 @@
+// function regarding the timeslider
 function maketimeslider(json, sex, age){
 //
   if ( $('#slider-time').is(':empty')){
@@ -8,6 +9,8 @@ function maketimeslider(json, sex, age){
   }};
 
   function newtimeslider(json, sex, age){
+    d3.select("div#slider-time").selectAll("*").remove();
+
     // Time
     var dataTime = d3v5.range(0, 24).map(function(d) {
       return new Date(1987 + d, 10, 3);
@@ -98,6 +101,7 @@ function maketimeslider(json, sex, age){
 // Based on: // https://github.com/markmarkoh/datamaps/blob/master/src/examples/highmaps_world.html
 function retrievedata_map(json, currentyear, sex, age){
   data = Object.values(json)
+  // gather data if gender in dropdown is female
   list_values = []
   if (sex == "female"){
   for (let i = 0; i < data.length; i++){
@@ -107,19 +111,23 @@ function retrievedata_map(json, currentyear, sex, age){
       list_values.push(list)
     }
   }
+  // retrieve only the values
   var onlyValues = []
   for (let i = 0; i < list_values.length; i++){
     onlyValues.push(list_values[i][1])
   }
 
+// `find min and max values`
   var minValue = Math.min(... onlyValues),
           maxValue = Math.max(... onlyValues);
 
+// determine colors based on a color gradient scale
   var paletteScale = d3v5.scaleSequential()
       .domain([minValue, maxValue])
       // .range(["#b3b3ff", "#000066"]);
       .interpolator(d3v5.interpolatePuRd);
 
+// place in a dict for use of the worldmap
   var data_set = {}
   for (let i = 0; i < list_values.length; i++){
     dict = {}
@@ -130,6 +138,8 @@ function retrievedata_map(json, currentyear, sex, age){
   }
   return data_set
 }
+
+// gather data in case the dropdown-gender is male
 else{
   for (let i = 0; i < data.length; i++){
     if (data[i].year == currentyear && data[i].sex == sex && data[i].age == age){
@@ -138,19 +148,24 @@ else{
       list_values.push(list)
     }
   }
+
+  // retrieve only the values
   var onlyValues = []
   for (let i = 0; i < list_values.length; i++){
     onlyValues.push(list_values[i][1])
   }
 
+// determine the min and max values
   var minValue = Math.min(... onlyValues),
           maxValue = Math.max(... onlyValues);
 
+// determine colors based on a color gradient scale
   var paletteScale = d3v5.scaleSequential()
       .domain([minValue, maxValue])
       // .range(["#b3b3ff", "#000066"]);
       .interpolator(d3v5.interpolateBlues);
 
+// make dict for use of the worldmap
   var data_set = {}
   for (let i = 0; i < list_values.length; i++){
     dict = {}
@@ -164,69 +179,85 @@ else{
 
 };
 
+// function regarding the legend of the worldmap and scatterplot
 function drawlegend(dataset, sex) {
 
+// get only the values
   var data = Object.values(dataset)
   onlyvalues = []
   for (let i = 0; i < data.length; i++){
     onlyvalues.push(data[i].numberOfThings)
   }
 
+// determine the min and max values
   var minValue = Math.min(... onlyvalues),
           maxValue = Math.max(... onlyvalues);
 
+  // append svg fto place legend in
+  var width = 500, height = 100;
+  var svglegend = d3v5.select("#containerworldmap")
+    .append("svg")
+    .attr("id", "gradientlegend")
+    .attr("width", width)
+    .attr("height", height);
 
-    var width = 500, height = 100;
-    var svglegend = d3v5.select("#containerworldmap")
-      .append("svg")
-      .attr("id", "gradientlegend")
-      .attr("width", width)
-      .attr("height", height);
+  // append linear gradient to that svg
+  var legend = svglegend.append("defs")
+    .append("svg:linearGradient")
+    .attr("id", "gradient");
 
-    var legend = svglegend.append("defs")
-      .append("svg:linearGradient")
-      .attr("id", "gradient");
+// in case gender in dropdown is female
+  if (sex == "female"){
+  colors = d3v5.scaleSequential(d3v5.interpolatePuRd).domain([0, 500])
+  legend.selectAll("stop")
+      .data(colors.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: colors(t) })))
+      .enter().append("stop")
+      .attr("offset", d => d.offset)
+      .attr("stop-color", d => d.color);
+    }
 
-    if (sex == "female"){
-    colors = d3v5.scaleSequential(d3v5.interpolatePuRd).domain([0, 500])
+  // in case the gender is male
+  else{
+    colors = d3v5.scaleSequential(d3v5.interpolateBlues).domain([0, 500])
+
     legend.selectAll("stop")
         .data(colors.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: colors(t) })))
         .enter().append("stop")
         .attr("offset", d => d.offset)
         .attr("stop-color", d => d.color);
-      }
-    else{
-      colors = d3v5.scaleSequential(d3v5.interpolateBlues).domain([0, 500])
+  }
 
-      legend.selectAll("stop")
-          .data(colors.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: colors(t) })))
-          .enter().append("stop")
-          .attr("offset", d => d.offset)
-          .attr("stop-color", d => d.color);
-    }
+  // append rect in svg
     svglegend.append("rect")
-      .attr("width", width)
-      .attr("height", height)
+      .attr("width", 490)
+      .attr("height", 20)
       .style("fill", "url(#gradient)")
-      .attr("transform", "translate(10,70)");
+      .attr("x", 10)
+      .attr("y", 40);
 
+// determine y range and domain
     var y = d3v5.scaleLinear()
       .range([500, 0])
       .domain([maxValue, minValue]);
+
+  // determine y axis
     var axisy = d3v5.axisBottom()
       .scale(y)
       .ticks(10);
-    svglegend.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(10,60)")
-      .call(axisy)
-      .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 0)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("axis title");
 
+  // append g to the svg
+  svglegend.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(10,60)")
+    .call(axisy)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("axis title");
+
+// append title to the svg
   svglegend.append("text")
           .attr("x", (width / 2))
           .attr("y", (height / 3) )
@@ -237,9 +268,10 @@ function drawlegend(dataset, sex) {
           .text("Color gradient legend based on the no of suicides");
 }
 
-
+// function to retrieve data for the scaterplot
 function retrievedata_scatter(json, currentyear, sex, age){
     data = Object.values(json)
+    // make a dict based on options which are chosen in the dropdowns
     countries = {}
     for (let i = 0; i < data.length; i++){
       if (data[i].year == currentyear && data[i].sex == sex && data[i].age == age){
@@ -249,8 +281,10 @@ function retrievedata_scatter(json, currentyear, sex, age){
     return countries
   };
 
+// function to retrieve data for the piechart in case user would like to see the absolute number of suicides
 function datapienumber(json, country, year, secondgroup){
   data = Object.values(json)
+  // gather data and put it into a dict
   data_pie = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
@@ -260,8 +294,10 @@ function datapienumber(json, country, year, secondgroup){
   return data_pie
 };
 
+// function to retrieve data for the donut in case would like to see the absolute number of suicides
 function datadonutnumber(json, country, year, secondgroup){
   data = Object.values(json)
+  // gather data and put it into a dict
   data_donut = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
@@ -271,8 +307,10 @@ function datadonutnumber(json, country, year, secondgroup){
   return data_donut
 };
 
+// function to retrieve data for the piechart in case user would like to see the ratio of suicides
 function datapieratio(json, country, year, secondgroup){
   data = Object.values(json)
+  // gather info and put it into a dict
   data_pie = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
@@ -282,8 +320,10 @@ function datapieratio(json, country, year, secondgroup){
   return data_pie
 };
 
+// function to retrieve data for the donut in case would like to see the ratio of suicides
 function datadonutratio(json, country, year, secondgroup){
   data = Object.values(json)
+  // gather data and put it into a dict
   data_donut = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].year == year && data[i].country == country && data[i].age == secondgroup){
@@ -293,69 +333,73 @@ function datadonutratio(json, country, year, secondgroup){
   return data_donut
 };
 
+// function to retrieve data for the linegraph ragarding males in case user would like to see the absulote number of suicides
 function obtaincountrydatamaletotal(json, country, secondgroup){
   data = Object.values(json)
+  // make a dict so data is usable for the linegraph
   list_linegraph_male_total = []
-  // dict2 = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "male" && data[i].age == secondgroup){
+      // put the data into a dict
       dict1 = {}
       dict1["x"] = data[i].year
       dict1["y"] = data[i].suicides_no
-      // dict2[data[i].sex] = dict1
+      // place the dict into to list
       list_linegraph_male_total.push(dict1)
 }}
+  // return the list with dicts
   return list_linegraph_male_total
-  // return dict2
   };
 
 function obtaincountrydatamale100k(json, country, secondgroup){
   data = Object.values(json)
+  // make a dict so data is usable for the linegraph
   list_linegraph_male_100k = []
-  // dict2 = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "male" && data[i].age == secondgroup){
+      // put the data into a dict
       dict1 = {}
-      // dict2 = {}
       dict1["x"] = data[i].year
       dict1["y"] = data[i].suicides_100k
-      // dict2[data[i].sex] = dict1
+      // place the dict into to list
       list_linegraph_male_100k.push(dict1)
 }}
+// return the list with dicts
   return list_linegraph_male_100k
-  // return dict2
   };
 
+  // function to retrieve data for the linegraph ragarding females in case user would like to see the absulote number of suicides
 function obtaincountrydatafemaletotal(json, country, secondgroup){
   data = Object.values(json)
+  // make a dict so data is usable for the linegraph
   list_linegraph_female_total = []
-  // dict2 = {}
   for (i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "female" && data[i].age == secondgroup){
+      // put the data into a dict
       dict1 = {}
-      // dict2 = {}
       dict1["x"] = data[i].year
       dict1["y"] = data[i].suicides_no
-      // dict2[data[i].sex] = dict1
+      // place the dict into to list
       list_linegraph_female_total.push(dict1)
 }}
+  // return the list with dicts
   return list_linegraph_female_total
-  // return dict2
   };
 
+// function to retrieve data for the linegraph ragarding females in case user would like to see the ratio of suicides
 function obtaincountrydatafemale100k(json, country, secondgroup){
   data = Object.values(json)
+  // make a dict so data is usable for the linegraph
   list_linegraph_female_100k = []
-  // dict2 = {}
   for (let i = 0; i < data.length; i++){
     if (data[i].country == country && data[i].sex == "female" && data[i].age == secondgroup){
+      // put the data into a dict
       dict1 = {}
-      // dict2 = {}
       dict1["x"] = data[i].year
       dict1["y"] = data[i].suicides_100k
-      // dict2[data[i].sex] = dict1
+      // place the dict into to list
       list_linegraph_female_100k.push(dict1)
 }}
+  // return the list with dicts
   return list_linegraph_female_100k
-  // return dict2
   };
