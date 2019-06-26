@@ -35,7 +35,7 @@ The data is retrieved from www.kaggle.com as a csv-file (source: https://www.kag
 ## Visualizations
 
 Here's a link to the website:
-[Visualizations](https://github.com/10755373/eindproject/blob/master/home.html)
+[Visualizations](https://github.com/10755373/eindproject/blob/master/index.html)
 
 https://github.com/10755373/eindproject.git
 
