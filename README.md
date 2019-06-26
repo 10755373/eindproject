@@ -39,7 +39,11 @@ Here's a link to the website:
 
 https://10755373.github.io/dataprocesssing/
 
-https://10755373.github.io/eindproject/
+
+link github: https://10755373.github.io/eindproject/
+
+link adjusted;
+https://10755373.github.io/eindproject/index.html
 
 https://github.com/10755373/eindproject.git
 
