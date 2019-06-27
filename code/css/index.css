@@ -1,6 +1,6 @@
 /* layout of the page */
 .masthead {
- background-image: url(/eindproject/doc/1558408198316.jpg);
+ background-image: url(/doc/1558408198316.jpg);
  background-attachment: fixed;
  background-position: center;
  background-repeat: no-repeat;
@@ -127,7 +127,7 @@ background-color: #dfdfdf;}
 }
 #containerworldmap {
   	position: relative;
-  	width: 700px;
+  	width: 550px;
   	height: 600px;
   	margin-left: auto;
   	margin-right: auto;
@@ -138,7 +138,7 @@ background-color: #dfdfdf;}
 }
 #containerscatterplot {
   	position: relative;
-  	width: 700px;
+  	width: 550px;
   	height: 600px;
   	margin-left: 10px;
   	margin-right: auto;
