@@ -51,6 +51,8 @@ When going to the visualization-page, you'll first see a worldmap and a scatterp
 The linegraph, piechart and donut are set as default on The Netherlands in the year 1987, with absolute numbers being shown for the age group 5 - 14 years. By clicking on a country in the worldmap, the linegraph, piechart and donut will adjust itself with the data for that specific country you just clicked on. See below for a screenshot:
 ![screenshot3](assets/README-3d95d12d.png)
 
+Link to the video:
+https://youtu.be/ckHaxoti804
 
 ## External components
 

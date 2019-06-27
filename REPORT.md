@@ -3,6 +3,17 @@
 Please have a look at my report!
 
 
+## Visuals
+
+Homepage:
+![screenshot1](assets/README-4771f959.png)
+
+Compare countries with each other:
+![screenshot2](assets/README-fc6c2263.png)
+
+Comparison within a specific country:
+![screenshot3](assets/README-3d95d12d.png)
+
 ## Introduction
 
 Numerous studies have been conducted throughout the last several years regarding the absolute numbers of suicides as well as the ratio of suicides (mostly per 100.000 capita) in countries worldwide. Despite the fact that it's not the nicest research topic to have, I decided to have a look at it simply because they all had ended up with different outcomes and conclusions. In some countries they found out that the number of suicides amongst men was vastly decreasing and the number of woman slightly increasing, whilst the number was sharply increasing for both genders in other countries. This draw my attention for several reasons: first of all the huge differences between countries, second the differences between men and woman (in different age groups as well) and third the time lapse over which the investigations took place. With those questions in mind, I decided that this was a good topic for my research since I could combine several parts in the visuals: differences between countries, genders, age groups, absolute numbers and ratio's. My idea was to see if the patterns and conclusions that previous studies have proven, are indeed visable when plotting open-source data in visuals. In order to do that, I came up with the following website:

@@ -63,3 +63,6 @@ Vandaag was een goede dag! De tooltip voor de scatterplot en piechart/donut werk
 
 # Day 24
 D-day! Man, wat een dag. Er moest nog veel meer gebeuren dan ik dacht. De website heb ik even opgeschoond, maar het grootste gedeelte van de dag heb besteed aan het opschonen van github, de code en alles voorzien van comments. Helaas lukt het niet om een link naar de website te maken dus dat doe ik morgen, maar verder ben ik bijzonder tevreden met het eindresultaat. Nog twee minuten tot de deadline dus ik ga het nu inleveren.
+
+# Day 25
+No het was een zware bevalling vandaag. Niets liep lekker en last-minute is het gelukt om het af te krijgen. Betreffende het eindresultaat: niet ontevreden, maar er had zeker meer in gezeten. Overigens heb ik een hoop geleerd van het vak dus overall gezien ben ik erg content!
