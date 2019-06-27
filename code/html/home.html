@@ -11,47 +11,36 @@
     <title>Suicides rate's</title>
 
     <!-- bootstrap core CSS -->
-    <link href="../startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/startbootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- include stylesheets -->
-    <link rel="stylesheet index" type="text/css" href="../code/css/index.css">
-    <link rel="stylesheet slider" type="text/css" href="../code/css/d3.slider.css">
+    <link rel="stylesheet index" type="text/css" href="/code/css/index.css">
+    <link rel="stylesheet slider" type="text/css" href="/code/css/d3.slider.css">
 
     <!-- Custom fonts for grayscale template -->
-    <link href="../startbootstrap-grayscale-gh-pages/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/startbootstrap/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
 
     <!-- Custom stylesheet for grayscale template -->
-    <link href="../startbootstrap-grayscale-gh-pages/css/grayscale.css" rel="stylesheet">
+    <link href="/startbootstrap/css/grayscale.css" rel="stylesheet">
 
     <!-- include js scripts -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous"></link> -->
+    crossorigin="anonymous"></link>
 
-    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
     <script src="https://unpkg.com/d3-simple-slider"></script>
-    <link rel="stylesheet" href="../code/css/index.css">
-    <link rel="stylesheet" href="../code/css/d3.slider.css">
-
-    <!-- D3 v5 (local) -->
-    <script type = "text/javascript" src = "../code/js/d3/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="/code/css/index.css">
+    <link rel="stylesheet" href="/code/css/d3.slider.css">
 
     <!-- import d3v5 as d3 for further use -->
     <script>
       d3v5 = d3;
       window.d3 = null;
     </script>
-
-    <!-- Import D3 V4 -->
-        <script src="https://d3js.org/d3.v4.min.js"></script>
-        <script>
-          d3v4 = d3;
-          window.d3 = null;
-        </script>
 
     <!-- Import D3 V5 -->
         <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -61,11 +50,10 @@
         </script>
 
     <!-- import d3v3 and topojson -->
-    <!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <!-- <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script> -->
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.27.1"></script>
     <script>
       d3v3 = d3;
       window.d3 = null;
@@ -87,16 +75,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../code/html/home.html">Home page</a>
+              <a class="nav-link js-scroll-trigger" href="/code/html/home.html.html">Home page</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../code/html/visuals.html">Visualizations</a>
+              <a class="nav-link js-scroll-trigger" href="/code/html/visuals.html">Visualizations</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../code/html/links.html">Links to</a>
+              <a class="nav-link js-scroll-trigger" href="/code/html/links.html">Links to</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../code/html/background.html">Background information</a>
+              <a class="nav-link js-scroll-trigger" href="/code/html/background.html">Background information</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="https://github.com/10755373/eindproject" target="_blank">Link to Github</a>
@@ -115,7 +103,6 @@
               <h1 class="brand-heading">Suicide rate's</h1>
               <p class="intro-text">Visualizations of suicide rate's for countries throughout the years
                 <br class="intro2-text">Rinus van Grunsven</p>
-                <!-- <img src = "../../doc/1558408198316.jpg" width = "100%"></img> -->
               <a href="#information" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
               </a>
@@ -139,7 +126,7 @@
                  Those visualizations are meant to compare countries with eachother. In order to have a closer look at the numbers for only one country, the user has to click on a country in the worldmap. After doing this, a linegraph and a piechart will appear.
                  Again, the user is provided with two option-buttons which affect the numbers for both visuals.
                </p>
-               <p> <a href="../code/html/visuals.html">Continue to have a look at the visualizations</a></p>
+               <p> <a href="/code/html/visuals.html">Continue to have a look at the visualizations</a></p>
              </div>
            </div>
          </div>
@@ -156,14 +143,14 @@
        </footer>
 </div>
        <!-- Bootstrap core JavaScript -->
-       <script src="../startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.min.js"></script>
-       <script src="../startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+       <script src="/startbootstrap/vendor/jquery/jquery.min.js"></script>
+       <script src="/startbootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
        <!-- Plugin JavaScript -->
-       <script src="../startbootstrap-grayscale-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
+       <script src="/startbootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 
        <!-- Custom scripts for this template -->
-       <script src="../startbootstrap-grayscale-gh-pages/js/grayscale.min.js"></script>
+       <script src="/startbootstrap/js/grayscale.min.js"></script>
 
      </body>
 
