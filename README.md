@@ -37,6 +37,9 @@ The data is retrieved from www.kaggle.com as a csv-file (source: https://www.kag
 Here's a link to the website:
 [Visualizations](https://10755373.github.io/eindproject/code/html/home.html)
 
+NOTE: PLEASE USE A LOCAL HOST TO SEE THE WEBSITE SINCE THIS LINK IS NOT COMPLETELY SHOWING ALL THE BOOSTRATP VISUALS
+NOTE2: TAKE THE LATEST COMMIT FROM JUNE 26TH, 2019 TO GRADE MY CODE!!!
+
 
 
 First of all, the screenshots placed below are all put in the folder 'assets' instead of the folder 'docs' (this folder contains screenshots used earlier during the project) since they weren't visualized in this README.md (I don't know why but I can't help it any further).
@@ -52,7 +55,7 @@ The linegraph, piechart and donut are set as default on The Netherlands in the y
 ![screenshot3](assets/README-3d95d12d.png)
 
 Link to the video:
-https://youtu.be/ckHaxoti804
+https://www.youtube.com/watch?v=OO6Q9FrGBDU
 
 ## External components
 
