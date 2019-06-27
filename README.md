@@ -42,7 +42,12 @@ link github: https://10755373.github.io/eindproject/
 link adjusted:
 https://10755373.github.io/eindproject/index.html
 
-First of all, the screenshots placed below are all put in the folder 'assets' instead of the folder 'docs' (this folder contains screenshots used earlier during the project) since they weren't visualized in this README.md (I don't know why but I can't help it any further). 
+
+
+https://10755373.github.io/eindproject/code/html/home.html
+
+
+First of all, the screenshots placed below are all put in the folder 'assets' instead of the folder 'docs' (this folder contains screenshots used earlier during the project) since they weren't visualized in this README.md (I don't know why but I can't help it any further).
 
 See below for other visualizations:
 When opening the website, you'll first be redirected to the homepage (see below). Here you'll get some informaiton about the topic, why I decided to visualize it and how it has been done by me. See below for a screenshot:
