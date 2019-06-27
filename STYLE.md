@@ -19,7 +19,7 @@ Some functions tend to have pretty long names, but this is been done to make sur
 
 ## Files
 
-Seperate files have been made for all the visualizations in which only that specific visualization is being executed. All the files contain two pieces of code: one for a new graph and one for updating the existing graph in case it's called once more.
+Separate files have been made for all the visualizations in which only that specific visualization is being executed. All the files contain two pieces of code: one for a new graph and one for updating the existing graph in case it's called once more.
 Furthermore, all the files are combined and called upon in one files which is called 'main.js' and this one is executing all the functions on the website. Also, a file called 'helpers.js' is made just because it's causing the rest of the files clean and straight to the point, because in this file there are several functions which retrieve the right data for the right visual when they're called (via a dropdown, slider of click). Again, this makes the rest of the code smooth, clean and easy to read.
 
 
@@ -30,4 +30,4 @@ Folders are made for different purposes. One is for example for all the javascri
 
 ## Options
 
-The option which the user would like to see is retrieved in a function and passed on to the functions which retrieve the correct data. This is done so functions can be called multiple times with several different inputs so is saves a lot of double coding. 
+The option which the user would like to see is retrieved in a function and passed on to the functions which retrieve the correct data. This is done so functions can be called multiple times with several different inputs so is saves a lot of double coding.
