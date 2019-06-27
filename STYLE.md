@@ -1,4 +1,4 @@
-## Perosnal touch
+## Personal touch
 The code is written by the author who made several choices whether to include or not to include certain code. This immediately means that it's possible for the author to have an clear overview of what's exactly happening but I can happen that users/readers of the code don't immediately understand it. Therefore, this documents is written to explain certain things in the hope it makes it a bit better to understandd.
 
 

@@ -1,6 +1,6 @@
 // unload data
 window.onload = function() {
-    fetch("/eindproject/data/dataproject.json")
+    fetch("/data/dataproject.json")
       .then(response => response.json())
       .then(json => {
         // call function
