@@ -1,13 +1,13 @@
 /* layout of the page */
-/* .masthead {
- background-image: url(/doc/1558408198316.jpg);
+.masthead {
+ background-image: url(../../doc/1558408198316.jpg);
  background-attachment: fixed;
  background-position: center;
  background-repeat: no-repeat;
  background-size: cover;
  text-align: left;
 
-} */
+}
 
 .brand-heading{
 	color: #dfdfdf;

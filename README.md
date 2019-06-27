@@ -41,7 +41,7 @@ link github: https://10755373.github.io/eindproject/
 
 
 
-test: https://10755373.github.io/eindproject/code.html.home.html
+test: https://10755373.github.io/eindproject/code/html/home.html
 
 First of all, the screenshots placed below are all put in the folder 'assets' instead of the folder 'docs' (this folder contains screenshots used earlier during the project) since they weren't visualized in this README.md (I don't know why but I can't help it any further).
 
