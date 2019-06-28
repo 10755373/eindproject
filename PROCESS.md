@@ -66,3 +66,6 @@ D-day! Man, wat een dag. Er moest nog veel meer gebeuren dan ik dacht. De websit
 
 # Day 25
 No het was een zware bevalling vandaag. Niets liep lekker en last-minute is het gelukt om het af te krijgen. Betreffende het eindresultaat: niet ontevreden, maar er had zeker meer in gezeten. Overigens heb ik een hoop geleerd van het vak dus overall gezien ben ik erg content!
+
+# DAY 26
+Met toestemming van Nigel heb ik zojuist de link werkende gekregen!!!!! Dit is voor mij een mooie afsluiter van het project (en tevens de minor) aangezien het werkt en nu kunnen mijn ongeduldige vrienden en familie het eindelijk aanschouwen. Tijd voor pils nu!

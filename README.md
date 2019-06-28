@@ -40,6 +40,8 @@ Here's a link to the website:
 NOTE: PLEASE USE A LOCAL HOST TO SEE THE WEBSITE SINCE THIS LINK IS NOT COMPLETELY SHOWING ALL THE BOOSTRATP VISUALS
 NOTE2: TAKE THE LATEST COMMIT FROM JUNE 26TH, 2019 TO GRADE MY CODE!!!
 
+UPDATE, NOTE3: ON JUNE 29TH, 2019 I MANAGED TO GET THE LINK WORKING WITH PERMISSION FROM NIGEL!!!!
+
 
 
 First of all, the screenshots placed below are all put in the folder 'assets' instead of the folder 'docs' (this folder contains screenshots used earlier during the project) since they weren't visualized in this README.md (I don't know why but I can't help it any further).
